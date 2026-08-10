@@ -1,69 +1,234 @@
-import Image from "next/image";
-
-export default function Home() {
+export default function Sections() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <section className="general section" id="general">
+        <div className="section-label">
+          <span>01</span>
+          <span>General</span>
+        </div>
+
+        <div className="placeholder">
+          <div className="placeholder-copy">
+            <p className="micro-label">
+              RESERVED FOR BOOK INFORMATION
+            </p>
+
+            <h2>
+              General content
+              <br />
+              <em>coming soon.</em>
+            </h2>
+
+            <p>
+              This section is a placeholder for the book overview,
+              introductory note, chapter summary, and other general
+              information.
+            </p>
+          </div>
+
+          <div
+            className="placeholder-sheet"
+            aria-hidden="true"
+          >
+            <span>GENERAL</span>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <strong>01</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="authors section" id="authors">
+        <div className="section-label light">
+          <span>02</span>
+          <span>Authors</span>
+        </div>
+
+        <div className="section-heading">
+          <h2>
+            Two minds.
+            <br />
+            <em>One conversation.</em>
+          </h2>
+
+          <p>
+            The book is designed as a dialogue between complementary
+            mathematical instincts: seeing the structure and finding
+            the next move.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="author-grid">
+          <article className="author-card first">
+            <div className="author-mark">
+              <span>A</span>
+              <small>01</small>
+            </div>
+
+            <div className="author-copy">
+              <p className="author-role">
+                THE STRUCTURALIST
+              </p>
+
+              <h3>Author One</h3>
+
+              <p>
+                Brings the broad view—connecting definitions,
+                proofs, and recurring patterns so each new idea
+                has a natural place in the larger story.
+              </p>
+
+              <div className="tags">
+                <span>Clarity</span>
+                <span>Proof</span>
+                <span>Structure</span>
+              </div>
+            </div>
+          </article>
+
+          <article className="author-card second">
+            <div className="author-mark">
+              <span>B</span>
+              <small>02</small>
+            </div>
+
+            <div className="author-copy">
+              <p className="author-role">
+                THE PROBLEM-SOLVER
+              </p>
+
+              <h3>Author Two</h3>
+
+              <p>
+                Keeps the mathematics moving—offering examples,
+                tactical questions, and the carefully timed nudge
+                that helps a stuck idea unfold.
+              </p>
+
+              <div className="tags">
+                <span>Examples</span>
+                <span>Strategy</span>
+                <span>Insight</span>
+              </div>
+            </div>
+          </article>
         </div>
-      </main>
-    </div>
+
+        <p className="author-note">
+          Author names and biographies can be replaced when the final
+          details are supplied.
+        </p>
+      </section>
+
+      <section className="hints section" id="hints">
+        <div className="section-label">
+          <span>03</span>
+          <span>Hints</span>
+        </div>
+
+        <div className="section-heading">
+          <div>
+            <p className="micro-label">
+              A NUDGE, NOT A SPOILER
+            </p>
+
+            <h2>
+              Find your
+              <br />
+              <em>next move.</em>
+            </h2>
+          </div>
+
+          <p>
+            Five hundred numbered prompts, kept out of sight until
+            you need one. Enter the complete three-digit number to
+            reveal only that hint.
+          </p>
+        </div>
+
+        <form
+          className="lookup-form"
+          id="hintLookup"
+          noValidate
+        >
+          <label htmlFor="hintNumber">
+            Enter a three-digit hint number
+          </label>
+
+          <div className="lookup-row">
+            <div className="number-field">
+              <span aria-hidden="true">#</span>
+
+              <input
+                id="hintNumber"
+                name="hintNumber"
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]{3}"
+                maxLength={3}
+                placeholder="001"
+                autoComplete="off"
+                aria-describedby="hintHelp hintError"
+              />
+            </div>
+
+            <button
+              id="revealHint"
+              type="submit"
+              disabled
+            >
+              Reveal hint{" "}
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+
+          <p
+            className="lookup-help"
+            id="hintHelp"
+          >
+            Enter the full number from 001 to 500.
+            Partial numbers reveal nothing.
+          </p>
+
+          <p
+            className="hint-error"
+            id="hintError"
+            role="alert"
+            hidden
+          ></p>
+        </form>
+
+        <article
+          className="hint-result"
+          id="hintResult"
+          aria-live="polite"
+          hidden
+        >
+          <p className="result-label">
+            YOUR HINT
+          </p>
+
+          <p className="revealed-hint">
+            <span
+              className="hint-number"
+              id="resultNumber"
+            ></span>
+
+            <span className="hint-colon">:</span>
+
+            <span id="resultText"></span>
+          </p>
+
+          <button
+            id="hideHint"
+            type="button"
+          >
+            Hide this hint
+          </button>
+        </article>
+      </section>
+    </>
   );
 }
