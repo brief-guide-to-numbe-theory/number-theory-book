@@ -7,6 +7,7 @@ export default function Sections() {
           <span>General</span>
         </div>
 
+        
         <div className="placeholder">
           <div className="placeholder-copy">
             <p className="micro-label">
