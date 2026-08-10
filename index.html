@@ -1,0 +1,99 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A brief guide to Number Theory — book website and 500 numbered hints.">
+  <title>A brief guide to Number Theory</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Home"><span class="brand-mark">&sum;</span><span>ABGNT</span></a>
+    <nav aria-label="Main navigation"><a href="#general">General</a><a href="#authors">Authors</a><a href="#hints">Hints</a></nav>
+    <a class="header-link" href="#hints">Browse 500 hints <span>&#8600;</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>01</span> An accessible companion to the integers</p>
+        <h1>A brief guide to <em>Number Theory</em></h1>
+        <p class="hero-intro">A compact field guide to divisibility, primes, congruences, and the beautiful patterns hiding inside ordinary whole numbers.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#general">Open the guide <span>&rarr;</span></a>
+          <a class="text-link" href="#authors">Meet the two authors <span>&darr;</span></a>
+        </div>
+      </div>
+      <div class="book-stage">
+        <div class="book-shadow"></div>
+        <img class="book-cover" src="book-cover.png" alt="Cover of A brief guide to Number Theory by Aritra Saha and Riddhiman Seal">
+      </div>
+      <div class="hero-metrics">
+        <div><strong>500</strong><span>guided hints</span></div>
+        <div><strong>2</strong><span>author voices</span></div>
+        <div><strong>&infin;</strong><span>patterns to find</span></div>
+      </div>
+    </section>
+
+    <section class="general section" id="general">
+      <div class="section-label"><span>01</span><span>General</span></div>
+      <div class="placeholder">
+        <div class="placeholder-copy">
+          <p class="micro-label">RESERVED FOR BOOK INFORMATION</p>
+          <h2>General content<br><em>coming soon.</em></h2>
+          <p>This section is a placeholder for the book overview, introductory note, chapter summary, and other general information.</p>
+        </div>
+        <div class="placeholder-sheet" aria-hidden="true">
+          <span>GENERAL</span><i></i><i></i><i></i><i></i><strong>01</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="authors section" id="authors">
+      <div class="section-label light"><span>02</span><span>Authors</span></div>
+      <div class="section-heading">
+        <h2>Two minds.<br><em>One conversation.</em></h2>
+        <p>The book is designed as a dialogue between complementary mathematical instincts: seeing the structure and finding the next move.</p>
+      </div>
+      <div class="author-grid">
+        <article class="author-card first">
+          <div class="author-mark"><span>A</span><small>01</small></div>
+          <div class="author-copy"><p class="author-role">THE STRUCTURALIST</p><h3>Author One</h3><p>Brings the broad view—connecting definitions, proofs, and recurring patterns so each new idea has a natural place in the larger story.</p><div class="tags"><span>Clarity</span><span>Proof</span><span>Structure</span></div></div>
+        </article>
+        <article class="author-card second">
+          <div class="author-mark"><span>B</span><small>02</small></div>
+          <div class="author-copy"><p class="author-role">THE PROBLEM-SOLVER</p><h3>Author Two</h3><p>Keeps the mathematics moving—offering examples, tactical questions, and the carefully timed nudge that helps a stuck idea unfold.</p><div class="tags"><span>Examples</span><span>Strategy</span><span>Insight</span></div></div>
+        </article>
+      </div>
+      <p class="author-note">Author names and biographies can be replaced when the final details are supplied.</p>
+    </section>
+
+    <section class="hints section" id="hints">
+      <div class="section-label"><span>03</span><span>Hints</span></div>
+      <div class="section-heading">
+        <div><p class="micro-label">A NUDGE, NOT A SPOILER</p><h2>Find your<br><em>next move.</em></h2></div>
+        <p>Five hundred numbered prompts, kept out of sight until you need one. Enter the complete three-digit number to reveal only that hint.</p>
+      </div>
+      <form class="lookup-form" id="hintLookup" novalidate>
+        <label for="hintNumber">Enter a three-digit hint number</label>
+        <div class="lookup-row">
+          <div class="number-field"><span aria-hidden="true">#</span><input id="hintNumber" name="hintNumber" type="text" inputmode="numeric" pattern="[0-9]{3}" maxlength="3" placeholder="001" autocomplete="off" aria-describedby="hintHelp hintError"></div>
+          <button id="revealHint" type="submit" disabled>Reveal hint <span aria-hidden="true">&rarr;</span></button>
+        </div>
+        <p class="lookup-help" id="hintHelp">Enter the full number from 001 to 500. Partial numbers reveal nothing.</p>
+        <p class="hint-error" id="hintError" role="alert" hidden></p>
+      </form>
+      <article class="hint-result" id="hintResult" aria-live="polite" hidden>
+        <p class="result-label">YOUR HINT</p>
+        <p class="revealed-hint"><span class="hint-number" id="resultNumber"></span><span class="hint-colon">:</span><span id="resultText"></span></p>
+        <button id="hideHint" type="button">Hide this hint</button>
+      </article>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#top"><span class="brand-mark">&sum;</span><span>ABGNT</span></a><p>A brief guide to Number Theory</p><a href="#top">Back to top &uarr;</a></footer>
+</body>
+</html>
