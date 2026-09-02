@@ -54,5 +54,21 @@ export default function CountUp({
     };
   }, [end, duration]);
 
-  return <span ref={ref}>{value}</span>;
+  // Reserve the width of the final value so following text never shifts as
+  // the digit count grows. The animating number is overlaid on the reserver.
+  return (
+    <span
+      ref={ref}
+      style={{
+        position: "relative",
+        display: "inline-block",
+        fontVariantNumeric: "tabular-nums",
+      }}
+    >
+      <span aria-hidden="true" style={{ visibility: "hidden" }}>
+        {end}
+      </span>
+      <span style={{ position: "absolute", left: 0, top: 0 }}>{value}</span>
+    </span>
+  );
 }
