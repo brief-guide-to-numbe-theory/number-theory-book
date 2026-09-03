@@ -1,24 +1,40 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import katex from "katex";
+import "katex/dist/katex.min.css";
 
-// A drifting field of number-theory glyphs and micro-formulas.
-const TOKENS = [
-  "∑", "∏", "∫", "√", "π", "φ", "θ", "λ", "∞", "≡", "≠", "≤", "≥",
-  "∈", "∀", "∃", "∤", "∣", "ℤ", "ℕ", "ℚ", "ℝ", "≅", "⌊x⌋", "gcd", "lcm",
-  "mod p", "aᵖ⁻¹", "x²+y²", "p∤n", "φ(n)", "a≡b", "∑1/n", "2ⁿ−1",
-  "2", "3", "5", "7", "11", "13", "17", "19", "23", "29", "d∣n",
+// Key Number Theory LaTeX formulas, including exact formulas from the book cover
+const LATEX_FORMULAS = [
+  "x^2 - dy^2 = 1",
+  "p_n \\approx n \\log n",
+  "\\sum_{d \\mid n} \\varphi(d) = n",
+  "a^{\\varphi(n)} \\equiv 1 \\pmod n",
+  "x^2 \\equiv a \\pmod p",
+  "f: \\mathbb{N} \\to \\mathbb{N}",
+  "a - b \\mid P(a) - P(b)",
+  "\\left(\\frac{p}{q}\\right)\\left(\\frac{q}{p}\\right) = (-1)^{\\frac{p-1}{2}\\frac{q-1}{2}}",
+  "\\sum_{p \\le x} \\frac{1}{p} = \\ln \\ln x + C",
+  "n = \\prod_{i=1}^k p_i^{\\alpha_i}",
+  "a \\equiv b \\pmod m",
+  "\\gcd(a, b) \\cdot \\operatorname{lcm}(a, b) = ab",
+  "\\phi(n) = n \\prod_{p \\mid n} \\left(1 - \\frac{1}{p}\\right)",
+  "\\zeta(s) = \\sum_{n=1}^\\infty \\frac{1}{n^s}",
+  "e^{i\\pi} + 1 = 0",
+  "\\pi(x) \\sim \\frac{x}{\\ln x}",
+  "\\lambda(n)",
+  "\\mu(n)",
+  "\\sigma(n)",
 ];
 
-type Particle = {
+type FormulaParticle = {
+  id: number;
+  html: string;
   x: number;
   y: number;
   vy: number;
-  size: number;
-  rot: number;
-  vr: number;
+  scale: number;
   alpha: number;
-  token: string;
   pulse: number;
   pulseSpeed: number;
 };
@@ -28,98 +44,110 @@ export default function MathBackground({
 }: {
   variant?: "dark" | "light";
 }) {
-  const ref = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const canvas = ref.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    const parent = canvas.parentElement;
-    if (!ctx || !parent) return;
+    const container = containerRef.current;
+    if (!container) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    // white on teal (authors section), deep navy on light sections
-    const rgb = variant === "dark" ? "255,255,255" : "26,46,90";
 
-    let w = 0;
-    let h = 0;
-    let particles: Particle[] = [];
+    // Render KaTeX HTML snippets
+    const rendered = LATEX_FORMULAS.map((formula) => {
+      try {
+        return katex.renderToString(formula, {
+          displayMode: false,
+          throwOnError: false,
+        });
+      } catch {
+        return formula;
+      }
+    });
 
-    function spawn(initial: boolean): Particle {
-      const size = Math.random() * 20 + 13;
-      return {
-        x: Math.random() * w,
-        y: initial ? Math.random() * h : h + size,
-        vy: Math.random() * 0.22 + 0.1,
-        size,
-        rot: (Math.random() - 0.5) * 0.5,
-        vr: (Math.random() - 0.5) * 0.003,
-        alpha: Math.random() * 0.3 + 0.05,
-        token: TOKENS[Math.floor(Math.random() * TOKENS.length)],
-        pulse: Math.random() * Math.PI * 2,
-        pulseSpeed: Math.random() * 0.02 + 0.008,
-      };
-    }
+    const rect = container.getBoundingClientRect();
+    const w = rect.width || window.innerWidth;
+    const h = rect.height || 800;
 
-    function resize() {
-      w = parent!.clientWidth;
-      h = parent!.clientHeight;
-      canvas!.width = Math.max(1, Math.round(w * dpr));
-      canvas!.height = Math.max(1, Math.round(h * dpr));
-      canvas!.style.width = w + "px";
-      canvas!.style.height = h + "px";
-      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.max(10, Math.min(55, Math.round((w * h) / 27000)));
-      particles = Array.from({ length: count }, () => spawn(true));
-    }
+    const count = Math.max(10, Math.min(25, Math.round((w * h) / 38000)));
 
-    function draw(dt: number) {
-      ctx!.clearRect(0, 0, w, h);
-      ctx!.textAlign = "center";
-      ctx!.textBaseline = "middle";
-      for (const p of particles) {
+    const particles: FormulaParticle[] = Array.from({ length: count }, (_, i) => ({
+      id: i,
+      html: rendered[i % rendered.length],
+      x: Math.random() * 82 + 5,
+      y: Math.random() * h,
+      vy: Math.random() * 0.22 + 0.12,
+      scale: Math.random() * 0.3 + 0.85,
+      alpha: Math.random() * 0.28 + 0.12,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: Math.random() * 0.018 + 0.008,
+    }));
+
+    const elements: HTMLDivElement[] = [];
+    particles.forEach((p) => {
+      const el = document.createElement("div");
+      el.className = `math-latex-item ${variant === "dark" ? "text-white" : "text-navy"}`;
+      el.innerHTML = p.html;
+      el.style.position = "absolute";
+      el.style.left = `${p.x}%`;
+      el.style.top = `${p.y}px`;
+      el.style.transform = `scale(${p.scale})`;
+      el.style.opacity = `${p.alpha}`;
+      el.style.pointerEvents = "none";
+      el.style.userSelect = "none";
+      el.style.whiteSpace = "nowrap";
+      el.style.willChange = "transform, opacity";
+      container.appendChild(el);
+      elements.push(el);
+    });
+
+    let raf = 0;
+    let lastTime = 0;
+
+    function animate(ts: number) {
+      if (!lastTime) lastTime = ts;
+      const dt = Math.min((ts - lastTime) / 16.67, 3);
+      lastTime = ts;
+
+      const containerHeight = container?.clientHeight || h;
+
+      particles.forEach((p, i) => {
+        const el = elements[i];
+        if (!el) return;
+
         p.y -= p.vy * dt;
-        p.rot += p.vr * dt;
         p.pulse += p.pulseSpeed * dt;
-        if (p.y < -p.size - 10) {
-          Object.assign(p, spawn(false));
+
+        if (p.y < -70) {
+          p.y = containerHeight + 40;
+          p.x = Math.random() * 82 + 5;
         }
-        const a = p.alpha * (0.65 + 0.35 * Math.sin(p.pulse));
-        ctx!.save();
-        ctx!.translate(p.x, p.y);
-        ctx!.rotate(p.rot);
-        ctx!.font = `${p.size}px Georgia, "Times New Roman", serif`;
-        ctx!.fillStyle = `rgba(${rgb},${a})`;
-        ctx!.fillText(p.token, 0, 0);
-        ctx!.restore();
+
+        const currentAlpha = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+
+        el.style.top = `${p.y}px`;
+        el.style.opacity = `${currentAlpha}`;
+      });
+
+      if (!reduce) {
+        raf = requestAnimationFrame(animate);
       }
     }
 
-    let raf = 0;
-    let last = 0;
-    function frame(ts: number) {
-      const dt = last ? Math.min((ts - last) / 16.67, 3) : 1;
-      last = ts;
-      draw(dt);
-      raf = requestAnimationFrame(frame);
-    }
-
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(parent);
-
-    if (reduce) {
-      draw(0);
-    } else {
-      raf = requestAnimationFrame(frame);
+    if (!reduce) {
+      raf = requestAnimationFrame(animate);
     }
 
     return () => {
       cancelAnimationFrame(raf);
-      ro.disconnect();
+      elements.forEach((el) => el.remove());
     };
   }, [variant]);
 
-  return <canvas ref={ref} className="math-bg" aria-hidden="true" />;
+  return (
+    <div
+      ref={containerRef}
+      className="math-bg math-latex-container"
+      aria-hidden="true"
+    />
+  );
 }
