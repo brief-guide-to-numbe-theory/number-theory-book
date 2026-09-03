@@ -1,4 +1,5 @@
 import Image from "next/image";
+import bookCover from "../public/book-cover.png";
 import HintLookup from "./HintLookup";
 import MathBackground from "./MathBackground";
 import PrimeSpiral from "./PrimeSpiral";
@@ -56,10 +57,8 @@ export default function Home() {
             <div className="book-shadow"></div>
             <Image
               className="book-cover"
-              src="/book-cover.png"
+              src={bookCover}
               alt="Cover of A brief guide to Number Theory by Aritra Saha and Riddhiman Seal"
-              width={405}
-              height={608}
               priority
             />
           </div>
