@@ -14,23 +14,25 @@ const LATEX_FORMULAS = [
   "f: \\mathbb{N} \\to \\mathbb{N}",
   "a - b \\mid P(a) - P(b)",
   "\\left(\\frac{p}{q}\\right)\\left(\\frac{q}{p}\\right) = (-1)^{\\frac{p-1}{2}\\frac{q-1}{2}}",
-  "\\sum_{p} \\frac{1}{p} \\to \\infty",
+  "\\sum_{p \\le x} \\frac{1}{p} = \\ln \\ln x + C",
   "n = \\prod_{i=1}^k p_i^{\\alpha_i}",
   "a \\equiv b \\pmod m",
   "\\gcd(a, b) \\cdot \\operatorname{lcm}(a, b) = ab",
   "\\phi(n) = n \\prod_{p \\mid n} \\left(1 - \\frac{1}{p}\\right)",
-  "e^{i\\theta} = \\cos \\theta +i\\sin\\theta",
+  "\\zeta(s) = \\sum_{n=1}^\\infty \\frac{1}{n^s}",
+  "e^{i\\pi} + 1 = 0",
   "\\pi(x) \\sim \\frac{x}{\\ln x}",
   "\\lambda(n)",
   "\\mu(n)",
-  "\\sigma(n) = \\prod_{i=1}^k \\frac{p_i^{\alpha_i+1}-1}{p_i-1}",
-  "\\mathbb{Z}",
-  "\\mathbb{N}",
+  "\\sigma(n)",
+  "\\mathbb{Z} / n\\mathbb{Z}",
   "\\left(\\frac{a}{p}\\right) \\equiv a^{\\frac{p-1}{2}} \\pmod p",
+  "L(s, \\chi) = \\sum_{n=1}^\\infty \\frac{\\chi(n)}{n^s}",
   "\\tau(n) = \\sum_{d \\mid n} 1",
   "\\sigma_k(n) = \\sum_{d \\mid n} d^k",
   "v_p(n!) = \\sum_{k=1}^\\infty \\left\\lfloor \\frac{n}{p^k} \\right\\rfloor",
   "x^n + y^n \\ne z^n",
+  "\\binom{n}{k} \\equiv \\prod_{i=0}^m \\binom{a_i}{b_i} \\pmod p",
 ];
 
 type FormulaParticle = {
@@ -78,25 +80,28 @@ export default function MathBackground({
     const count = Math.max(8, Math.min(15, Math.round((w * h) / 62000)));
     const numColumns = Math.max(4, Math.min(6, Math.floor(count / 2) || 4));
 
+    // Uniform upward speed so particles move in perfect sync without clumping or overtaking
+    const UNIFORM_SPEED = 0.13;
+
     const particles: FormulaParticle[] = Array.from({ length: count }, (_, i) => {
       const colIndex = i % numColumns;
       const colWidth = 80 / numColumns;
       const xBase = 5 + colIndex * colWidth;
-      const xJitter = Math.random() * (colWidth * 0.7);
+      const xJitter = (Math.sin(i * 3.7) * 0.5 + 0.5) * (colWidth * 0.6);
 
+      // Perfectly staggered initial Y positions for uniform distribution at every stage
       const yBase = (i / count) * h;
-      const yJitter = (Math.random() - 0.5) * (h / count) * 0.8;
 
       return {
         id: i,
         html: rendered[i % rendered.length],
         x: Math.min(85, Math.max(5, xBase + xJitter)),
-        y: yBase + yJitter,
-        vy: Math.random() * 0.18 + 0.1,
-        scale: Math.random() * 0.25 + 0.9, // slightly larger scale range
-        alpha: Math.random() * 0.25 + 0.22, // slightly higher opacity base
-        pulse: Math.random() * Math.PI * 2,
-        pulseSpeed: Math.random() * 0.015 + 0.007,
+        y: yBase,
+        vy: UNIFORM_SPEED,
+        scale: 0.95 + (i % 3) * 0.08,
+        alpha: 0.2 + (i % 4) * 0.04,
+        pulse: (i * Math.PI) / 3,
+        pulseSpeed: 0.01,
         colIndex,
       };
     });
@@ -128,6 +133,7 @@ export default function MathBackground({
       lastTime = ts;
 
       const containerHeight = container?.clientHeight || h;
+      const totalSpan = containerHeight + 80;
 
       particles.forEach((p, i) => {
         const el = elements[i];
@@ -136,14 +142,12 @@ export default function MathBackground({
         p.y -= p.vy * dt;
         p.pulse += p.pulseSpeed * dt;
 
+        // Wrap seamlessly to maintain exact uniform distribution
         if (p.y < -70) {
-          p.y = containerHeight + 30 + Math.random() * 40;
-          const colWidth = 80 / numColumns;
-          const xBase = 5 + p.colIndex * colWidth;
-          p.x = Math.min(85, Math.max(5, xBase + Math.random() * (colWidth * 0.7)));
+          p.y += totalSpan;
         }
 
-        const currentAlpha = p.alpha * (0.75 + 0.25 * Math.sin(p.pulse));
+        const currentAlpha = p.alpha * (0.8 + 0.2 * Math.sin(p.pulse));
 
         el.style.top = `${p.y}px`;
         el.style.left = `${p.x}%`;
