@@ -14,7 +14,7 @@ const LATEX_FORMULAS = [
   "f: \\mathbb{N} \\to \\mathbb{N}",
   "a - b \\mid P(a) - P(b)",
   "\\left(\\frac{p}{q}\\right)\\left(\\frac{q}{p}\\right) = (-1)^{\\frac{p-1}{2}\\frac{q-1}{2}}",
-  "\\sum_{p } \\frac{1}{p} \\to \\infty",
+  "\\sum_{p} \\frac{1}{p} \\to \\infty",
   "n = \\prod_{i=1}^k p_i^{\\alpha_i}",
   "a \\equiv b \\pmod m",
   "\\gcd(a, b) \\cdot \\operatorname{lcm}(a, b) = ab",
