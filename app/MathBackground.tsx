@@ -77,17 +77,15 @@ export default function MathBackground({
     const w = rect.width || window.innerWidth;
     const h = rect.height || 800;
 
-    // Reduced density for a clean, well-spaced background layout
     const count = Math.max(8, Math.min(15, Math.round((w * h) / 62000)));
     const numColumns = Math.max(4, Math.min(6, Math.floor(count / 2) || 4));
 
     const particles: FormulaParticle[] = Array.from({ length: count }, (_, i) => {
       const colIndex = i % numColumns;
-      const colWidth = 80 / numColumns; // 80% total width spread
+      const colWidth = 80 / numColumns;
       const xBase = 5 + colIndex * colWidth;
       const xJitter = Math.random() * (colWidth * 0.7);
 
-      // Stagger vertical positions evenly across container height with light random jitter
       const yBase = (i / count) * h;
       const yJitter = (Math.random() - 0.5) * (h / count) * 0.8;
 
@@ -97,8 +95,8 @@ export default function MathBackground({
         x: Math.min(85, Math.max(5, xBase + xJitter)),
         y: yBase + yJitter,
         vy: Math.random() * 0.18 + 0.1,
-        scale: Math.random() * 0.2 + 0.8,
-        alpha: Math.random() * 0.22 + 0.1,
+        scale: Math.random() * 0.25 + 0.9, // slightly larger scale range
+        alpha: Math.random() * 0.25 + 0.22, // slightly higher opacity base
         pulse: Math.random() * Math.PI * 2,
         pulseSpeed: Math.random() * 0.015 + 0.007,
         colIndex,
@@ -147,7 +145,7 @@ export default function MathBackground({
           p.x = Math.min(85, Math.max(5, xBase + Math.random() * (colWidth * 0.7)));
         }
 
-        const currentAlpha = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
+        const currentAlpha = p.alpha * (0.75 + 0.25 * Math.sin(p.pulse));
 
         el.style.top = `${p.y}px`;
         el.style.left = `${p.x}%`;
