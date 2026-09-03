@@ -45,6 +45,7 @@ type FormulaParticle = {
   alpha: number;
   pulse: number;
   pulseSpeed: number;
+  colIndex: number;
 };
 
 export default function MathBackground({
@@ -60,7 +61,7 @@ export default function MathBackground({
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Render every formula to HTML using KaTeX
+    // Render KaTeX HTML snippets
     const rendered = LATEX_FORMULAS.map((formula) => {
       try {
         return katex.renderToString(formula, {
@@ -76,19 +77,33 @@ export default function MathBackground({
     const w = rect.width || window.innerWidth;
     const h = rect.height || 800;
 
-    const count = Math.max(12, Math.min(28, Math.round((w * h) / 35000)));
+    // Reduced density for a clean, well-spaced background layout
+    const count = Math.max(8, Math.min(15, Math.round((w * h) / 62000)));
+    const numColumns = Math.max(4, Math.min(6, Math.floor(count / 2) || 4));
 
-    const particles: FormulaParticle[] = Array.from({ length: count }, (_, i) => ({
-      id: i,
-      html: rendered[i % rendered.length],
-      x: Math.random() * 82 + 5,
-      y: Math.random() * h,
-      vy: Math.random() * 0.22 + 0.12,
-      scale: Math.random() * 0.3 + 0.85,
-      alpha: Math.random() * 0.28 + 0.12,
-      pulse: Math.random() * Math.PI * 2,
-      pulseSpeed: Math.random() * 0.018 + 0.008,
-    }));
+    const particles: FormulaParticle[] = Array.from({ length: count }, (_, i) => {
+      const colIndex = i % numColumns;
+      const colWidth = 80 / numColumns; // 80% total width spread
+      const xBase = 5 + colIndex * colWidth;
+      const xJitter = Math.random() * (colWidth * 0.7);
+
+      // Stagger vertical positions evenly across container height with light random jitter
+      const yBase = (i / count) * h;
+      const yJitter = (Math.random() - 0.5) * (h / count) * 0.8;
+
+      return {
+        id: i,
+        html: rendered[i % rendered.length],
+        x: Math.min(85, Math.max(5, xBase + xJitter)),
+        y: yBase + yJitter,
+        vy: Math.random() * 0.18 + 0.1,
+        scale: Math.random() * 0.2 + 0.8,
+        alpha: Math.random() * 0.22 + 0.1,
+        pulse: Math.random() * Math.PI * 2,
+        pulseSpeed: Math.random() * 0.015 + 0.007,
+        colIndex,
+      };
+    });
 
     const elements: HTMLDivElement[] = [];
     particles.forEach((p) => {
@@ -126,13 +141,16 @@ export default function MathBackground({
         p.pulse += p.pulseSpeed * dt;
 
         if (p.y < -70) {
-          p.y = containerHeight + 40;
-          p.x = Math.random() * 82 + 5;
+          p.y = containerHeight + 30 + Math.random() * 40;
+          const colWidth = 80 / numColumns;
+          const xBase = 5 + p.colIndex * colWidth;
+          p.x = Math.min(85, Math.max(5, xBase + Math.random() * (colWidth * 0.7)));
         }
 
         const currentAlpha = p.alpha * (0.7 + 0.3 * Math.sin(p.pulse));
 
         el.style.top = `${p.y}px`;
+        el.style.left = `${p.x}%`;
         el.style.opacity = `${currentAlpha}`;
       });
 

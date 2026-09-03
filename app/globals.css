@@ -42,7 +42,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   z-index: 0;
 }
 .math-latex-item {
-  font-size: 1.15rem;
+  font-size: 0.95rem;
   transition: opacity 0.2s linear;
 }
 .math-latex-item.text-white {
