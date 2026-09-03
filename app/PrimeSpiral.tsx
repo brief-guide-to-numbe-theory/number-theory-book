@@ -82,12 +82,12 @@ export default function PrimeSpiral() {
         const alpha = 0.11 + boost * 0.26 + twinkle * 0.07;
         const size = 1.7 + boost * 0.9;
         // glow halo under every dot
-        ctx!.fillStyle = `rgba(230,178,84,${alpha * 0.18})`;
+        ctx!.fillStyle = `rgba(217,43,140,${alpha * 0.18})`;
         ctx!.beginPath();
         ctx!.arc(x, y, size * 2.8, 0, TAU);
         ctx!.fill();
         // bright core
-        ctx!.fillStyle = `rgba(240,198,116,${alpha})`;
+        ctx!.fillStyle = `rgba(230,80,165,${alpha})`;
         ctx!.beginPath();
         ctx!.arc(x, y, size, 0, TAU);
         ctx!.fill();

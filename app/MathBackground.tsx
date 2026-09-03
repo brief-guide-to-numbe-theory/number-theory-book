@@ -39,8 +39,8 @@ export default function MathBackground({
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    // gold-ish on dark backgrounds, ink on light ones
-    const rgb = variant === "dark" ? "214,154,54" : "16,37,59";
+    // white on teal (authors section), deep navy on light sections
+    const rgb = variant === "dark" ? "255,255,255" : "26,46,90";
 
     let w = 0;
     let h = 0;
