@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import katex from "katex";
 import "katex/dist/katex.min.css";
 
-// Key Number Theory LaTeX formulas, including exact formulas from the book cover
+// Comprehensive Number Theory LaTeX formulas rendered via KaTeX
 const LATEX_FORMULAS = [
   "x^2 - dy^2 = 1",
   "p_n \\approx n \\log n",
@@ -25,6 +25,14 @@ const LATEX_FORMULAS = [
   "\\lambda(n)",
   "\\mu(n)",
   "\\sigma(n)",
+  "\\mathbb{Z} / n\\mathbb{Z}",
+  "\\left(\\frac{a}{p}\\right) \\equiv a^{\\frac{p-1}{2}} \\pmod p",
+  "L(s, \\chi) = \\sum_{n=1}^\\infty \\frac{\\chi(n)}{n^s}",
+  "\\tau(n) = \\sum_{d \\mid n} 1",
+  "\\sigma_k(n) = \\sum_{d \\mid n} d^k",
+  "v_p(n!) = \\sum_{k=1}^\\infty \\left\\lfloor \\frac{n}{p^k} \\right\\rfloor",
+  "x^n + y^n \\ne z^n",
+  "\\binom{n}{k} \\equiv \\prod_{i=0}^m \\binom{a_i}{b_i} \\pmod p",
 ];
 
 type FormulaParticle = {
@@ -52,7 +60,7 @@ export default function MathBackground({
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Render KaTeX HTML snippets
+    // Render every formula to HTML using KaTeX
     const rendered = LATEX_FORMULAS.map((formula) => {
       try {
         return katex.renderToString(formula, {
@@ -68,7 +76,7 @@ export default function MathBackground({
     const w = rect.width || window.innerWidth;
     const h = rect.height || 800;
 
-    const count = Math.max(10, Math.min(25, Math.round((w * h) / 38000)));
+    const count = Math.max(12, Math.min(28, Math.round((w * h) / 35000)));
 
     const particles: FormulaParticle[] = Array.from({ length: count }, (_, i) => ({
       id: i,
