@@ -53,3 +53,32 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   color: rgba(26, 46, 90, 0.46);
   text-shadow: 0 0 8px rgba(26, 46, 90, 0.1);
 }
+
+.about-book-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(40px, 7vw, 110px);
+  align-items: start;
+}
+.about-book-heading .micro-label {
+  color: #3a5878;
+}
+.about-book-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.about-book-body p {
+  margin: 0;
+  color: #2c4263;
+  font: 18px/1.75 Georgia, 'Times New Roman', serif;
+}
+.about-book-body p strong {
+  color: var(--ink);
+}
+@media (max-width: 900px) {
+  .about-book-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
