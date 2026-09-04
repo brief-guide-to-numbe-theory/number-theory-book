@@ -115,7 +115,8 @@ export default function Home() {
                 comprehensive resources for the same. Hence, we have dedicated
                 an entire chapter to functional equations. The first subsection
                 helps the readers gain familiarity with regular algebraic
-                techniques, and the next one introduces number theoretic ideas. Also, in the last chapter, we have dedicated an enyire section for Combinatorial Number Theory.
+                techniques, and the next one introduces number theoretic ideas.
+                Also, in the last chapter, we have dedicated an entire section for Combinatorial Number Theory.
               </p>
               <p>
                 Our most important aim is to help readers understand and
