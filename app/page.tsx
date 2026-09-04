@@ -24,6 +24,10 @@ export default function Home() {
               A brief guide to <em>Number Theory</em>
             </h1>
 
+            <p className="hero-subtitle">
+              For Excellence in Olympiad Number Theory
+            </p>
+
             <div className="hero-actions">
               <a className="primary-button" href="#general">
                 Open the guide <span>&rarr;</span>
