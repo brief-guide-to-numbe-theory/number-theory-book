@@ -3,7 +3,6 @@ import Link from "next/link";
 import bookCover from "../public/book-cover.png";
 import Header from "./Header";
 import Footer from "./Footer";
-import HintLookup from "./HintLookup";
 import MathBackground from "./MathBackground";
 import PrimeSpiral from "./PrimeSpiral";
 import ScrollReveal from "./ScrollReveal";
@@ -32,9 +31,9 @@ export default function Home() {
             </p>
 
             <div className="hero-actions">
-              <Link className="primary-button" href="/general">
+              <a className="primary-button" href="#general">
                 Open the guide <span>&rarr;</span>
-              </Link>
+              </a>
               <Link className="text-link" href="/authors">
                 Meet the two authors <span>&darr;</span>
               </Link>
@@ -71,33 +70,38 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="hints section" id="hints">
+        <section className="general section" id="general">
           <MathBackground variant="light" />
           <div className="section-label">
-            <span>03</span>
-            <span>Hints</span>
+            <span>01</span>
+            <span>General</span>
           </div>
 
-          <div className="section-heading" data-reveal>
-            <div>
-              <p className="micro-label">A NUDGE, NOT A SPOILER</p>
+          <div className="placeholder" data-reveal>
+            <div className="placeholder-copy">
+              <p className="micro-label">RESERVED FOR BOOK INFORMATION</p>
 
               <h2>
-                Find your
+                General content
                 <br />
-                <em>next move.</em>
+                <em>coming soon.</em>
               </h2>
+
+              <p>
+                This section is a placeholder for the book overview,
+                introductory note, chapter summary, and other general
+                information.
+              </p>
             </div>
 
-            <p>
-              Five hundred numbered prompts, kept out of sight until you need
-              one. Enter the complete three-digit number to reveal only that
-              hint.
-            </p>
-          </div>
-
-          <div data-reveal className="d1">
-            <HintLookup />
+            <div className="placeholder-sheet" aria-hidden="true">
+              <span>GENERAL</span>
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+              <strong>01</strong>
+            </div>
           </div>
         </section>
       </main>

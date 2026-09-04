@@ -9,12 +9,12 @@ export default function Header() {
       </Link>
 
       <nav aria-label="Main navigation">
-        <Link href="/general">General</Link>
+        <Link href="/">General</Link>
         <Link href="/authors">Authors</Link>
-        <Link href="/#hints">Hints</Link>
+        <Link href="/hints">Hints</Link>
       </nav>
 
-      <Link className="header-link" href="/#hints">
+      <Link className="header-link" href="/hints">
         Browse 500 hints <span>&#8600;</span>
       </Link>
     </header>
