@@ -31,7 +31,7 @@ export default function Home() {
           <PrimeSpiral />
           <div className="hero-copy">
             <p className="eyebrow">
-              <span>01</span> An accessible companion to the integers
+              <span>01</span> From Fundamentals to Olympiad Excellence
             </p>
 
             <h1>
