@@ -84,13 +84,14 @@ export default function Home() {
                 understanding of the topics.
               </p>
               <p>
-                Number theoretic functional equations are on the rise, with at
+                Number theoretic functional equations and Combinatorial number theory are on the rise, with at
                 least one appearing in each IMO number theory shortlist in the
-                recent years. It is quite surprising that there are so few
+                recent years indivitually. It is quite surprising that there are so few
                 comprehensive resources for the same. Hence, we have dedicated
                 an entire chapter to functional equations. The first subsection
                 helps the readers gain familiarity with regular algebraic
                 techniques, and the next one introduces number theoretic ideas.
+                Also, in the last chapter, we have dedicated an entire section for Combinatorial Number Theory.
               </p>
               <p>
                 Our most important aim is to help readers understand and
