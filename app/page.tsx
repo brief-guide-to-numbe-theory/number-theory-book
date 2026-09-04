@@ -6,7 +6,6 @@ import Footer from "./Footer";
 import MathBackground from "./MathBackground";
 import PrimeSpiral from "./PrimeSpiral";
 import ScrollReveal from "./ScrollReveal";
-import CountUp from "./CountUp";
 
 export default function Home() {
   return (
@@ -18,17 +17,12 @@ export default function Home() {
           <PrimeSpiral />
           <div className="hero-copy">
             <p className="eyebrow">
-              <span>01</span> From Fundamentals to Olympiad Excellence
+              <span>01</span> Guide to the book
             </p>
 
             <h1>
               A brief guide to <em>Number Theory</em>
             </h1>
-
-            <p className="hero-intro">
-              A compact field guide to divisibility, primes, congruences, and
-              the beautiful patterns hiding inside ordinary whole numbers.
-            </p>
 
             <div className="hero-actions">
               <a className="primary-button" href="#general">
@@ -48,25 +42,6 @@ export default function Home() {
               alt="Cover of A brief guide to Number Theory by Aritra Saha and Riddhiman Seal"
               priority
             />
-          </div>
-
-          <div className="hero-metrics">
-            <div>
-              <strong>
-                <CountUp end={500} />
-              </strong>
-              <span>guided hints</span>
-            </div>
-            <div>
-              <strong>
-                <CountUp end={2} />
-              </strong>
-              <span>author voices</span>
-            </div>
-            <div>
-              <strong>&infin;</strong>
-              <span>patterns to find</span>
-            </div>
           </div>
         </section>
 
