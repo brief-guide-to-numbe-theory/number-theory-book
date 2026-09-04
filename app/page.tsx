@@ -58,7 +58,7 @@ export default function Home() {
 
           <div className="about-book-grid" data-reveal>
             <div className="about-book-heading">
-              <p className="micro-label">OVERVIEW & PHILOSOPHY</p>
+              <p className="micro-label">OVERVIEW</p>
               <h2>
                 About the
                 <br />
