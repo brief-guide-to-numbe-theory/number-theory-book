@@ -221,7 +221,7 @@ export default function Home() {
                 <ul className="section-list">
                   <li>
                     <span className="section-num">2.1</span>
-                    <span>Fundamentals of divisibility</span>
+                    <span>Fundamentals of Divisibility</span>
                   </li>
                   <li>
                     <span className="section-num">2.2</span>
