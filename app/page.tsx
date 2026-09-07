@@ -32,8 +32,11 @@ export default function Home() {
               <a className="primary-button" href="#general">
                 About the Book <span>&rarr;</span>
               </a>
+              <a className="text-link" href="#prerequisites">
+                Prerequisites <span>&darr;</span>
+              </a>
               <Link className="text-link" href="/authors">
-                Meet the two authors <span>&darr;</span>
+                Meet the two authors <span>&rarr;</span>
               </Link>
             </div>
           </div>
@@ -122,7 +125,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="prerequisites-container" data-reveal>
+          <div className="prerequisites-container" id="prerequisites" data-reveal>
             <div className="section-label">
               <span>02</span>
               <span>Prerequisites</span>

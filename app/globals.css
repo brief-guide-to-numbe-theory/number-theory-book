@@ -55,10 +55,13 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 .about-book-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: clamp(40px, 7vw, 110px);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+}
+.about-book-heading h2, .prerequisites-heading h2 {
+  br { display: none; }
 }
 .about-book-heading .micro-label {
   color: #3a5878;
@@ -96,10 +99,10 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   border-top: 1px solid var(--line);
 }
 .prerequisites-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.6fr;
-  gap: clamp(40px, 7vw, 110px);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
 }
 .prerequisites-heading .micro-label {
   color: #3a5878;
