@@ -29,19 +29,27 @@ export default function Home() {
               Explore the beauty of Olympiad Number Theory
             </p>
 
-            <div className="hero-actions">
-              <a className="primary-button" href="#general">
-                About the Book <span>&darr;</span>
-              </a>
-              <a className="primary-button" href="#prerequisites">
-                Prerequisites <span>&darr;</span>
-              </a>
-              <a className="primary-button" href="#contents">
-                Contents <span>&darr;</span>
-              </a>
-              <Link className="navy-button" href="/authors">
-                Meet the authors <span>&rarr;</span>
-              </Link>
+            <div className="hero-actions-container">
+              <div className="hero-actions-row">
+                <a className="primary-button" href="#general">
+                  About the Book <span>&darr;</span>
+                </a>
+                <a className="primary-button" href="#prerequisites">
+                  Prerequisites <span>&darr;</span>
+                </a>
+                <a className="primary-button" href="#contents">
+                  Contents <span>&darr;</span>
+                </a>
+              </div>
+              <div className="hero-actions-divider" />
+              <div className="hero-actions-row">
+                <Link className="navy-button" href="/authors">
+                  Meet the authors <span>&rarr;</span>
+                </Link>
+                <Link className="navy-button" href="/hints">
+                  Browse 500 hints <span>&rarr;</span>
+                </Link>
+              </div>
             </div>
           </div>
 

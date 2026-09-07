@@ -255,6 +255,27 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   min-width: 28px;
 }
 
+.hero-actions-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 44px;
+  animation: riseIn .9s .46s both;
+}
+
+.hero-actions-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hero-actions-divider {
+  height: 1px;
+  background: rgba(26, 46, 90, 0.18);
+  width: 100%;
+}
+
 .navy-button {
   display: inline-flex;
   align-items: center;

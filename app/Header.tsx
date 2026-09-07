@@ -13,10 +13,6 @@ export default function Header() {
         <Link href="/authors">Authors</Link>
         <Link href="/hints">Hints</Link>
       </nav>
-
-      <Link className="header-link" href="/hints">
-        Browse 500 hints <span>&#8600;</span>
-      </Link>
     </header>
   );
 }
