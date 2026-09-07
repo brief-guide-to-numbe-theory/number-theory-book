@@ -114,3 +114,32 @@ hideButton.addEventListener("click", () => {
   revealButton.disabled = true;
   input.focus();
 });
+
+// Theme Toggle logic for static site
+const themeToggleBtn = document.querySelector("#themeToggle");
+if (themeToggleBtn) {
+  const storedTheme = localStorage.getItem("abgnt-theme");
+  if (storedTheme) {
+    document.documentElement.setAttribute("data-theme", storedTheme);
+    updateThemeBtnLabel(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    updateThemeBtnLabel("dark");
+  }
+
+  themeToggleBtn.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+    const nextTheme = currentTheme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    localStorage.setItem("abgnt-theme", nextTheme);
+    updateThemeBtnLabel(nextTheme);
+  });
+}
+
+function updateThemeBtnLabel(theme) {
+  if (!themeToggleBtn) return;
+  const label = themeToggleBtn.querySelector(".theme-toggle-label");
+  if (label) {
+    label.textContent = theme === "dark" ? "Light" : "Dark";
+  }
+}

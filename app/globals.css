@@ -304,3 +304,175 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .navy-button:hover span {
   transform: translateX(7px);
 }
+
+.header-right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--gold);
+  color: #ffffff;
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(217, 43, 140, 0.35);
+}
+
+.theme-icon {
+  flex-shrink: 0;
+}
+
+/* Dark Mode Theme Variables & Styles */
+[data-theme="dark"] {
+  --ink: #e6f0fa;
+  --paper: #0b1328;
+  --paper-deep: #132247;
+  --gold: #e6399b;
+  --blue: #162a56;
+  --line: rgba(180, 210, 255, 0.18);
+}
+
+[data-theme="dark"] body {
+  background: #0b1328;
+  color: #e6f0fa;
+}
+
+[data-theme="dark"] .site-header {
+  border-bottom-color: rgba(180, 210, 255, 0.15);
+  background: rgba(11, 19, 40, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+[data-theme="dark"] .hero {
+  background: linear-gradient(155deg, #070e22 0%, #0c1836 30%, #112248 60%, #0d1e38 100%);
+  color: #e6f0fa;
+}
+
+[data-theme="dark"] .hero-subtitle {
+  color: rgba(230, 240, 250, 0.82);
+}
+
+[data-theme="dark"] .eyebrow span {
+  border-color: rgba(230, 240, 250, 0.3);
+}
+
+[data-theme="dark"] .hero-metrics {
+  border-top-color: rgba(180, 210, 255, 0.2);
+}
+
+[data-theme="dark"] .hero-metrics div {
+  border-right-color: rgba(180, 210, 255, 0.15);
+}
+
+[data-theme="dark"] .hero-metrics span {
+  color: rgba(230, 240, 250, 0.6);
+}
+
+[data-theme="dark"] .primary-button {
+  background: var(--gold);
+  box-shadow: 0 4px 20px rgba(230, 57, 155, 0.4);
+}
+
+[data-theme="dark"] .navy-button {
+  background: #182e5c;
+  border: 1px solid rgba(80, 140, 240, 0.35);
+  box-shadow: 0 4px 20px rgba(12, 24, 54, 0.6);
+}
+
+[data-theme="dark"] .navy-button:hover {
+  background: #203c78;
+  border-color: rgba(100, 170, 255, 0.6);
+  box-shadow: 0 16px 32px rgba(32, 60, 120, 0.5);
+}
+
+[data-theme="dark"] .about-book-body p,
+[data-theme="dark"] .prerequisites-intro,
+[data-theme="dark"] .prereq-card p,
+[data-theme="dark"] .contents-intro,
+[data-theme="dark"] .section-list li {
+  color: #a8c4e6;
+}
+
+[data-theme="dark"] .about-book-body p strong,
+[data-theme="dark"] .prereq-header h3,
+[data-theme="dark"] .chapter-card h3 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .placeholder {
+  background: rgba(15, 27, 56, 0.6);
+  border-color: rgba(180, 210, 255, 0.2);
+}
+
+[data-theme="dark"] .placeholder-sheet {
+  background: #13244c;
+  border-color: rgba(180, 210, 255, 0.3);
+}
+
+[data-theme="dark"] .prereq-card,
+[data-theme="dark"] .chapter-card {
+  background: rgba(15, 28, 58, 0.65);
+  border-color: rgba(180, 210, 255, 0.16);
+}
+
+[data-theme="dark"] .chapter-card:hover {
+  border-color: rgba(230, 57, 155, 0.4);
+  box-shadow: 0 12px 32px rgba(7, 14, 34, 0.8);
+}
+
+[data-theme="dark"] .math-latex-item.text-navy {
+  color: rgba(160, 205, 255, 0.45);
+  text-shadow: 0 0 10px rgba(100, 160, 245, 0.25);
+}
+
+[data-theme="dark"] .math-latex-item.text-white {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+[data-theme="dark"] .lookup-form {
+  background: #091024;
+  border: 1px solid rgba(180, 210, 255, 0.15);
+}
+
+[data-theme="dark"] .number-field {
+  background: #111e3f;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .number-field input {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .hint-result {
+  background: #111f42;
+  border-color: rgba(180, 210, 255, 0.2);
+}
+
+[data-theme="dark"] .revealed-hint {
+  color: #d0e4f7;
+}
+
+[data-theme="dark"] footer {
+  background: #070d1c;
+  border-top: 1px solid rgba(180, 210, 255, 0.12);
+}
