@@ -133,7 +133,6 @@ export default function Home() {
 
             <div className="prerequisites-grid">
               <div className="prerequisites-heading">
-                <p className="micro-label">PREPARATION & BACKGROUND</p>
                 <h2>
                   Prerequisites
                   <br />
