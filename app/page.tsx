@@ -62,11 +62,7 @@ export default function Home() {
           <div className="about-book-grid" data-reveal>
             <div className="about-book-heading">
               <p className="micro-label">OVERVIEW</p>
-              <h2>
-                About the
-                <br />
-                <em>Book.</em>
-              </h2>
+              <h2>About the <em>Book.</em></h2>
             </div>
 
             <div className="about-book-body">
