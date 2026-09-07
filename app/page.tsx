@@ -21,7 +21,9 @@ export default function Home() {
             </p>
 
             <h1>
-              A Brief Guide to <em>Number Theory</em>
+              A Brief Guide to
+              <br />
+              <em>Number Theory</em>
             </h1>
 
             <p className="hero-subtitle">
@@ -61,7 +63,6 @@ export default function Home() {
 
           <div className="about-book-grid" data-reveal>
             <div className="about-book-heading">
-              <p className="micro-label">OVERVIEW</p>
               <h2>About the <em>Book.</em></h2>
             </div>
 
