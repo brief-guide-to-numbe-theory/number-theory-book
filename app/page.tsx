@@ -25,12 +25,12 @@ export default function Home() {
             </h1>
 
             <p className="hero-subtitle">
-              For Excellence in Olympiad Number Theory
+              Explore the beauty of Olympiad Number Theory
             </p>
 
             <div className="hero-actions">
               <a className="primary-button" href="#general">
-                Open the guide <span>&rarr;</span>
+                About the Book <span>&rarr;</span>
               </a>
               <Link className="text-link" href="/authors">
                 Meet the two authors <span>&darr;</span>
