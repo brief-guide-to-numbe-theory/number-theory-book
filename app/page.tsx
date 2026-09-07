@@ -21,7 +21,7 @@ export default function Home() {
             </p>
 
             <h1>
-              A brief guide to <em>Number Theory</em>
+              A Brief Guide to <em>Number Theory</em>
             </h1>
 
             <p className="hero-subtitle">
@@ -129,11 +129,7 @@ export default function Home() {
 
             <div className="prerequisites-grid">
               <div className="prerequisites-heading">
-                <h2>
-                  Prerequisites
-                  <br />
-                  <em>for Readers.</em>
-                </h2>
+                <h2>Prerequisites <em>for Readers.</em></h2>
                 <p className="prerequisites-intro">
                   Because this book is designed mainly for national level
                   Olympiads like INMO and international Olympiads like the IMO,
