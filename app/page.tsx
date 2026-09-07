@@ -121,6 +121,73 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          <div className="prerequisites-container" data-reveal>
+            <div className="section-label">
+              <span>02</span>
+              <span>Prerequisites</span>
+            </div>
+
+            <div className="prerequisites-grid">
+              <div className="prerequisites-heading">
+                <p className="micro-label">PREPARATION & BACKGROUND</p>
+                <h2>
+                  Prerequisites
+                  <br />
+                  <em>for Readers.</em>
+                </h2>
+                <p className="prerequisites-intro">
+                  Because this book is designed mainly for national level
+                  Olympiads like INMO and international Olympiads like the IMO,
+                  the reader should be comfortable with basic number theory,
+                  basic algebra, and common manipulations.
+                </p>
+              </div>
+
+              <div className="prerequisites-content">
+                <div className="prereq-card">
+                  <div className="prereq-header">
+                    <span className="prereq-num">01</span>
+                    <h3>Chapter 1</h3>
+                  </div>
+                  <p>
+                    The reader should be somewhat comfortable with properties of
+                    modular arithmetic (addition and multiplication modulo an
+                    integer, statements of Fermat’s Little Theorem, and Euler
+                    Totient Function). Simply having read or just knowing the
+                    definitions may not be enough; some experience working with
+                    modular arithmetic is recommended.
+                  </p>
+                </div>
+
+                <div className="prereq-card">
+                  <div className="prereq-header">
+                    <span className="prereq-num">02</span>
+                    <h3>Chapter 2</h3>
+                  </div>
+                  <div className="prereq-bullets">
+                    <p>
+                      The Binomial Theorem is featured in one of the exercises.
+                      For the purposes of this chapter, not much familiarity is
+                      needed; knowing the statement is enough. Knowing the
+                      formulae of binomial coefficients is also required.
+                    </p>
+                    <p>
+                      Being able to solve linear recurrences and knowing about
+                      the characteristic equation is recommended, though the use
+                      for this is not very extensive.
+                    </p>
+                    <p>
+                      The bonus lemma for this chapter (the n=3 case of Fermat’s
+                      Last Theorem) requires heavy use of algebraic number
+                      theory. However, the reader need not read up much since it
+                      doesn’t appear anywhere else much.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
 

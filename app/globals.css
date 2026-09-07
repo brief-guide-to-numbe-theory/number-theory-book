@@ -89,3 +89,73 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   font: italic clamp(20px, 1.6vw, 26px)/1.4 Georgia, serif;
   letter-spacing: -0.01em;
 }
+
+.prerequisites-container {
+  margin-top: 100px;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
+.prerequisites-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(40px, 7vw, 110px);
+  align-items: start;
+}
+.prerequisites-heading .micro-label {
+  color: #3a5878;
+}
+.prerequisites-intro {
+  margin-top: 24px;
+  color: #2c4263;
+  font: 18px/1.75 Georgia, 'Times New Roman', serif;
+}
+.prerequisites-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.prereq-card {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(26, 46, 90, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(26, 46, 90, 0.05);
+}
+.prereq-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.prereq-num {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+}
+.prereq-header h3 {
+  margin: 0;
+  font: 22px Georgia, 'Times New Roman', serif;
+  color: var(--ink);
+}
+.prereq-card p {
+  margin: 0;
+  color: #2c4263;
+  font: 16px/1.7 Georgia, 'Times New Roman', serif;
+}
+.prereq-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .prerequisites-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
