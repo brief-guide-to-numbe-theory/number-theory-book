@@ -7,7 +7,7 @@ export default function Footer() {
         <span className="brand-mark">&sum;</span>
         <span>ABGNT</span>
       </Link>
-      <p>A brief guide to Number Theory</p>
+      <p>A Brief Guide to Number Theory</p>
       <a href="#top">Back to top &uarr;</a>
     </footer>
   );

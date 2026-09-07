@@ -34,7 +34,7 @@ export default function Header() {
       </Link>
 
       <nav aria-label="Main navigation">
-        <Link href="/">General</Link>
+        <Link href="/">About</Link>
         <Link href="/authors">Authors</Link>
         <Link href="/hints">Hints</Link>
       </nav>
