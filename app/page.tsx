@@ -31,15 +31,15 @@ export default function Home() {
 
             <div className="hero-actions">
               <a className="primary-button" href="#general">
-                About the Book <span>&rarr;</span>
+                About the Book <span>&darr;</span>
               </a>
-              <a className="text-link" href="#prerequisites">
+              <a className="primary-button" href="#prerequisites">
                 Prerequisites <span>&darr;</span>
               </a>
-              <a className="text-link" href="#contents">
+              <a className="primary-button" href="#contents">
                 Contents <span>&darr;</span>
               </a>
-              <Link className="text-link" href="/authors">
+              <Link className="navy-button" href="/authors">
                 Meet the authors <span>&rarr;</span>
               </Link>
             </div>
