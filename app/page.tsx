@@ -40,6 +40,9 @@ export default function Home() {
                 <a className="primary-button" href="#contents">
                   Contents <span>&darr;</span>
                 </a>
+                <a className="primary-button" href="#acknowledgements">
+                  Acknowledgements <span>&darr;</span>
+                </a>
               </div>
               <div className="hero-actions-divider" />
               <div className="hero-actions-row">
@@ -398,6 +401,31 @@ export default function Home() {
                     <span>Some Cool/Useful Theorems</span>
                   </li>
                 </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="acknowledgements-container" id="acknowledgements" data-reveal>
+            <div className="section-label">
+              <span>04</span>
+              <span>Acknowledgements</span>
+            </div>
+
+            <div className="acknowledgements-grid">
+              <div className="acknowledgements-heading">
+                <h2>Acknowledgements.</h2>
+              </div>
+
+              <div className="acknowledgements-body">
+                <p>
+                  Firstly, both of us would like to thank our parents for supporting us throughout this journey. We would also like to express our sincere gratitude to Rushil Mathur, Malay Mahajan, Kanav Talwar, and Arindam Bhattacharya for their valuable advice, insightful suggestions, and continuous encouragement during the entire process.
+                </p>
+                <p>
+                  We are deeply thankful to our friend Mandar Kasulkar for writing certain parts of the book. We would also like to thank our friends Ronit Sharma, Bairav Murugan (IMO Silver-Medalist), Paras Kumar, Tanishka Gham, Lavish Khariwal and Nishant Sahoo for their generous assistance in reviewing the manuscript, proofchecking, identifying mathematical and grammatical errors, and offering numerous helpful comments.
+                </p>
+                <p>
+                  Last, but certainly not least, we would like to thank Abhay Mahajan Sir, who has mentored both of us throughout our Olympiad journey and has also played the crucial role of helping us get in touch with publishers. Special thanks to Roumak Das.
+                </p>
               </div>
             </div>
           </div>
