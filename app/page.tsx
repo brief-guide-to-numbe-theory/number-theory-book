@@ -21,7 +21,7 @@ export default function Home() {
             </p>
 
             <h1>
-              A Brief Guide to
+              <span className="hero-title-top">A Brief Guide to</span>
               <br />
               <em>Number Theory</em>
             </h1>
