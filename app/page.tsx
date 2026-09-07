@@ -50,7 +50,7 @@ export default function Home() {
                   Meet the authors <span>&rarr;</span>
                 </Link>
                 <Link className="navy-button" href="/hints">
-                  Browse 500 hints <span>&rarr;</span>
+                  Hints <span>&rarr;</span>
                 </Link>
               </div>
             </div>
