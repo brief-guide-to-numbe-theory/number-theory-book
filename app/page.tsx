@@ -195,7 +195,7 @@ export default function Home() {
             <div className="contents-heading">
               <h2>Contents <em>&amp; Preview.</em></h2>
               <p className="contents-intro">
-                Explore the complete chapter breakdown of the book, covering foundational tools to advanced Olympiad techniques.
+                Here are the chapters and their respective sections of the book.
               </p>
             </div>
 
