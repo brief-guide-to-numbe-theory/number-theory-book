@@ -13,6 +13,11 @@ export default function Header() {
         <Link href="/authors">Authors</Link>
         <Link href="/hints">Hints</Link>
       </nav>
+
+      <Link className="brand brand-right" href="/" aria-label="Home">
+        <span className="brand-mark">&sum;</span>
+        <span>ABGNT</span>
+      </Link>
     </header>
   );
 }
