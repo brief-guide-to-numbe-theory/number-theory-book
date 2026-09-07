@@ -36,8 +36,11 @@ export default function Home() {
               <a className="text-link" href="#prerequisites">
                 Prerequisites <span>&darr;</span>
               </a>
+              <a className="text-link" href="#contents">
+                Contents <span>&darr;</span>
+              </a>
               <Link className="text-link" href="/authors">
-                Meet the two authors <span>&rarr;</span>
+                Meet the authors <span>&rarr;</span>
               </Link>
             </div>
           </div>
@@ -179,6 +182,132 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="contents-container" id="contents" data-reveal>
+            <div className="section-label">
+              <span>03</span>
+              <span>Contents & Preview</span>
+            </div>
+
+            <div className="contents-heading">
+              <h2>Contents <em>&amp; Preview.</em></h2>
+              <p className="contents-intro">
+                Explore the complete chapter breakdown of the book, covering foundational tools to advanced Olympiad techniques.
+              </p>
+            </div>
+
+            <div className="chapter-grid">
+              <div className="chapter-card">
+                <span className="chapter-badge">Chapter 01</span>
+                <h3>Modular Arithmetic</h3>
+                <ul className="section-list">
+                  <li>
+                    <span className="section-num">1.1</span>
+                    <span>Meaning of &lsquo;Mod&rsquo;</span>
+                  </li>
+                  <li>
+                    <span className="section-num">1.2</span>
+                    <span>Inverse Modulo and its uses</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="chapter-card">
+                <span className="chapter-badge">Chapter 02</span>
+                <h3>Divisibility</h3>
+                <ul className="section-list">
+                  <li>
+                    <span className="section-num">2.1</span>
+                    <span>Fundamentals of divisibility</span>
+                  </li>
+                  <li>
+                    <span className="section-num">2.2</span>
+                    <span>Greatest Common Divisor</span>
+                  </li>
+                  <li>
+                    <span className="section-num">2.3</span>
+                    <span>Techniques in Diophantine Equations</span>
+                  </li>
+                  <li>
+                    <span className="section-num">2.4</span>
+                    <span>Divisors</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="chapter-card">
+                <span className="chapter-badge">Chapter 03</span>
+                <h3>Advanced Modular Arithmetic</h3>
+                <ul className="section-list">
+                  <li>
+                    <span className="section-num">3.1</span>
+                    <span>Orders</span>
+                  </li>
+                  <li>
+                    <span className="section-num">3.2</span>
+                    <span>Primitive Roots</span>
+                  </li>
+                  <li>
+                    <span className="section-num">3.3</span>
+                    <span>Quadratic Residues</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="chapter-card">
+                <span className="chapter-badge">Chapter 04</span>
+                <h3>Prime Exponents &amp; Polynomials</h3>
+                <ul className="section-list">
+                  <li>
+                    <span className="section-num">4.1</span>
+                    <span>P-adic valuation</span>
+                  </li>
+                  <li>
+                    <span className="section-num">4.2</span>
+                    <span>Integer Polynomials</span>
+                  </li>
+                  <li>
+                    <span className="section-num">4.3</span>
+                    <span>Cyclotomic Polynomials and their uses</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="chapter-card">
+                <span className="chapter-badge">Chapter 05</span>
+                <h3>Number Theoretic Functional Equations</h3>
+                <ul className="section-list">
+                  <li>
+                    <span className="section-num">5.1</span>
+                    <span>Algebraic Techniques in Functional Equations</span>
+                  </li>
+                  <li>
+                    <span className="section-num">5.2</span>
+                    <span>Number Theoretic Ideas in FE&apos;s</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="chapter-card">
+                <span className="chapter-badge">Chapter 06</span>
+                <h3>Miscellaneous Ideas</h3>
+                <ul className="section-list">
+                  <li>
+                    <span className="section-num">6.1</span>
+                    <span>Size and Density in Number Theory</span>
+                  </li>
+                  <li>
+                    <span className="section-num">6.2</span>
+                    <span>Combinatorial Number Theory</span>
+                  </li>
+                  <li>
+                    <span className="section-num">6.3</span>
+                    <span>Some Cool/Useful Theorems</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
