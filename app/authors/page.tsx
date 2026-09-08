@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "../Header";
 import Footer from "../Footer";
 import MathBackground from "../MathBackground";
@@ -31,6 +32,15 @@ export default function AuthorsPage() {
               mathematical instincts: seeing the structure and finding the next
               move.
             </p>
+          </div>
+
+          <div className="page-actions-row" data-reveal style={{ marginTop: "32px", marginBottom: "44px" }}>
+            <Link className="navy-button" href="/">
+              About the Book <span>&rarr;</span>
+            </Link>
+            <Link className="navy-button" href="/hints">
+              Hints <span>&rarr;</span>
+            </Link>
           </div>
 
           <div className="author-grid">

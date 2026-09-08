@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "../Header";
 import Footer from "../Footer";
 import HintLookup from "../HintLookup";
@@ -36,6 +37,15 @@ export default function HintsPage() {
               one. Enter the complete three-digit number to reveal only that
               hint.
             </p>
+          </div>
+
+          <div className="page-actions-row" data-reveal style={{ marginTop: "32px", marginBottom: "44px" }}>
+            <Link className="navy-button" href="/">
+              About the Book <span>&rarr;</span>
+            </Link>
+            <Link className="navy-button" href="/authors">
+              Meet the authors <span>&rarr;</span>
+            </Link>
           </div>
 
           <div data-reveal className="d1">
