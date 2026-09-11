@@ -922,18 +922,17 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 .authors-heading {
-  grid-template-columns: 1fr !important;
-  gap: 0 !important;
+  display: block !important;
+  margin-bottom: 24px;
 }
 
+.authors-title,
 .authors-heading h2 {
-  white-space: nowrap;
-}
-
-@media (max-width: 640px) {
-  .authors-heading h2 {
-    white-space: normal;
-  }
+  white-space: nowrap !important;
+  font-size: clamp(26px, 5.8vw, 64px) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15 !important;
+  margin: 0 !important;
 }
 
 .author-copy h3 {
@@ -1070,7 +1069,20 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   }
 
   h2 {
-    font-size: clamp(42px, 12vw, 64px);
+    font-size: clamp(32px, 8.5vw, 52px);
+  }
+
+  /* Authors heading stays strictly on ONE line on phone */
+  .authors-heading {
+    margin-bottom: 20px;
+  }
+
+  .authors-title,
+  .authors-heading h2 {
+    font-size: clamp(20px, 6.4vw, 32px) !important;
+    white-space: nowrap !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.15 !important;
   }
 
   .section-heading > p {

@@ -22,7 +22,7 @@ export default function AuthorsPage() {
           </div>
 
           <div className="section-heading authors-heading" data-reveal>
-            <h2>
+            <h2 className="authors-title">
               About the <em>Authors.</em>
             </h2>
           </div>
