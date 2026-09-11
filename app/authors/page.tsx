@@ -121,26 +121,15 @@ export default function AuthorsPage() {
 
             <article className="author-card second d1" data-reveal>
               <div className="author-mark">
-                <div
-                  className="author-photo-slot"
-                  title="Photo Placeholder (Add Riddhiman's picture here)"
-                >
-                  <div className="photo-placeholder-frame">
-                    <svg
-                      className="photo-icon"
-                      width="38"
-                      height="38"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                    <span className="photo-label">Add Photo</span>
-                  </div>
-                  <span className="author-initial-badge">R</span>
+                <div className="author-photo-slot author-photo-real">
+                  <Image
+                    src="/riddhiman-seal.jpg"
+                    alt="Riddhiman Seal"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                    sizes="(max-width: 960px) 90vw, 280px"
+                    priority
+                  />
                 </div>
               </div>
 

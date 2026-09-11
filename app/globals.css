@@ -898,7 +898,8 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 .second .author-role {
-  color: #175d6e;
+  color: #0b2229;
+  font-weight: 900;
 }
 
 .author-copy h3 {
