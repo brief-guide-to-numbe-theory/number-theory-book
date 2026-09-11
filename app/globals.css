@@ -790,12 +790,278 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   box-shadow: none !important;
   overflow: hidden;
   border-radius: 14px;
+  transform-origin: center bottom;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes photoSwing {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(-2.5deg); }
+  45%  { transform: rotate(2deg); }
+  65%  { transform: rotate(-1.2deg); }
+  80%  { transform: rotate(0.6deg); }
+  100% { transform: rotate(0deg); }
 }
 
 .author-photo-real:hover {
-  transform: none !important;
+  animation: photoSwing 0.7s ease forwards;
   border: none !important;
   background: transparent !important;
+}
+
+@media (max-width: 960px) {
+  /* --- Authors page: stack cards vertically --- */
+  .author-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .author-mark {
+    padding: 32px 20px 24px;
+  }
+
+  .author-photo-slot,
+  .author-photo-real {
+    width: 160px;
+    height: 210px;
+  }
+
+  .author-copy {
+    padding: 24px 20px 28px;
+  }
+
+  .author-copy h3 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding: 70px 20px 80px;
+  }
+
+  .section-label {
+    margin-bottom: 36px;
+    font-size: 9px;
+  }
+
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    padding: 120px 20px 60px;
+    gap: 40px;
+  }
+
+  h1 {
+    font-size: clamp(44px, 14vw, 72px);
+  }
+
+  .hero-line-1 {
+    white-space: normal;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(18px, 5vw, 22px);
+    margin-top: 20px;
+  }
+
+  .hero-actions-container {
+    margin-top: 32px;
+    gap: 14px;
+  }
+
+  .hero-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .primary-button,
+  .navy-button {
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    font-size: 10px;
+  }
+
+  .hero-actions-divider {
+    margin: 4px 0;
+  }
+
+  .book-stage {
+    width: min(72%, 280px);
+    margin: 0 auto;
+  }
+
+  .hero-metrics {
+    left: 20px;
+    right: 20px;
+    overflow-x: auto;
+    padding-top: 16px;
+  }
+
+  .hero-metrics div {
+    padding-right: 16px;
+    margin-right: 16px;
+    min-width: max-content;
+  }
+
+  .section-heading {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  h2 {
+    font-size: clamp(42px, 12vw, 64px);
+  }
+
+  .section-heading > p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .about-book-grid,
+  .prerequisites-grid,
+  .contents-container,
+  .acknowledgements-container {
+    margin-top: 60px;
+    padding-top: 40px;
+  }
+
+  .about-book-body p {
+    font-size: 16px;
+  }
+
+  .prereq-card {
+    padding: 22px 18px;
+  }
+
+  .prereq-header h3 {
+    font-size: 18px;
+  }
+
+  .prereq-card p {
+    font-size: 14px;
+  }
+
+  .chapter-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .chapter-card {
+    padding: 20px 18px;
+  }
+
+  .chapter-card h3 {
+    font-size: 18px;
+  }
+
+  .acknowledgements-body {
+    padding: 28px 20px;
+    border-left-width: 4px;
+  }
+
+  .acknowledgements-body p {
+    font-size: 15px;
+  }
+
+  .page-actions-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+  }
+
+  .page-actions-row .navy-button {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .authors.section {
+    padding-bottom: 80px;
+  }
+
+  .author-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 36px;
+  }
+
+  .author-card {
+    border-radius: 16px;
+  }
+
+  .author-mark {
+    padding: 28px 16px 20px;
+  }
+
+  .author-photo-slot,
+  .author-photo-real {
+    width: 140px;
+    height: 185px;
+  }
+
+  .author-copy {
+    padding: 20px 18px 24px;
+  }
+
+  .author-copy h3 {
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+
+  .author-bio p {
+    font-size: 14px;
+    line-height: 1.68;
+  }
+
+  .author-mark small {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+
+  .lookup-form {
+    margin-top: 40px;
+    padding: 24px 16px;
+  }
+
+  .lookup-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .lookup-row > button {
+    min-height: 54px;
+    width: 100%;
+  }
+
+  .number-field {
+    min-height: 64px;
+    padding: 0 16px;
+  }
+
+  .revealed-hint {
+    grid-template-columns: 40px 6px 1fr;
+    gap: 6px;
+    font-size: clamp(16px, 4.5vw, 20px);
+  }
+
+  .hint-result {
+    padding: 24px 16px;
+  }
+
+  footer {
+    grid-template-columns: 1fr auto;
+    min-height: auto;
+    padding: 20px;
+    gap: 12px;
+  }
+
+  footer p {
+    display: none;
+  }
 }
 
 .photo-placeholder-frame {
