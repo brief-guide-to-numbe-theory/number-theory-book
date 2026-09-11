@@ -280,7 +280,7 @@ export default function Home() {
           </div>
 
           <div className="contents-container" id="contents" data-reveal>
-            <div className="section-label">
+            <div className="section-label no-line">
               <span>03</span>
               <span>Contents & Preview</span>
             </div>
