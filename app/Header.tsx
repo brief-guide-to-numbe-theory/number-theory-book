@@ -17,6 +17,33 @@ export default function Header() {
       setTheme("dark");
       document.documentElement.setAttribute("data-theme", "dark");
     }
+
+    // Synchronize theme changes across different tabs
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === "abgnt-theme" && (e.newValue === "light" || e.newValue === "dark")) {
+        setTheme(e.newValue);
+        document.documentElement.setAttribute("data-theme", e.newValue);
+      }
+    };
+    window.addEventListener("storage", handleStorage);
+
+    let bc: BroadcastChannel | null = null;
+    try {
+      bc = new BroadcastChannel("abgnt-theme-channel");
+      bc.onmessage = (event) => {
+        if (event.data === "light" || event.data === "dark") {
+          setTheme(event.data);
+          document.documentElement.setAttribute("data-theme", event.data);
+        }
+      };
+    } catch {}
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      try {
+        bc?.close();
+      } catch {}
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -24,6 +51,12 @@ export default function Header() {
     setTheme(nextTheme);
     document.documentElement.setAttribute("data-theme", nextTheme);
     localStorage.setItem("abgnt-theme", nextTheme);
+
+    try {
+      const bc = new BroadcastChannel("abgnt-theme-channel");
+      bc.postMessage(nextTheme);
+      bc.close();
+    } catch {}
   };
 
   return (

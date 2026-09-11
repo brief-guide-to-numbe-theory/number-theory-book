@@ -21,15 +21,10 @@ export default function AuthorsPage() {
             <span>Authors</span>
           </div>
 
-          <div className="section-heading" data-reveal>
+          <div className="section-heading authors-heading" data-reveal>
             <h2>
               About the <em>Authors.</em>
             </h2>
-
-            <p>
-              Meet Aritra Saha and Riddhiman Seal — their mathematical journeys,
-              Olympiad experiences, and the story behind writing A Brief Guide to Number Theory.
-            </p>
           </div>
 
           <div
