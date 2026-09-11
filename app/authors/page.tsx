@@ -62,8 +62,8 @@ export default function AuthorsPage() {
 
                 <div className="author-bio">
                   <p>
-                    I am Aritra Saha from Malda, West Bengal; as of 2026, I am a
-                    Class 12 student and, most importantly, a Math Enthusiast.
+                    I am Aritra Saha from Malda, West Bengal; as of 2026, I am in
+                    grade 12 and, most importantly, a Math Enthusiast.
                     I started preparing for the Math Olympiad when I was in Class
                     7. From the start, Number Theory was the one topic I was most
                     excited to study or to solve problems on (not because I was
