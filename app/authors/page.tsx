@@ -22,15 +22,12 @@ export default function AuthorsPage() {
 
           <div className="section-heading" data-reveal>
             <h2>
-              Two minds.
-              <br />
-              <em>One conversation.</em>
+              About the <em>Authors.</em>
             </h2>
 
             <p>
-              The book is designed as a dialogue between complementary
-              mathematical instincts: seeing the structure and finding the next
-              move.
+              Meet Aritra Saha and Riddhiman Seal — their mathematical journeys,
+              Olympiad experiences, and the story behind writing A Brief Guide to Number Theory.
             </p>
           </div>
 
@@ -130,12 +127,6 @@ export default function AuthorsPage() {
                   </p>
                 </div>
 
-                <div className="tags">
-                  <span>INMO Awardee</span>
-                  <span>IMOTC</span>
-                  <span>Co-Author</span>
-                  <span>Structure &amp; Proofs</span>
-                </div>
               </div>
             </article>
 
@@ -217,12 +208,6 @@ export default function AuthorsPage() {
                   </p>
                 </div>
 
-                <div className="tags">
-                  <span>Geometry &amp; NT</span>
-                  <span>Problem Solving</span>
-                  <span>Co-Author</span>
-                  <span>Olympiad Math</span>
-                </div>
               </div>
             </article>
           </div>
