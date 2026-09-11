@@ -53,7 +53,7 @@ export default function AuthorsPage() {
                     src="/aritra-saha.jpg"
                     alt="Aritra Saha"
                     fill
-                    style={{ objectFit: "cover", objectPosition: "center 18%" }}
+                    style={{ objectFit: "cover", objectPosition: "center" }}
                     sizes="(max-width: 960px) 90vw, 280px"
                     priority
                   />
