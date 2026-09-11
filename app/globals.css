@@ -783,6 +783,21 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   transform: scale(1.02);
 }
 
+/* When a real photo is loaded — clean, natural, no placeholder styling */
+.author-photo-real {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.author-photo-real:hover {
+  transform: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
 .photo-placeholder-frame {
   display: flex;
   flex-direction: column;

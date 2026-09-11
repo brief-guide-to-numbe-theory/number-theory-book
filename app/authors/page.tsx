@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Header from "../Header";
 import Footer from "../Footer";
 import MathBackground from "../MathBackground";
@@ -47,26 +48,15 @@ export default function AuthorsPage() {
           <div className="author-grid">
             <article className="author-card first" data-reveal>
               <div className="author-mark">
-                <div
-                  className="author-photo-slot"
-                  title="Photo Placeholder (Add Aritra's picture here)"
-                >
-                  <div className="photo-placeholder-frame">
-                    <svg
-                      className="photo-icon"
-                      width="38"
-                      height="38"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                    <span className="photo-label">Add Photo</span>
-                  </div>
-                  <span className="author-initial-badge">A</span>
+                <div className="author-photo-slot author-photo-real">
+                  <Image
+                    src="/aritra-saha.jpg"
+                    alt="Aritra Saha"
+                    fill
+                    style={{ objectFit: "cover", objectPosition: "center top" }}
+                    sizes="(max-width: 960px) 100vw, 50vw"
+                    priority
+                  />
                 </div>
                 <small>01</small>
               </div>
