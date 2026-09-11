@@ -72,7 +72,7 @@ export default function AuthorsPage() {
               </div>
 
               <div className="author-copy">
-                <p className="author-role">CO-AUTHOR &amp; MATH ENTHUSIAST</p>
+                <p className="author-role">CO-AUTHOR</p>
 
                 <h3>Aritra Saha</h3>
 
@@ -157,7 +157,7 @@ export default function AuthorsPage() {
               </div>
 
               <div className="author-copy">
-                <p className="author-role">CO-AUTHOR &amp; PROBLEM SOLVER</p>
+                <p className="author-role">CO-AUTHOR</p>
 
                 <h3>Riddhiman Seal</h3>
 
