@@ -189,7 +189,6 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .contents-container {
   margin-top: 100px;
   padding-top: 60px;
-  border-top: 1px solid var(--line);
 }
 .contents-heading {
   margin-bottom: 48px;

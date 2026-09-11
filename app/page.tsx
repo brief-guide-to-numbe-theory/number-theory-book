@@ -287,7 +287,11 @@ export default function Home() {
 
             <div className="contents-heading">
               <h2>Contents <em>&amp; Preview.</em></h2>
-            
+              <p className="contents-intro">
+                Explore the complete chapter breakdown of the book, covering foundational tools to advanced Olympiad techniques.
+              </p>
+            </div>
+
             <div className="chapter-grid">
               <div className="chapter-card">
                 <span className="chapter-badge">Chapter 01</span>
@@ -417,10 +421,10 @@ export default function Home() {
                   Firstly, both of us would like to thank our parents for supporting us throughout this journey. We would also like to express our sincere gratitude to <strong>Rushil Mathur</strong>, <strong>Malay Mahajan</strong>, <strong>Kanav Talwar</strong>, and <strong>Arindam Bhattacharya</strong> for their valuable advice, insightful suggestions, and continuous encouragement during the entire process.
                 </p>
                 <p>
-                  We are deeply thankful to our friend <strong>Mandar Kasulkar</strong> for writing certain parts of the book. We would also like to thank our friends <strong>Ronit Sharma</strong>, <strong>Bairav Murugan</strong> (IMO Silver-Medalist), <strong>Paras Kumar</strong>, <strong>Tanishka Gham</strong>, <strong>Lavish Khariwal</strong>, and <strong>Nishant Sahoo</strong> for their generous assistance in reviewing the manuscript, proofchecking, identifying mathematical and grammatical errors, and offering numerous helpful comments. Special thanks to <strong>Roumak Das</strong> for helping us with the creation of the website.
+                  We are deeply thankful to our friend <strong>Mandar Kasulkar</strong> for writing certain parts of the book. We would also like to thank our friends <strong>Ronit Sharma</strong>, <strong>Bairav Murugan</strong> (IMO Silver-Medalist), <strong>Paras Kumar</strong>, <strong>Tanishka Gham</strong>, <strong>Lavish Khariwal</strong>, and <strong>Nishant Sahoo</strong> for their generous assistance in reviewing the manuscript, proofchecking, identifying mathematical and grammatical errors, and offering numerous helpful comments. Special thanks to <strong>Roumak Das</strong> for helping us with the creation of this website.
                 </p>
                 <p>
-                  Last, but certainly not least, we would like to thank <strong>Abhay Mahajan Sir</strong>, who has mentored both of us throughout our Olympiad journey and has also played the crucial role of helping us get in touch with publishers. 
+                  Last, but certainly not least, we would like to thank <strong>Abhay Mahajan Sir</strong>, who has mentored both of us throughout our Olympiad journey and has also played the crucial role of helping us get in touch with publishers.
                 </p>
               </div>
             </div>
