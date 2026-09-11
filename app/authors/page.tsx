@@ -58,7 +58,7 @@ export default function AuthorsPage() {
                     priority
                   />
                 </div>
-                <small>01</small>
+                <span className="author-number-pill">Author 01</span>
               </div>
 
               <div className="author-copy">
@@ -143,7 +143,7 @@ export default function AuthorsPage() {
                   </div>
                   <span className="author-initial-badge">R</span>
                 </div>
-                <small>02</small>
+                <span className="author-number-pill">Author 02</span>
               </div>
 
               <div className="author-copy">
