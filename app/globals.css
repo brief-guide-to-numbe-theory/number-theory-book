@@ -459,8 +459,9 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   box-shadow: 0 12px 32px rgba(7, 14, 34, 0.8);
 }
 
-[data-theme="dark"] .chapter-card:hover h3 {
-  color: #ff60b8;
+[data-theme="dark"] .chapter-card:hover h3,
+[data-theme="dark"] .chapter-card:active h3 {
+  color: #ffffff;
 }
 
 [data-theme="dark"] .math-latex-item.text-navy {
