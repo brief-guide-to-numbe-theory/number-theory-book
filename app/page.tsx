@@ -155,7 +155,7 @@ export default function Home() {
               <div className="prerequisites-content">
                 <div className="prereq-card">
                   <div className="prereq-header">
-                    <span className="prereq-num">01</span>
+                    <span className="prereq-num">1</span>
                     <h3>Chapter 1</h3>
                   </div>
                   <p>
@@ -170,7 +170,7 @@ export default function Home() {
 
                 <div className="prereq-card">
                   <div className="prereq-header">
-                    <span className="prereq-num">02</span>
+                    <span className="prereq-num">2</span>
                     <h3>Chapter 2</h3>
                   </div>
                   <div className="prereq-bullets">
@@ -201,7 +201,7 @@ export default function Home() {
 
                 <div className="prereq-card">
                   <div className="prereq-header">
-                    <span className="prereq-num">03</span>
+                    <span className="prereq-num">3</span>
                     <h3>Chapter 3</h3>
                   </div>
                   <p>
@@ -213,7 +213,7 @@ export default function Home() {
 
                 <div className="prereq-card">
                   <div className="prereq-header">
-                    <span className="prereq-num">04</span>
+                    <span className="prereq-num">4</span>
                     <h3>Chapter 4</h3>
                   </div>
                   <div className="prereq-bullets">
@@ -244,7 +244,7 @@ export default function Home() {
 
                 <div className="prereq-card">
                   <div className="prereq-header">
-                    <span className="prereq-num">05</span>
+                    <span className="prereq-num">5</span>
                     <h3>Chapter 5</h3>
                   </div>
                   <p>
@@ -257,7 +257,7 @@ export default function Home() {
 
                 <div className="prereq-card">
                   <div className="prereq-header">
-                    <span className="prereq-num">06</span>
+                    <span className="prereq-num">6</span>
                     <h3>Chapter 6</h3>
                   </div>
                   <div className="prereq-bullets">
@@ -291,7 +291,7 @@ export default function Home() {
 
             <div className="chapter-grid">
               <div className="chapter-card">
-                <span className="chapter-badge">Chapter 01</span>
+                <span className="chapter-badge">Chapter 1</span>
                 <h3>Modular Arithmetic</h3>
                 <ul className="section-list">
                   <li>
@@ -306,7 +306,7 @@ export default function Home() {
               </div>
 
               <div className="chapter-card">
-                <span className="chapter-badge">Chapter 02</span>
+                <span className="chapter-badge">Chapter 2</span>
                 <h3>Divisibility</h3>
                 <ul className="section-list">
                   <li>
@@ -329,7 +329,7 @@ export default function Home() {
               </div>
 
               <div className="chapter-card">
-                <span className="chapter-badge">Chapter 03</span>
+                <span className="chapter-badge">Chapter 3</span>
                 <h3>Advanced Modular Arithmetic</h3>
                 <ul className="section-list">
                   <li>
@@ -348,7 +348,7 @@ export default function Home() {
               </div>
 
               <div className="chapter-card">
-                <span className="chapter-badge">Chapter 04</span>
+                <span className="chapter-badge">Chapter 4</span>
                 <h3>Prime Exponents &amp; Polynomials</h3>
                 <ul className="section-list">
                   <li>
@@ -367,7 +367,7 @@ export default function Home() {
               </div>
 
               <div className="chapter-card">
-                <span className="chapter-badge">Chapter 05</span>
+                <span className="chapter-badge">Chapter 5</span>
                 <h3>Number Theoretic Functional Equations</h3>
                 <ul className="section-list">
                   <li>
@@ -382,7 +382,7 @@ export default function Home() {
               </div>
 
               <div className="chapter-card">
-                <span className="chapter-badge">Chapter 06</span>
+                <span className="chapter-badge">Chapter 6</span>
                 <h3>Miscellaneous Ideas</h3>
                 <ul className="section-list">
                   <li>
