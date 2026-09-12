@@ -100,10 +100,6 @@ export default function Header() {
             <span className="theme-toggle-label">{theme === "dark" ? "Light" : "Dark"}</span>
           </button>
         )}
-        <Link className="brand brand-right" href="/" aria-label="Home">
-          <span className="brand-mark">&sum;</span>
-          <span>ABGNT</span>
-        </Link>
       </div>
     </header>
   );

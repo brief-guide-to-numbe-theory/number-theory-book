@@ -17,7 +17,7 @@ export default function Home() {
           <PrimeSpiral />
           <div className="hero-copy">
             <p className="eyebrow">
-              <span>01</span> Guide to the book
+              <span>1</span> Guide to the book
             </p>
 
             <h1>
@@ -70,7 +70,7 @@ export default function Home() {
         <section className="general section" id="general">
           <MathBackground variant="light" />
           <div className="section-label">
-            <span>01</span>
+            <span>1</span>
             <span>About the Book</span>
           </div>
 
@@ -137,7 +137,7 @@ export default function Home() {
 
           <div className="prerequisites-container" id="prerequisites" data-reveal>
             <div className="section-label">
-              <span>02</span>
+              <span>2</span>
               <span>Prerequisites</span>
             </div>
 
@@ -281,7 +281,7 @@ export default function Home() {
 
           <div className="contents-container" id="contents" data-reveal>
             <div className="section-label no-line">
-              <span>03</span>
+              <span>3</span>
               <span>Contents & Preview</span>
             </div>
 
@@ -404,7 +404,7 @@ export default function Home() {
 
           <div className="acknowledgements-container" id="acknowledgements" data-reveal>
             <div className="section-label">
-              <span>04</span>
+              <span>4</span>
               <span>Acknowledgements</span>
             </div>
 

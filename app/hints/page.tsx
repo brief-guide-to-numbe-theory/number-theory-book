@@ -17,7 +17,7 @@ export default function HintsPage() {
         >
           <MathBackground variant="light" />
           <div className="section-label">
-            <span>03</span>
+            <span>3</span>
             <span>Hints</span>
           </div>
 
