@@ -16,7 +16,9 @@ export default function Home() {
         <section className="hero" id="top">
           <PrimeSpiral />
           <div className="hero-copy">
-            <p className="eyebrow">Guide to the book</p>
+            <p className="eyebrow">
+              <span>1</span> Guide to the book
+            </p>
 
             <h1>
               <span className="hero-line-1">A Brief Guide to</span>
@@ -68,6 +70,7 @@ export default function Home() {
         <section className="general section" id="general">
           <MathBackground variant="light" />
           <div className="section-label">
+            <span>1</span>
             <span>About the Book</span>
           </div>
 
