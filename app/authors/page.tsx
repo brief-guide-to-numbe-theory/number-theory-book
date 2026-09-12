@@ -64,13 +64,13 @@ export default function AuthorsPage() {
                   <p>
                     I am Aritra Saha from Malda, West Bengal; as of 2026, I am in
                     grade 12 and, most importantly, a Math Enthusiast.
-                    I started preparing for the Math Olympiad when I was in Class
+                    I started preparing for the Math Olympiad when I was in grade
                     7. From the start, Number Theory was the one topic I was most
                     excited to study or to solve problems on (definately not because I was
                     bad at other topics).
                   </p>
                   <p>
-                    I wrote my first INMO in 2023 when I was in Grade 8. In 2025
+                    I wrote my first INMO in 2023 when I was in grade 8. In 2025
                     (class 10), after failing INMO by 4 marks, I was obviously
                     devastated. But my love for Number Theory kept me motivated;
                     around then, I thought I should probably write something on
