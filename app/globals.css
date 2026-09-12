@@ -26,7 +26,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .text-link span,.header-link span{display:inline-block;transition:transform .3s}.text-link:hover span{transform:translateY(4px)}.header-link:hover span{transform:translate(3px,3px)}
 .site-header nav a{position:relative}.site-header nav a:after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}.site-header nav a:hover:after{transform:scaleX(1)}
 .author-card{transition:transform .45s cubic-bezier(.2,.7,.25,1),box-shadow .45s}.author-card:hover{transform:translateY(-8px);box-shadow:0 26px 52px rgba(0,0,0,.18)}
-@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.09);opacity:.9}}.author-mark:before{animation:ringPulse 6s ease-in-out infinite}.author-mark:after{animation:ringPulse 6s ease-in-out 1.5s infinite}.author-mark span{transition:transform .5s}.author-card:hover .author-mark span{transform:scale(1.08) rotate(-4deg)}
+@keyframes ringPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.55}50%{transform:translate(-50%,-50%) scale(1.09);opacity:.9}}.author-mark:before{animation:ringPulse 6s ease-in-out infinite}.author-mark:after{animation:ringPulse 6s ease-in-out 1.5s infinite}.author-mark span{transition:transform .5s}.author-card:hover .author-mark span{transform:scale(1.08) rotate(-4deg)}
 .primary-button,.lookup-row>button,.hint-result>button,.hide-hint{transition:transform .3s,box-shadow .3s,opacity .3s}.lookup-row>button:not(:disabled):hover{transform:translateY(-2px)}
 @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}.hint-result:not([hidden]){animation:pop .45s cubic-bezier(.2,.7,.25,1)}
 @keyframes spinSlow{to{transform:rotate(360deg)}}.hero:before{animation:spinSlow 90s linear infinite}
@@ -224,7 +224,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   display: inline-block;
   padding: 4px 10px;
   border-radius: 999px;
-  background: var(--gold);
+  background: var(--ink);
   color: #fff;
   font-size: 10px;
   font-weight: 900;
@@ -238,8 +238,9 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   color: var(--ink);
   transition: color 0.3s ease;
 }
-.chapter-card:hover h3 {
-  color: var(--gold);
+.chapter-card:hover h3,
+.chapter-card:active h3 {
+  color: var(--ink);
 }
 .section-list {
   list-style: none;
@@ -257,7 +258,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   color: #2c4263;
 }
 .section-num {
-  color: var(--gold);
+  color: #2b5288;
   font: 700 13px 'Courier New', monospace;
   letter-spacing: 0.05em;
   min-width: 28px;
@@ -786,6 +787,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  animation: ringPulse 6s ease-in-out infinite;
 }
 
 .author-mark::after {
@@ -799,6 +801,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  animation: ringPulse 6s ease-in-out 1.5s infinite;
 }
 
 .author-number-pill,

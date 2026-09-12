@@ -66,7 +66,7 @@ export default function AuthorsPage() {
                     grade 12 and, most importantly, a Math Enthusiast.
                     I started preparing for the Math Olympiad when I was in Class
                     7. From the start, Number Theory was the one topic I was most
-                    excited to study or to solve problems on (not because I was
+                    excited to study or to solve problems on (definately not because I was
                     bad at other topics).
                   </p>
                   <p>
