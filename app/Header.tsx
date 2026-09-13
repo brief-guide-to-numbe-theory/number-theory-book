@@ -63,7 +63,9 @@ export default function Header() {
   return (
     <header className="site-header">
       <Link className="brand" href="/" aria-label="Home">
-        <Image src="/logo.png" alt="ABGNT logo" width={28} height={28} className="brand-mark-img" />
+        <span className="brand-mark">
+          <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
+        </span>
         <span>ABGNT</span>
       </Link>
 
