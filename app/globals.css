@@ -609,14 +609,24 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 [data-theme="dark"] .author-mark {
-  background: radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.1) 0%, transparent 68%),
-              linear-gradient(145deg, #581233 0%, #3a0b21 60%, #200512 100%);
+  /* Dark mode: soft cross-hatch on deep burgundy */
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 14px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 14px),
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,0.10) 0%, transparent 68%),
+    linear-gradient(145deg, #581233 0%, #3a0b21 60%, #200512 100%);
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
 
 [data-theme="dark"] .second .author-mark {
-  background: radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.1) 0%, transparent 68%),
-              linear-gradient(145deg, #11424e 0%, #0b2b34 60%, #05191f 100%);
+  /* Dark mode: soft dot grid on deep indigo */
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px),
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,0.10) 0%, transparent 68%),
+    linear-gradient(160deg, #1a1a3e 0%, #0f0f2a 55%, #07071a 100%);
+  background-size: 28px 28px, 14px 14px, 100% 100%, 100% 100%;
+  background-position: 0 0, 7px 7px, 0 0, 0 0;
 }
 
 [data-theme="dark"] .author-number-pill,
@@ -759,8 +769,8 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 .author-card.second {
-  background: linear-gradient(180deg, #ffffff 0%, #f5fafb 100%);
-  border: 1px solid rgba(23, 93, 110, 0.16);
+  background: linear-gradient(180deg, #ffffff 0%, #f5f5fd 100%);
+  border: 1px solid rgba(70, 80, 150, 0.16);
 }
 
 .author-mark {
@@ -772,19 +782,24 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   justify-content: center;
   padding: 42px 24px 30px;
   border-right: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-  background: radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.14) 0%, transparent 68%),
-              linear-gradient(145deg, #781c47 0%, #4d102e 55%, #30081c 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  /* Light mode: soft cross-hatch on warm rose */
+  background:
+    repeating-linear-gradient(45deg, rgba(217,43,140,0.06) 0px, rgba(217,43,140,0.06) 1px, transparent 1px, transparent 12px),
+    repeating-linear-gradient(-45deg, rgba(217,43,140,0.06) 0px, rgba(217,43,140,0.06) 1px, transparent 1px, transparent 12px),
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,0.55) 0%, transparent 70%),
+    linear-gradient(160deg, #fce8f4 0%, #f7d6ed 55%, #f0c4e3 100%);
 }
 
 .second .author-mark {
+  /* Light mode: soft dot grid on warm slate-blue */
   background:
-    radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px),
-    radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),
-    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.10) 0%, transparent 68%),
-    linear-gradient(160deg, #1a1a3e 0%, #0f0f2a 55%, #07071a 100%);
-  background-size: 28px 28px, 14px 14px, 100% 100%, 100% 100%;
-  background-position: 0 0, 7px 7px, 0 0, 0 0;
+    radial-gradient(circle, rgba(70,80,150,0.12) 1px, transparent 1px),
+    radial-gradient(circle, rgba(70,80,150,0.06) 1px, transparent 1px),
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,0.5) 0%, transparent 70%),
+    linear-gradient(160deg, #e8eaf8 0%, #dde0f4 55%, #d0d4ef 100%);
+  background-size: 24px 24px, 12px 12px, 100% 100%, 100% 100%;
+  background-position: 0 0, 6px 6px, 0 0, 0 0;
 }
 
 .author-mark::before {
