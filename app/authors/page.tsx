@@ -17,6 +17,7 @@ export default function AuthorsPage() {
         >
           <MathBackground variant="dark" />
           <div className="section-label light">
+            <span>2</span>
             <span>Authors</span>
           </div>
 

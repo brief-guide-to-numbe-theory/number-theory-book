@@ -792,12 +792,12 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 .second .author-mark {
-  /* Light mode: soft dot grid on warm slate-blue */
+  /* Light mode: soft dot grid on deeper indigo */
   background:
-    radial-gradient(circle, rgba(70,80,150,0.12) 1px, transparent 1px),
-    radial-gradient(circle, rgba(70,80,150,0.06) 1px, transparent 1px),
-    radial-gradient(circle at 50% 48%, rgba(255,255,255,0.5) 0%, transparent 70%),
-    linear-gradient(160deg, #e8eaf8 0%, #dde0f4 55%, #d0d4ef 100%);
+    radial-gradient(circle, rgba(70,80,150,0.14) 1px, transparent 1px),
+    radial-gradient(circle, rgba(70,80,150,0.08) 1px, transparent 1px),
+    radial-gradient(circle at 50% 48%, rgba(255,255,255,0.4) 0%, transparent 70%),
+    linear-gradient(160deg, #c8ccee 0%, #b8bde8 55%, #a8aee0 100%);
   background-size: 24px 24px, 12px 12px, 100% 100%, 100% 100%;
   background-position: 0 0, 6px 6px, 0 0, 0 0;
 }
