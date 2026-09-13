@@ -34,11 +34,11 @@ export default function Home() {
                 <a className="primary-button" href="#general">
                   About the Book <span>&darr;</span>
                 </a>
-                <a className="primary-button" href="#prerequisites">
-                  Prerequisites <span>&darr;</span>
-                </a>
                 <a className="primary-button" href="#contents">
                   Contents &amp; Preview <span>&darr;</span>
+                </a>
+                <a className="primary-button" href="#prerequisites">
+                  Prerequisites <span>&darr;</span>
                 </a>
                 <a className="primary-button" href="#acknowledgements">
                   Acknowledgements <span>&darr;</span>
@@ -85,7 +85,7 @@ export default function Home() {
                 focuses on elementary number theory, specifically topics that are
                 common in Olympiad mathematics. We start from the basics of
                 modular arithmetic and progress to advanced concepts like
-                quadratic reciprocity, Pell's equations, and density in number
+                quadratic reciprocity, Pell&apos;s equations, and density in number
                 theory.
               </p>
               <p>
@@ -94,8 +94,8 @@ export default function Home() {
                 adequate preparation—could clear the INMO. However, in recent
                 years, more and more problems have required a substantial
                 theoretical background, especially in 2026, which featured
-                solutions involving Zsigmondy's theorem, Catalan's conjecture,
-                LTE, and Dirichlet's theorem. Furthermore, to do well in the
+                solutions involving Zsigmondy&apos;s theorem, Catalan&apos;s conjecture,
+                LTE, and Dirichlet&apos;s theorem. Furthermore, to do well in the
                 IMOTC and at the IMO, having the theoretical prerequisites is a
                 must. Hence, we have included most of the major concepts along
                 with problems from various contests to help readers gain a deeper
@@ -135,154 +135,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="prerequisites-container" id="prerequisites" data-reveal>
+          <div className="contents-container" id="contents" data-reveal>
             <div className="section-label">
               <span>2</span>
-              <span>Prerequisites</span>
-            </div>
-
-            <div className="prerequisites-grid">
-              <div className="prerequisites-heading">
-                <h2>Prerequisites <em>for Readers.</em></h2>
-                <p className="prerequisites-intro">
-                  Because this book is designed mainly for national level
-                  Olympiads like INMO and international Olympiads like the IMO,
-                  the reader should be comfortable with basic number theory,
-                  basic algebra, and common manipulations.
-                </p>
-              </div>
-
-              <div className="prerequisites-content">
-                <div className="prereq-card">
-                  <div className="prereq-header">
-                    <span className="prereq-num">1</span>
-                    <h3>Chapter 1</h3>
-                  </div>
-                  <p>
-                    The reader should be somewhat comfortable with the properties of
-                    modular arithmetic (addition and multiplication modulo an integer,
-                    statements of Fermat’s Little Theorem, and Euler’s Totient
-                    Function). Simply having read or knowing the definitions may not be
-                    enough; some experience working with modular arithmetic is
-                    recommended.
-                  </p>
-                </div>
-
-                <div className="prereq-card">
-                  <div className="prereq-header">
-                    <span className="prereq-num">2</span>
-                    <h3>Chapter 2</h3>
-                  </div>
-                  <div className="prereq-bullets">
-                    <p>
-                      The first bonus lemma uses the Maclaurin expansion of
-                      logarithms. However, this is used nowhere else, so there is no
-                      need to read up on it.
-                    </p>
-                    <p>
-                      The Binomial Theorem is featured in one of the exercises. For
-                      the purposes of this chapter, not much familiarity is needed;
-                      knowing the statement is enough. Knowing the formulas for
-                      binomial coefficients is also required.
-                    </p>
-                    <p>
-                      Being able to solve linear recurrences and knowing about the
-                      characteristic equation is recommended, though the use of this
-                      is not very extensive.
-                    </p>
-                    <p>
-                      The bonus lemma for this chapter (the n=3 case of Fermat’s Last
-                      Theorem) requires heavy use of algebraic number theory.
-                      However, the reader need not read up much, as it appears in
-                      very few places.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="prereq-card">
-                  <div className="prereq-header">
-                    <span className="prereq-num">3</span>
-                    <h3>Chapter 3</h3>
-                  </div>
-                  <p>
-                    For the Quadratic Reciprocity section, the reader must be
-                    comfortable with summations (properties like switching
-                    summations, etc.) and well-versed in the Binomial Theorem.
-                  </p>
-                </div>
-
-                <div className="prereq-card">
-                  <div className="prereq-header">
-                    <span className="prereq-num">4</span>
-                    <h3>Chapter 4</h3>
-                  </div>
-                  <div className="prereq-bullets">
-                    <p>
-                      For the Integer Polynomials section, the reader must be familiar
-                      with the algebraic properties of polynomials. Some of these are
-                      listed in the book, but it is helpful to have studied
-                      polynomials in some detail previously.
-                    </p>
-                    <p>
-                      A little bit of differentiation is used here and there, but
-                      nothing too heavy. Knowledge of common derivatives, the
-                      product rule, and the chain rule is sufficient.
-                    </p>
-                    <p>
-                      In one of the solved examples, we make use of integrals. Again,
-                      knowing the integrals of common functions is enough.
-                    </p>
-                    <p>
-                      For the section on Cyclotomic Polynomials, having basic
-                      familiarity with complex numbers is enough. The section on the
-                      properties of Cyclotomic Polynomials does not have any extra
-                      prerequisites, but one must be comfortable with each property
-                      before moving on to the next.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="prereq-card">
-                  <div className="prereq-header">
-                    <span className="prereq-num">5</span>
-                    <h3>Chapter 5</h3>
-                  </div>
-                  <p>
-                    The reader must thoroughly complete the first section before
-                    moving on to the second section. There is no prerequisite for the
-                    first section. The second section requires a good knowledge of
-                    all the other chapters covered so far.
-                  </p>
-                </div>
-
-                <div className="prereq-card">
-                  <div className="prereq-header">
-                    <span className="prereq-num">6</span>
-                    <h3>Chapter 6</h3>
-                  </div>
-                  <div className="prereq-bullets">
-                    <p>
-                      For Size and Density in Number Theory, the content is slightly
-                      more algebraic. The reader must be able to work well with
-                      summations, especially in the density part.
-                    </p>
-                    <p>
-                      For the section on Combinatorial Number Theory, the reader must
-                      be comfortable with ideas in combinatorics, such as graph
-                      theory, the Pigeonhole Principle, and a few local and global
-                      ideas. The OTIS Excerpts is a great resource for reading up on
-                      these topics.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="contents-container" id="contents" data-reveal>
-            <div className="section-label no-line">
-              <span>3</span>
-              <span>Contents & Preview</span>
+              <span>Contents &amp; Preview</span>
             </div>
 
             <div className="contents-heading">
@@ -398,6 +254,150 @@ export default function Home() {
                     <span>Some Cool/Useful Theorems</span>
                   </li>
                 </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="prerequisites-container" id="prerequisites" data-reveal>
+            <div className="section-label">
+              <span>3</span>
+              <span>Prerequisites</span>
+            </div>
+
+            <div className="prerequisites-grid">
+              <div className="prerequisites-heading">
+                <h2>Prerequisites <em>for Readers.</em></h2>
+                <p className="prerequisites-intro">
+                  Because this book is designed mainly for national level
+                  Olympiads like INMO and international Olympiads like the IMO,
+                  the reader should be comfortable with basic number theory,
+                  basic algebra, and common manipulations.
+                </p>
+              </div>
+
+              <div className="prerequisites-content">
+                <div className="prereq-card">
+                  <div className="prereq-header">
+                    <span className="prereq-num">1</span>
+                    <h3>Chapter 1</h3>
+                  </div>
+                  <p>
+                    The reader should be somewhat comfortable with the properties of
+                    modular arithmetic (addition and multiplication modulo an integer,
+                    statements of Fermat&apos;s Little Theorem, and Euler&apos;s Totient
+                    Function). Simply having read or knowing the definitions may not be
+                    enough; some experience working with modular arithmetic is
+                    recommended.
+                  </p>
+                </div>
+
+                <div className="prereq-card">
+                  <div className="prereq-header">
+                    <span className="prereq-num">2</span>
+                    <h3>Chapter 2</h3>
+                  </div>
+                  <div className="prereq-bullets">
+                    <p>
+                      The first bonus lemma uses the Maclaurin expansion of
+                      logarithms. However, this is used nowhere else, so there is no
+                      need to read up on it.
+                    </p>
+                    <p>
+                      The Binomial Theorem is featured in one of the exercises. For
+                      the purposes of this chapter, not much familiarity is needed;
+                      knowing the statement is enough. Knowing the formulas for
+                      binomial coefficients is also required.
+                    </p>
+                    <p>
+                      Being able to solve linear recurrences and knowing about the
+                      characteristic equation is recommended, though the use of this
+                      is not very extensive.
+                    </p>
+                    <p>
+                      The bonus lemma for this chapter (the n=3 case of Fermat&apos;s Last
+                      Theorem) requires heavy use of algebraic number theory.
+                      However, the reader need not read up much, as it appears in
+                      very few places.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="prereq-card">
+                  <div className="prereq-header">
+                    <span className="prereq-num">3</span>
+                    <h3>Chapter 3</h3>
+                  </div>
+                  <p>
+                    For the Quadratic Reciprocity section, the reader must be
+                    comfortable with summations (properties like switching
+                    summations, etc.) and well-versed in the Binomial Theorem.
+                  </p>
+                </div>
+
+                <div className="prereq-card">
+                  <div className="prereq-header">
+                    <span className="prereq-num">4</span>
+                    <h3>Chapter 4</h3>
+                  </div>
+                  <div className="prereq-bullets">
+                    <p>
+                      For the Integer Polynomials section, the reader must be familiar
+                      with the algebraic properties of polynomials. Some of these are
+                      listed in the book, but it is helpful to have studied
+                      polynomials in some detail previously.
+                    </p>
+                    <p>
+                      A little bit of differentiation is used here and there, but
+                      nothing too heavy. Knowledge of common derivatives, the
+                      product rule, and the chain rule is sufficient.
+                    </p>
+                    <p>
+                      In one of the solved examples, we make use of integrals. Again,
+                      knowing the integrals of common functions is enough.
+                    </p>
+                    <p>
+                      For the section on Cyclotomic Polynomials, having basic
+                      familiarity with complex numbers is enough. The section on the
+                      properties of Cyclotomic Polynomials does not have any extra
+                      prerequisites, but one must be comfortable with each property
+                      before moving on to the next.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="prereq-card">
+                  <div className="prereq-header">
+                    <span className="prereq-num">5</span>
+                    <h3>Chapter 5</h3>
+                  </div>
+                  <p>
+                    The reader must thoroughly complete the first section before
+                    moving on to the second section. There is no prerequisite for the
+                    first section. The second section requires a good knowledge of
+                    all the other chapters covered so far.
+                  </p>
+                </div>
+
+                <div className="prereq-card">
+                  <div className="prereq-header">
+                    <span className="prereq-num">6</span>
+                    <h3>Chapter 6</h3>
+                  </div>
+                  <div className="prereq-bullets">
+                    <p>
+                      For Size and Density in Number Theory, the content is slightly
+                      more algebraic. The reader must be able to work well with
+                      summations, especially in the density part.
+                    </p>
+                    <p>
+                      For the section on Combinatorial Number Theory, the reader must
+                      be comfortable with ideas in combinatorics, such as graph
+                      theory, the Pigeonhole Principle, and a few local and global
+                      ideas. The OTIS Excerpts is a great resource for reading up on
+                      these topics.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
