@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Header() {
@@ -62,7 +63,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <Link className="brand" href="/" aria-label="Home">
-        <span className="brand-mark">&sum;</span>
+        <Image src="/logo.png" alt="ABGNT logo" width={28} height={28} className="brand-mark-img" />
         <span>ABGNT</span>
       </Link>
 
