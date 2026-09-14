@@ -14,19 +14,19 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .math-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
 .general,.authors,.hints{position:relative;overflow:hidden}
 .hero>*:not(.math-bg),.general>*:not(.math-bg),.authors>*:not(.math-bg),.hints>*:not(.math-bg){position:relative;z-index:1}
-.reveal-ready [data-reveal]{opacity:0;transform:translateY(30px);transition:opacity .75s ease,transform .85s cubic-bezier(.2,.75,.25,1)}
+.reveal-ready [data-reveal]{opacity:1;transform:none;transition:none}
 .reveal-ready [data-reveal].in-view{opacity:1;transform:none}
-.reveal-ready [data-reveal].d1{transition-delay:.14s}
-.reveal-ready [data-reveal].d2{transition-delay:.28s}
-@keyframes riseIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
-.hero-copy .eyebrow{animation:riseIn .8s .05s both}.hero-copy h1{animation:riseIn .9s .18s both}.hero-intro{animation:riseIn .9s .32s both}.hero-actions{animation:riseIn .9s .46s both}.hero-metrics{animation:riseIn 1s .6s both}.book-stage{animation:riseIn 1s .3s both}
+.reveal-ready [data-reveal].d1{transition-delay:0s}
+.reveal-ready [data-reveal].d2{transition-delay:0s}
+@keyframes riseIn{from{opacity:1;transform:none}to{opacity:1;transform:none}}
+.hero-copy .eyebrow{animation:none}.hero-copy h1{animation:none}.hero-intro{animation:none}.hero-actions{animation:none}.hero-metrics{animation:none}.book-stage{animation:none}
 @keyframes bookFloat{0%,100%{transform:rotate(2.5deg) translateY(0)}50%{transform:rotate(2.5deg) translateY(-16px)}}.book-cover{animation:bookFloat 7s ease-in-out infinite}
 @keyframes shadowPulse{0%,100%{opacity:.7;transform:rotate(5deg) scale(1)}50%{opacity:.45;transform:rotate(5deg) scale(.9)}}.book-shadow{animation:shadowPulse 7s ease-in-out infinite}
-.primary-button{position:relative;transition:transform .3s,box-shadow .3s}.primary-button span{display:inline-block;transition:transform .3s}.primary-button:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(217,43,140,.3)}.primary-button:hover span{transform:translateX(7px)}
-.text-link span,.header-link span{display:inline-block;transition:transform .3s}.text-link:hover span{transform:translateY(4px)}.header-link:hover span{transform:translate(3px,3px)}
+.primary-button{position:relative;transition:box-shadow .3s}.primary-button span{display:inline-block;transition:transform .3s}.primary-button:hover{box-shadow:0 16px 32px rgba(217,43,140,.3)}.primary-button:hover span{transform:translateX(7px)}
+.text-link span,.header-link span{display:inline-block;transition:transform .3s}.text-link:hover span{transform:none}.header-link:hover span{transform:none}
 .site-header nav a{position:relative}.site-header nav a:after{content:"";position:absolute;left:0;bottom:-6px;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}.site-header nav a:hover:after{transform:scaleX(1)}
-.author-card{transition:transform .45s cubic-bezier(.2,.7,.25,1),box-shadow .45s}.author-card:hover{transform:translateY(-8px);box-shadow:0 26px 52px rgba(0,0,0,.18)}
-@keyframes ringPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.55}50%{transform:translate(-50%,-50%) scale(1.09);opacity:.9}}.author-mark:before{animation:ringPulse 6s ease-in-out infinite}.author-mark:after{animation:ringPulse 6s ease-in-out 1.5s infinite}.author-mark span{transition:transform .5s}.author-card:hover .author-mark span{transform:scale(1.08) rotate(-4deg)}
+.author-card{transition:box-shadow .45s}.author-card:hover{transform:none;box-shadow:0 26px 52px rgba(0,0,0,.18)}
+@keyframes ringPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.55}50%{transform:translate(-50%,-50%) scale(1.09);opacity:.9}}.author-mark:before{animation:ringPulse 6s ease-in-out infinite}.author-mark:after{animation:ringPulse 6s ease-in-out 1.5s infinite}.author-mark span{transition:none}.author-card:hover .author-mark span{transform:none}
 .primary-button,.lookup-row>button,.hint-result>button,.hide-hint{transition:transform .3s,box-shadow .3s,opacity .3s}.lookup-row>button:not(:disabled):hover{transform:translateY(-2px)}
 @keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}.hint-result:not([hidden]){animation:pop .45s cubic-bezier(.2,.7,.25,1)}
 @keyframes spinSlow{to{transform:rotate(360deg)}}.hero:before{animation:spinSlow 90s linear infinite}
@@ -128,7 +128,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .prereq-card:hover {
-  transform: translateY(-3px);
+  transform: none;
   box-shadow: 0 16px 40px rgba(26, 46, 90, 0.1);
 }
 .prereq-header {
@@ -270,7 +270,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .chapter-card:hover {
-  transform: translateY(-3px);
+  transform: none;
   box-shadow: 0 16px 40px rgba(26, 46, 90, 0.1);
 }
 .chapter-badge {
@@ -583,14 +583,14 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(240, 248, 255, 0.5) 100%);
   border: 1px solid rgba(26, 46, 90, 0.16);
   border-left: 6px solid var(--gold);
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: 0 8px 32px rgba(26, 46, 90, 0.06);
   backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .acknowledgements-body:hover {
-  transform: translateY(-3px);
+  transform: none;
   box-shadow: 0 16px 40px rgba(26, 46, 90, 0.1);
 }
 
@@ -657,7 +657,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 [data-theme="dark"] .author-card:hover {
-  transform: translateY(-8px);
+  transform: none;
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(180, 210, 255, 0.18);
 }
 
@@ -803,16 +803,16 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   flex-direction: column;
   min-height: 540px;
   color: var(--ink);
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 14px 44px rgba(26, 46, 90, 0.09);
   border: 1px solid rgba(26, 46, 90, 0.08);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transition: box-shadow 0.4s ease;
 }
 
 .author-card:hover,
 .author-card:active {
-  transform: translateY(-8px);
+  transform: none;
   box-shadow: 0 24px 56px rgba(26, 46, 90, 0.16);
 }
 
@@ -906,7 +906,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   position: relative;
   width: 180px;
   height: 230px;
-  border-radius: 16px;
+  border-radius: 0;
   border: 2px dashed rgba(255, 255, 255, 0.7);
   background: rgba(0, 0, 0, 0.18);
   display: flex;
@@ -914,7 +914,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.25, 1), box-shadow 0.5s ease, border-color 0.3s ease;
+  transition: box-shadow 0.5s ease, border-color 0.3s ease;
   overflow: hidden;
   box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.25), 0 8px 20px rgba(0, 0, 0, 0.15);
   transform-origin: center center;
@@ -927,7 +927,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .author-card.first:active .author-photo-real,
 .author-card.first .author-photo-slot:hover,
 .author-card.first .author-photo-real:hover {
-  transform: scale(1.05) rotate(-3.5deg);
+  transform: none;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
 }
 
@@ -937,7 +937,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .author-card.second:active .author-photo-real,
 .author-card.second .author-photo-slot:hover,
 .author-card.second .author-photo-real:hover {
-  transform: scale(1.05) rotate(3.5deg);
+  transform: none;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
 }
 
@@ -946,11 +946,11 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
   background: #182334 !important;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3) !important;
-  border-radius: 16px;
+  border-radius: 0 !important;
 }
 
 .author-photo-real img {
-  border-radius: 15px;
+  border-radius: 0 !important;
 }
 
 
@@ -1285,7 +1285,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   }
 
   .author-card {
-    border-radius: 16px;
+    border-radius: 0;
   }
 
   .author-mark {

@@ -270,11 +270,9 @@ export default function Home() {
                   </a>
                 </div>
                 <iframe
-                  src="/chapter-3-1-orders.pdf#toolbar=1"
+                  src="/chapter-3-1-orders.pdf#view=FitH&toolbar=1"
                   title="Chapter 3.1 Orders Preview PDF"
-                  width="100%"
-                  height="680px"
-                  style={{ border: "none", display: "block" }}
+                  className="pdf-iframe"
                 />
               </div>
             </div>
