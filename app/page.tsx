@@ -269,11 +269,21 @@ export default function Home() {
                     Open PDF in New Tab <span>&rarr;</span>
                   </a>
                 </div>
-                <iframe
-                  src="/chapter-3-1-orders.pdf#view=FitH&toolbar=1"
-                  title="Chapter 3.1 Orders Preview PDF"
-                  className="pdf-iframe"
-                />
+                <object
+                  data="/chapter-3-1-orders.pdf#toolbar=1"
+                  type="application/pdf"
+                  width="100%"
+                  height="680px"
+                  style={{ border: "none", display: "block" }}
+                >
+                  <iframe
+                    src="/chapter-3-1-orders.pdf#toolbar=1"
+                    title="Chapter 3.1 Orders Preview PDF"
+                    width="100%"
+                    height="680px"
+                    style={{ border: "none", display: "block" }}
+                  />
+                </object>
               </div>
             </div>
           </div>
