@@ -259,7 +259,7 @@ export default function Home() {
 
             <div className="pdf-preview-container">
               <p className="pdf-preview-text">
-                We are also attaching the chapter 3.1 of the book (Orders) as a preview of the book.
+                We are also attaching the chapter 3.1 (Orders) as a preview of the book.
               </p>
 
               <div className="pdf-viewer-wrapper">
