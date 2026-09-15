@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import MathBackground from "./MathBackground";
 import PrimeSpiral from "./PrimeSpiral";
 import ScrollReveal from "./ScrollReveal";
+import PdfPreview from "./PdfPreview";
 
 export default function Home() {
   return (
@@ -257,35 +258,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="pdf-preview-container">
-              <p className="pdf-preview-text">
-                We are also attaching the chapter 3.1 (Orders) as a preview of the book.
-              </p>
-
-              <div className="pdf-viewer-wrapper">
-                <div className="pdf-viewer-header">
-                  <span>Chapter 3.1: Orders (Preview)</span>
-                  <a href="/chapter-3-1-orders.pdf" target="_blank" rel="noopener noreferrer" className="navy-button" style={{ padding: "6px 14px", fontSize: "10px", minHeight: "auto" }}>
-                    Open PDF in New Tab <span>&rarr;</span>
-                  </a>
-                </div>
-                <object
-                  data="/chapter-3-1-orders.pdf#toolbar=1"
-                  type="application/pdf"
-                  width="100%"
-                  height="680px"
-                  style={{ border: "none", display: "block" }}
-                >
-                  <iframe
-                    src="/chapter-3-1-orders.pdf#toolbar=1"
-                    title="Chapter 3.1 Orders Preview PDF"
-                    width="100%"
-                    height="680px"
-                    style={{ border: "none", display: "block" }}
-                  />
-                </object>
-              </div>
-            </div>
+            <PdfPreview />
           </div>
 
           <div className="prerequisites-container" id="prerequisites" data-reveal>
