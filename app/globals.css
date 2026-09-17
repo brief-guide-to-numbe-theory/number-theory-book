@@ -189,6 +189,11 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .brand-mark img {
   display: block;
   object-fit: contain;
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .brand-mark img {
+  filter: brightness(0) invert(1);
 }
 
 .contents-container {
