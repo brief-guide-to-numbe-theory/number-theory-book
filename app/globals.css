@@ -938,6 +938,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .author-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: stretch;
   gap: 32px;
   margin-top: 56px;
 }
@@ -945,6 +946,7 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 .author-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   min-height: 540px;
   color: var(--ink);
   border-radius: 0;

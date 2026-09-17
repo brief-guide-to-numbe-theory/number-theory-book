@@ -122,48 +122,16 @@ export default function AuthorsPage() {
 
                 <div className="author-bio">
                   <p>
-                    I am Riddhiman Seal from Mumbai. I was born in Kolkata, but
-                    I grew up in Mumbai. As of 2026, I am in grade 12. I got into
-                    mathematics around grade 3 or 4. Of course, at that time, all
-                    I did was school mathematics. Even during the lockdown (when
-                    I was in grade 6 or 7), I did not do much math. I only
-                    discovered Olympiads in grade 8 when my cousin told me about
-                    them. Back then, solving even IOQM-level problems was a huge
-                    challenge, but it felt fun and refreshing. After working on
-                    Olympiad problems, I didn’t feel like doing school math at
-                    all (because spamming formulas is super fun, right?).
+                    I am Riddhiman Seal, a <strong>Grade 12 student</strong> and math enthusiast based in Mumbai. My journey into mathematics began in elementary school, but my passion for competitive problem-solving truly ignited in Grade 8 when my cousin introduced me to Olympiads. Tackling IOQM-level problems for the first time was a steep challenge, but it opened up a refreshing side of mathematics that I quickly grew to love. Within Olympiad math, I focus heavily on <strong>geometry</strong> and <strong>number theory</strong>.
                   </p>
                   <p>
-                    Despite enjoying Olympiad math, I failed to clear even the
-                    IOQM for my first two years, but I kept learning and
-                    improving. In the initial stages, I preferred algebra; then,
-                    for a while, I was a geometry main. However, outside of
-                    Olympiads, while reading up on higher mathematics, number
-                    theory always interested me the most. Learning about unsolved
-                    problems felt intriguing. When I looked into Olympiad number
-                    theory, I realized that apart from a very few &quot;standard&quot;
-                    books, there were very few resources available, with most
-                    scattered as handouts. I also noticed that certain ideas were
-                    appearing more frequently in Olympiads, yet there were
-                    almost no resources to practice them from.
+                    Over the years, I have participated in the Indian Olympiad cycle (<strong>IOQM</strong>, <strong>RMO</strong>, <strong>INMO</strong>) alongside individual contests like the <strong>AMC</strong> and <strong>AIME</strong>. Some key highlights include placing <strong>1st in the subjective round at the MTRP camp at ISI Kolkata</strong> and earning a <strong>3rd Diploma in the Sharygin Geometry Olympiad</strong>. Together with my co-author Aritra, I have also competed in team events — placing <strong>2nd in the Power Round at the Berkeley Math Tournament</strong> and <strong>1st overall in the Oxford Mathematics Team Competition</strong>. Outside of competing, I am a staff member at the <a href="https://www.youtube.com/@OMath" target="_blank" rel="noopener noreferrer">Online Math Club (OMC)</a>, where I deliver lectures, curate problem sets, draft mock papers, and assist with club administration.
                   </p>
                   <p>
-                    This was around the time Aritra reached out to me, saying he
-                    wanted to write something on number theory. Initially, we
-                    thought it would just be a handout, but in no time 2 pages
-                    turned into 10, then 20, then 40, and soon enough we had
-                    crossed 100 pages. That was when we realized we had so much
-                    to write that cutting it short would do an injustice to the
-                    subject. So, we made a bold decision and decided to turn it
-                    into an entire book.
+                    The inspiration for this book came from a gap I noticed while studying Olympiad number theory: while standard classic texts exist, many modern, recurring ideas are scattered across short handouts without a centralized place to practice. When Aritra reached out to collaborate on a small handout, our draft quickly grew from 2 pages to over 100. Realizing that shortening the material would do a disservice to the subject, we made the bold decision to write a comprehensive book. Despite the challenge of balancing schoolwork with writing sprints, this project grew into the complete resource we wished we had when we began our own Olympiad journeys.
                   </p>
                   <p>
-                    Of course, the journey wasn’t smooth. At times, I felt I had
-                    too much to balance and that writing a book was far too
-                    ambitious. There were weeks when we wrote close to nothing,
-                    and there were days when we wrote entire sections in one
-                    sitting. Finally, the book is almost ready to be published (by
-                    the time you read this, it will have been published).
+                    Beyond mathematics, I am a <strong>2nd-degree black belt in Taekwondo</strong> with a decade of training under my belt and have competed in football at the district level.
                   </p>
                 </div>
 
