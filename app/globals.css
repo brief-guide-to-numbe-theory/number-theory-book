@@ -1206,6 +1206,14 @@ footer{min-height:130px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   font: 15px/1.7 Georgia, 'Times New Roman', serif;
 }
 
+.author-card.second .author-bio {
+  gap: 16px;
+}
+
+.author-card.second .author-bio p {
+  font: 15.8px/1.75 Georgia, 'Times New Roman', serif;
+}
+
 .author-bio ol {
   margin: 4px 0 10px 0;
   padding-left: 20px;
