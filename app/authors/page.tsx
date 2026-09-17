@@ -62,52 +62,39 @@ export default function AuthorsPage() {
 
                 <div className="author-bio">
                   <p>
-                    I am Aritra Saha from Malda, West Bengal; as of 2026, I am in
-                    grade 12 and, most importantly, a Math Enthusiast.
-                    I started preparing for the Math Olympiad when I was in grade
-                    7. From the start, Number Theory was the one topic I was most
-                    excited to study or to solve problems on (definately not because I was
-                    bad at other topics).
+                    I am Aritra Saha from Malda, West Bengal. I am a math enthusiast currently in <strong>grade 12</strong> as of 2026. I started preparing for math Olympiads back in grade 7. From the very beginning, <strong>Number Theory</strong> was the one topic I was most excited to study and solve problems in <em>(definitely not because I was bad at the other topics!)</em>.
                   </p>
                   <p>
-                    I wrote my first INMO in 2023 when I was in grade 8. In 2025
-                    (class 10), after failing INMO by 4 marks, I was obviously
-                    devastated. But my love for Number Theory kept me motivated;
-                    around then, I thought I should probably write something on
-                    Number Theory. Around that time, I saw Riddhiman publish one
-                    of his handouts in Geometry, and I knew he was also very
-                    interested in Number Theory in general. So, I reached out to
-                    him about his project, and we started working on it
-                    together. First, the idea was to maybe write a 50-page
-                    handout. But, when we started writing it, we wanted to make
-                    it in such a way that someone with basic knowledge about
-                    Modular arithmetic can also understand; on the other hand,
-                    we wanted to write advanced number-theoretic topics too. At
-                    that point, I understood that a 50-page handout cannot be
-                    sufficient, and the idea of writing a book came to mind for
-                    both of us.
+                    I wrote my first <strong>INMO in 2023</strong> and was devastated in 2025 after missing the cutoff by just 4 points. However, my love for Number Theory kept me motivated, and I decided to write something on the subject, which led to the initial spark that made us write the book.
                   </p>
                   <p>
-                    Around this time, I qualified for IOQM and RMO for the MO
-                    25-26 cycle. Until then, we raced through writing all the
-                    chapters. As I was preparing for JEE at the time, it was hard
-                    to manage time for INMO preparation, JEE, and writing the
-                    book. So, from December to January, and even February, we
-                    took a long break. Even in that time, we wrote some pages,
-                    but it was very slow paced. One of the fun facts is that,
-                    before the day of INMO, to calm myself down, I was actually
-                    writing the proof for Zsigmondy (though the book contains a
-                    different proof than what I initially wrote), and if you
-                    have seen the INMO 26 paper, you know the rest. And because
-                    of that question, I qualified for INMO and became an INMO
-                    Awardee that year.
+                    During this same period, I became deeply involved in the wider math community. I joined the <strong>Sophie Fellowship</strong> for the 2025 Cohort and soon after became a part of the <strong>Online Math Club (OMC)</strong> organizing team. I began teaching classes there — which you can find on the <a href="https://www.youtube.com/@OMath" target="_blank" rel="noopener noreferrer">OMC YouTube Channel</a> — and took part in creating problem sets and selecting problems for team contests. During this time, we were both constantly working on the book, specifically at night.
                   </p>
                   <p>
-                    Nevertheless, there were ups and downs after this, and we
-                    finished the book around mid-June soon after IMOTC ended.
-                    Finally, the book is being published; hopefully, you, as
-                    readers, will like it and, most importantly, learn something
-                    from it.
+                    I qualified through IOQM and RMO for the 2025–26 Olympiad cycle. Between all my preparation for JEE, Olympiad, and OMC duties, eventually the day of INMO 2026 came. A fun fact about this journey: the day before the INMO, just to calm my nerves, I was actually writing out the proof for <strong>Zsigmondy&apos;s Theorem</strong> (though the book ultimately features a different proof than the one I drafted that day). If you have seen the 2026 INMO paper, you know the rest. Thanks to that topic, I cleared the exam and proudly became an <strong>INMO Awardee</strong>.
+                  </p>
+                  <p>
+                    I have been incredibly fortunate to participate in several mathematical programs that have deeply shaped my understanding of the subject over the last few years. These experiences have taught me as much about perseverance as they have about mathematics:
+                  </p>
+                  <ol>
+                    <li>
+                      Along with attending the <strong>IMOTC in 2026</strong>, I had the opportunity to participate in STEMS (2026) and the Enumeration Camp in both 2025 and 2026, where I was happy to place <strong>second in the 2026 finals</strong>.
+                    </li>
+                    <li>
+                      I was honoured to be selected for the <strong>Maths Beyond Limits</strong> camp in the Balkans (though I was ultimately unable to attend) and enjoyed participating in the <strong>Sharygin Geometry Olympiad</strong>, advancing to Round 2 for grade 10.
+                    </li>
+                    <li>
+                      I recently advanced past Round 1 of the <strong>SRMC</strong> and am currently preparing for the Round 2 examination this October.
+                    </li>
+                  </ol>
+                  <p>
+                    When I am not doing math, I have a variety of other interests. I enjoy solving Rubik&apos;s Cubes, though I wouldn&apos;t call myself a speed-solver. I also spend time solving variant Sudokus. I am an avid chess player (Chess.com username: <a href="https://www.chess.com/member/AritraSaha13" target="_blank" rel="noopener noreferrer">AritraSaha13</a>) and recently competed in my first offline tournament at ISI, Kolkata. Furthermore, I spend a lot of time playing GeoGuessr, enjoy watching competitive Scrabble, and occasionally look back fondly on my days of active quizzing, where I represented my school and district at the state level.
+                  </p>
+                  <p>
+                    One of my absolute favorite mathematical hobbies is proposing original problems. You will actually find two or three of my own problems featured in this book. I also proposed Problems 2 and 6 for the LMAO Revenge Contest, which you can check out on the <a href="https://artofproblemsolving.com/community/c3258525_imotc_2026" target="_blank" rel="noopener noreferrer">IMOTC 2026 page on AoPS</a>.
+                  </p>
+                  <p>
+                    If anyone wants to reach out to me personally, you can connect via <strong>AoPS</strong>, where my username is <a href="https://artofproblemsolving.com/community/user/CrystalMind" target="_blank" rel="noopener noreferrer">CrystalMind</a> (though I am not very active there), or via <strong>Discord</strong>, where my username is <code>aritra2008</code>.
                   </p>
                 </div>
 
