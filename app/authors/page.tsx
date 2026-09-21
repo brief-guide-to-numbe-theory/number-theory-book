@@ -147,22 +147,16 @@ export default function AuthorsPage() {
 
           {/* Writing the Book Section */}
           <div className="book-story-container" data-reveal>
-            <div className="book-story-heading">
-              <div className="section-label light no-line" style={{ marginBottom: "20px" }}>
-                <span>3</span>
-                <span>Behind the Scenes</span>
-              </div>
-              <h2 className="book-story-title">
-                The Story Behind the <em>Book.</em>
-              </h2>
-            </div>
+            <h2 className="book-story-title">
+              The Story Behind the <em>Book.</em>
+            </h2>
 
-            <div className="book-story-body">
+            <div className="book-story-box">
               <p>
                 The inspiration for this book came from a gap we noticed while studying <strong>Olympiad number theory</strong>: while standard classic texts exist, many modern, recurring ideas are scattered across short handouts without a centralized place to practice. When we decided to collaborate on a small handout, our plan was to write only about <strong>50 or so pages</strong>. However, our draft quickly grew to over a hundred. Realizing that shortening the material was not an option, the idea to write a <strong>comprehensive book</strong> was born.
               </p>
               <p>
-                Balancing the writing process, <strong>JEE preparation</strong>, <a href="https://www.youtube.com/@OMath" target="_blank" rel="noopener noreferrer">OMC</a> duties, and working on Olympiads was not at all easy. In fact, we took a long break from writing between <strong>December 2025 and February 2026</strong> to focus on our academic work. Progress was slow, but soon we picked up the pace, and by <strong>20th June</strong>, we were done writing the entire text.
+                Balancing the writing process, <strong>JEE preparation</strong>, OMC duties, and working on Olympiads was not at all easy. In fact, we took a long break from writing between <strong>December 2025 and February 2026</strong> to focus on our academic work. Progress was slow, but soon we picked up the pace, and by <strong>20th June</strong>, we were done writing the entire text.
               </p>
               <p>
                 The process had so many ups and downs, but despite the challenges, we persevered and managed to create <em>the resource we wished we had when we started our Olympiad journey.</em>
