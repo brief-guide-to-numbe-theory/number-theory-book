@@ -17,7 +17,7 @@ export default function AuthorsPage() {
         >
           <MathBackground variant="dark" />
           <div className="section-label light">
-            <span>2</span>
+            <span>1</span>
             <span>Authors</span>
           </div>
 
@@ -148,7 +148,7 @@ export default function AuthorsPage() {
           {/* Writing the Book Section */}
           <div className="book-story-container" data-reveal>
             <div className="section-label light" style={{ marginBottom: "28px" }}>
-              <span>3</span>
+              <span>2</span>
               <span>The Story</span>
             </div>
             <h2 className="book-story-title">
