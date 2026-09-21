@@ -101,7 +101,7 @@ export default function AuthorsPage() {
               </div>
             </article>
 
-            <article className="author-card second d1" data-reveal>
+            <article className="author-card second" data-reveal>
               <div className="author-mark">
                 <div className="author-photo-slot author-photo-real">
                   <Image
