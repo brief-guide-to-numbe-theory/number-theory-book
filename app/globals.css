@@ -1247,6 +1247,80 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   font-size: 14px;
 }
 
+/* ============================================
+   BOOK STORY SECTION (Authors page)
+   ============================================ */
+.book-story-container {
+  margin-top: 90px;
+  padding-top: 64px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.book-story-heading {
+  margin-bottom: 44px;
+}
+
+.book-story-title {
+  font-size: clamp(32px, 4.5vw, 62px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.03em !important;
+  color: #ffffff;
+  margin: 0 !important;
+}
+
+.book-story-title em {
+  display: inline-block !important;
+  margin-top: 0 !important;
+  margin-left: 0.18em !important;
+  color: var(--gold);
+}
+
+.book-story-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 860px;
+}
+
+.book-story-body p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font: 17px/1.8 Georgia, 'Times New Roman', serif;
+}
+
+.book-story-body strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.book-story-body em {
+  color: rgba(255, 255, 255, 0.92);
+  font-style: italic;
+}
+
+.book-story-body a {
+  color: #f0a0c8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+
+.book-story-body a:hover {
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .book-story-container {
+  border-top-color: rgba(180, 210, 255, 0.15);
+}
+
+[data-theme="dark"] .book-story-body p {
+  color: rgba(230, 240, 250, 0.82);
+}
+
+[data-theme="dark"] .book-story-body strong {
+  color: #e6f0fa;
+}
+
 @media (max-width: 960px) {
   /* --- Authors page: stack cards vertically --- */
   .author-grid {
@@ -1534,6 +1608,20 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 
   .hint-result {
     padding: 24px 16px;
+  }
+
+  /* --- Book Story section mobile --- */
+  .book-story-container {
+    margin-top: 56px;
+    padding-top: 40px;
+  }
+
+  .book-story-body {
+    gap: 16px;
+  }
+
+  .book-story-body p {
+    font-size: 15px;
   }
 
   /* --- Footer mobile --- */
