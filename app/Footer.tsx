@@ -10,7 +10,12 @@ export default function Footer() {
         </span>
         <span>ABGNT</span>
       </Link>
-      <p>A Brief Guide to Number Theory</p>
+      <div className="footer-info">
+        <p>A Brief Guide to Number Theory</p>
+        <a href="mailto:abgnt.official@gmail.com" className="footer-contact">
+          abgnt.official@gmail.com
+        </a>
+      </div>
       <a href="#top">Back to top &uarr;</a>
     </footer>
   );
