@@ -124,6 +124,9 @@ export default function Home() {
                 the book in general) are mentioned on a separate page.
               </p>
               <p>
+                In addition to the theory, we have carefully curated the problems for both the <strong>Solved Examples</strong> and <strong>Practice Problems</strong>. Rather than relying on problems that appear in most books and handouts, we chose to highlight <em>lesser-known problems from recent years</em>. For the first few chapters, almost all the Solved Examples are relatively new — some from not-so-well-known contests, and others from <strong>AoPS</strong> posts. One of the Solved Examples for <strong>Chapter 2</strong> was sourced from a random AoPS post with a very short statement, yet ended up taking us hours just to write the solution. Some of the problems we have included are even from contests that we participated in last year, and a large chunk are from <strong>2026 contests</strong>. In general, we aimed to make the Solved Examples <em>decently challenging</em>. By contrast, the Practice Problems are mostly from better-known contests and are somewhat simpler than the Solved Examples. This approach encourages readers to engage deeply with solutions to harder problems while building confidence through relatively more accessible practice — enhancing both understanding and problem-solving skills.
+              </p>
+              <p>
                 Our primary goal is to help readers understand and appreciate
                 the beauty of number theory. We want students to gain intuition
                 and a feeling for the subject instead of memorizing formulas and
