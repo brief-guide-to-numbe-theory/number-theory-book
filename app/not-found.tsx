@@ -79,7 +79,7 @@ export default function NotFound() {
               Return Home <span>&rarr;</span>
             </Link>
             <Link className="navy-button" href="/hints">
-              Browse 500 Hints <span>&rarr;</span>
+              Hints <span>&rarr;</span>
             </Link>
             <Link className="navy-button" href="/authors">
               Meet the Authors <span>&rarr;</span>
