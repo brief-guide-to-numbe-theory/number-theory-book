@@ -111,7 +111,7 @@ export default function Home() {
                 the book in general) are mentioned on a separate page.
               </p>
                <p>
-                Each chapter of the book consists of four major parts: <b>theory</b>, <b>exercises</b>, <b>solved examples</b>, and <b>practice problems</b>. Between the theory, we included Exercise Problems to help readers gain a better understanding of the theory. After each subchapter/section, we have added Solved Examples on the topic, where we have provided the solutions, and we have included practice problems where we have not provided the solutions.
+                Each chapter of the book is organized into four main parts: theory, exercises, solved examples, and practice problems. The theory section develops the main ideas, while the exercise problems are placed throughout to help the reader build understanding step by step. After each subsection, we include solved examples with complete solutions. We also provide practice problems, for which solutions are intentionally not included in the book.
               </p>
                <p>
                 For a long time, a student without extensive theoretical
@@ -124,7 +124,7 @@ export default function Home() {
                 IMOTC and at the IMO, having the theoretical prerequisites is a
                 must. Hence, we have included most of the major concepts along
                 with problems from various contests to help readers gain a deeper
-                understanding of these topics.
+                understanding of these topics. For most of this concepts (Zsigmody, Pell's Equation, Bertrand Postulate) we have also included the elementry proof of this topics for interested readers.
               </p>
               <p>
                 In addition to the theory, we have carefully curated the problems for both the <b>Solved Examples</b> and <b>Practice Problems</b>. Rather than relying on problems that appear in most books and handouts, we chose to highlight <em>lesser-known problems from recent years</em>. For the first few chapters, almost all the Solved Examples are relatively new — some from not-so-well-known contests, and others from <b>AoPS</b> posts. One of the Solved Examples for <b>Chapter 2</b> was sourced from a random AoPS post with a very short statement, yet ended up taking us hours just to write the solution. Some of the problems we have included are even from contests that we participated in last year, and a large chunk are from <b>2026 contests</b>. In general, we aimed to make the Solved Examples <em>decently challenging</em>. By contrast, the Practice Problems are mostly from better-known contests and are somewhat simpler than the Solved Examples. This approach has helped readers engage with solutions to harder problems and practice with slightly easier ones, enhancing both understanding and problem-solving skills.
