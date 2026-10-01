@@ -43,7 +43,7 @@ export default function NotFound() {
             </div>
 
             <div style={{ maxWidth: "480px" }}>
-              <p style={{ font: "18px/1.7 Georgia, serif", color: "#3a5070", marginBottom: "20px" }}>
+              <p style={{ font: "18px/1.7 Georgia, serif", color: "var(--ink)", opacity: 0.88, marginBottom: "20px" }}>
                 Assume the requested URL exists in the domain of integer solutions. Then its evaluation yields a contradiction.
               </p>
               <p style={{ font: "italic 16px/1.6 Georgia, serif", color: "var(--gold)" }}>
@@ -63,13 +63,13 @@ export default function NotFound() {
               padding: "36px 40px",
             }}
           >
-            <span style={{ color: "#3a5878", letterSpacing: "0.18em" }}>
+            <span style={{ color: "var(--gold)", fontWeight: 900, letterSpacing: "0.18em" }}>
               MODULAR ARITHMETIC &bull; PAGE &equiv; 404 (MOD 0)
             </span>
-            <p style={{ font: "17px/1.65 Georgia, serif", color: "#2c4263", margin: "16px 0 0" }}>
+            <p style={{ font: "17px/1.65 Georgia, serif", color: "var(--ink)", margin: "16px 0 0" }}>
               The page you are looking for may have been moved, renamed, or never existed in this edition. Use the links below to return to known mathematical terrain.
             </p>
-            <strong style={{ position: "absolute", right: "28px", bottom: "16px", color: "var(--gold)", font: "italic 54px Georgia", opacity: 0.8 }}>
+            <strong style={{ position: "absolute", right: "28px", bottom: "16px", color: "var(--gold)", font: "italic 54px Georgia", opacity: 0.85 }}>
               404
             </strong>
           </div>
