@@ -18,13 +18,13 @@ export default function HintsPage() {
           <MathBackground variant="light" />
           <div className="section-label">
             <span>3</span>
-            <span>Hints</span>
+            <span>Hints for Practice Problems</span>
           </div>
 
           <div className="section-heading" data-reveal>
             <div>
               <h2>
-                Hints<em>.</em>
+                Hints for <em>Practice Problems.</em>
               </h2>
             </div>
 
