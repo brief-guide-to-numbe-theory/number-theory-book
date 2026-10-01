@@ -157,13 +157,24 @@ export default function AuthorsPage() {
 
             <div className="book-story-box">
               <p>
-                The inspiration for this book came from a gap we noticed while studying <strong>Olympiad number theory</strong>: while standard classic texts exist, many modern, recurring ideas are scattered across short handouts without a centralized place to practice. When we decided to collaborate on a small handout, our plan was to write only about <strong>50 or so pages</strong>. However, our draft quickly grew to over a hundred. Realizing that shortening the material was not an option, the idea to write a <strong>comprehensive book</strong> was born.
+                The inspiration for this book came from a gap the two noticed while studying <strong>Olympiad number theory</strong>: while standard classic texts exist, many modern, recurring ideas are scattered across short handouts without a centralized place to practice. The idea for writing something together was born on <strong>24th April 2025</strong> when Aritra messaged Riddhiman saying:
+              </p>
+              
+              <div className="book-story-img-wrap">
+                <Image
+                  src="/aritra-message.png"
+                  alt="Message from Aritra: Bro, I was thinking of writing a NT handout from May. Do you wanna collaborate and share your thoughts?"
+                  width={560}
+                  height={120}
+                  className="book-story-img"
+                />
+              </div>
+
+              <p>
+                On <strong>7th May</strong>, they joined their first Google Meet and started working on the first chapter. By the beginning of June, they had already written about <strong>30 pages</strong>, and by the end of July, <strong>80 pages</strong> were written. Their pace slowed down a bit in the next two months. From December to February, the writing came to an almost complete halt due to preparations for <strong>INMO</strong>, <strong>JEE</strong>, and some applications. They started writing again in March, and by the middle of May, all but the last chapter was done. Around this time, they also started revising and editing the previous chapters, as well as getting in touch with publishers. At long last, on the <strong>20th of June</strong>, they finished the more-or-less final version of the draft.
               </p>
               <p>
-                Balancing the writing process, <strong>JEE preparation</strong>, OMC duties, and working on Olympiads was not at all easy. In fact, we took a long break from writing between <strong>December 2025 and February 2026</strong> to focus on our academic work. Progress was slow, but soon we picked up the pace, and by <strong>20th June</strong>, we were done writing the entire text.
-              </p>
-              <p>
-                The process had so many ups and downs, but despite the challenges, we persevered and managed to create <em>the resource we wished we had when we started our Olympiad journey.</em>
+                The process had so many ups and downs, but despite the challenges, they persevered and managed to create <em>the resource they wished they had when they started their Olympiad journey.</em>
               </p>
             </div>
           </div>

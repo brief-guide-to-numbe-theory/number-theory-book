@@ -1306,6 +1306,20 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   font-style: italic;
 }
 
+.book-story-img-wrap {
+  margin: 6px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.book-story-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
 /* Dark mode overrides */
 [data-theme="dark"] .book-story-container {
   border-top-color: rgba(180, 210, 255, 0.15);
