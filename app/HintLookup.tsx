@@ -109,7 +109,7 @@ export default function HintLookup() {
   return (
     <>
       <form className="lookup-form" onSubmit={handleSubmit} noValidate>
-        <label htmlFor="hintNumber">Enter a three-digit hint number</label>
+        <label htmlFor="hintNumber">Enter the specific number to look for hint for that problem</label>
 
         <div className="lookup-row">
           <div className="number-field">

@@ -29,7 +29,7 @@ export default function HintsPage() {
             </div>
 
             <p>
-              Enter a three-digit hint number to look up the hint for that
+              Enter the specific number to look for hint for that
               problem. Hints are currently not available.
             </p>
           </div>
