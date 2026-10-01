@@ -23,19 +23,14 @@ export default function HintsPage() {
 
           <div className="section-heading" data-reveal>
             <div>
-              <p className="micro-label">A NUDGE, NOT A SPOILER</p>
-
               <h2>
-                Find your
-                <br />
-                <em>next move.</em>
+                Hints<em>.</em>
               </h2>
             </div>
 
             <p>
-              Five hundred numbered prompts, kept out of sight until you need
-              one. Enter the complete three-digit number to reveal only that
-              hint.
+              Enter a three-digit hint number to look up the hint for that
+              problem. Hints are currently not available.
             </p>
           </div>
 

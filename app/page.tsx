@@ -81,6 +81,7 @@ export default function Home() {
             </div>
 
             <div className="about-book-body">
+              {/* Para 1 */}
               <p>
                 <strong>A Brief Guide to Number Theory</strong> is a book that
                 focuses on elementary number theory, specifically topics that are
@@ -89,6 +90,34 @@ export default function Home() {
                 quadratic reciprocity, Pell&apos;s equations, and density in number
                 theory.
               </p>
+              {/* Para 3 */}
+              <p>
+                Number-theoretic functional equations are on the rise, with at
+                least one appearing in the IMO number theory shortlist in recent
+                years. It is quite surprising that there are so few comprehensive
+                resources on this topic. Hence, we have dedicated an entire
+                chapter to functional equations. The first subsection helps
+                readers gain familiarity with regular algebraic techniques, while
+                the next introduces number-theoretic ideas.
+              </p>
+              {/* Para 4 */}
+              <p>
+                Another topic we have included is combinatorial number theory.
+                Many problems in recent IMO number theory shortlists involve ideas
+                that are combinatorial in nature. These problems often pose
+                challenges to even the top ten countries at the IMO.
+                Furthermore, very few resources are curated specifically for such
+                problems, which is why we have written a section dedicated to
+                them. This section focuses heavily on exercises and solved
+                examples, though we do assume some basic knowledge of
+                combinatorics. Prerequisites (for this section and the rest of
+                the book in general) are mentioned on a separate page.
+              </p>
+              {/* New structure para */}
+              <p>
+                Each chapter consists of four major parts: <b>theory</b>, <b>exercises</b>, <b>solved examples</b>, and <b>practice problems</b>. Between the theory, we have included <b>Exercise Problems</b> to help readers gain a better understanding of the material. After each subchapter or section, we have added <b>Solved Examples</b> on the topic, along with complete solutions. We have also included <b>Practice Problems</b> where solutions are not provided, giving readers the opportunity to apply what they have learned independently.
+              </p>
+              {/* Para 2 */}
               <p>
                 For a long time, a student without extensive theoretical
                 knowledge—but with strong fundamentals, a bit of creativity, and
@@ -102,30 +131,11 @@ export default function Home() {
                 with problems from various contests to help readers gain a deeper
                 understanding of these topics.
               </p>
-              <p>
-                Number-theoretic functional equations are on the rise, with at
-                least one appearing in the IMO number theory shortlist in recent
-                years. It is quite surprising that there are so few comprehensive
-                resources on this topic. Hence, we have dedicated an entire
-                chapter to functional equations. The first subsection helps
-                readers gain familiarity with regular algebraic techniques, while
-                the next introduces number-theoretic ideas.
-              </p>
-              <p>
-                Another topic we have included is combinatorial number theory.
-                Many problems in recent IMO number theory shortlists involve ideas
-                that are combinatorial in nature. These problems often pose
-                challenges to even the top ten countries at the IMO.
-                Furthermore, very few resources are curated specifically for such
-                problems, which is why we have written a section dedicated to
-                them. This section focuses heavily on exercises and solved
-                examples, though we do assume some basic knowledge of
-                combinatorics. Prerequisites (for this section and the rest of
-                the book in general) are mentioned on a separate page.
-              </p>
+              {/* Penultimate (problem curation) */}
               <p>
                 In addition to the theory, we have carefully curated the problems for both the <b>Solved Examples</b> and <b>Practice Problems</b>. Rather than relying on problems that appear in most books and handouts, we chose to highlight <em>lesser-known problems from recent years</em>. For the first few chapters, almost all the Solved Examples are relatively new — some from not-so-well-known contests, and others from <b>AoPS</b> posts. One of the Solved Examples for <b>Chapter 2</b> was sourced from a random AoPS post with a very short statement, yet ended up taking us hours just to write the solution. Some of the problems we have included are even from contests that we participated in last year, and a large chunk are from <b>2026 contests</b>. In general, we aimed to make the Solved Examples <em>decently challenging</em>. By contrast, the Practice Problems are mostly from better-known contests and are somewhat simpler than the Solved Examples. This approach has helped readers engage with solutions to harder problems and practice with slightly easier ones, enhancing both understanding and problem-solving skills.
               </p>
+              {/* Last */}
               <p>
                 Our primary goal is to help readers understand and appreciate
                 the beauty of number theory. We want students to gain intuition

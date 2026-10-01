@@ -95,15 +95,8 @@ export default function HintLookup() {
       return;
     }
 
-    const number = Number(value);
-    if (number < 1 || number > hints.length) {
-      concealHint();
-      setError("Choose a hint number from 001 to 500.");
-      return;
-    }
-
-    setError("");
-    setHint(hints[number - 1]);
+    concealHint();
+    setError("Hints are not available yet.");
   }
 
   function handleHide() {
