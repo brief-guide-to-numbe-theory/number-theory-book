@@ -73,7 +73,7 @@ export default function PurchasePage() {
                     className="purchase-cover-img"
                     priority
                   />
-                  <span className="purchase-badge">Click to view on Amazon &nearr;</span>
+                  <span className="purchase-badge">Click to view on Amazon</span>
                 </a>
               </div>
 
@@ -127,7 +127,6 @@ export default function PurchasePage() {
                     className="amazon-buy-cta-btn"
                   >
                     <span>Order on Amazon</span>
-                    <span className="cta-arrow">&nearr;</span>
                   </a>
                   <p className="purchase-delivery-note">
                     Secure ordering and fast delivery fulfilled by Amazon India.

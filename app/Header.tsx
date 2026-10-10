@@ -161,6 +161,20 @@ export default function Header() {
         <span>ABGNT</span>
       </Link>
 
+      {/* Middle: Order Book Button */}
+      <div className="header-center">
+        <a
+          href="https://amzn.in/d/027tMJIL"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="header-purchase-btn"
+          aria-label="Order on Amazon"
+          title="Order on Amazon"
+        >
+          <span>Order Book</span>
+        </a>
+      </div>
+
       <div className="header-right">
         {mounted && (
           <button
@@ -189,19 +203,6 @@ export default function Header() {
             <span className="theme-toggle-label">{theme === "dark" ? "Light" : "Dark"}</span>
           </button>
         )}
-
-        {/* Top bar Order Book button */}
-        <a
-          href="https://amzn.in/d/027tMJIL"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="header-purchase-btn"
-          aria-label="Order on Amazon"
-          title="Order on Amazon"
-        >
-          <span>Order Book</span>
-          <span className="header-purchase-arrow">&nearr;</span>
-        </a>
 
         {/* Normal Dropdown Menu Container */}
         <div className="menu-container">
@@ -288,7 +289,6 @@ export default function Header() {
                               >
                                 <span className="section-bullet">&bull;</span>
                                 <span>{section.name}</span>
-                                <span className="external-sub-arrow">&nearr;</span>
                               </a>
                             );
                           }
