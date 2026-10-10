@@ -25,15 +25,6 @@ const navPages: NavPage[] = [
     ],
   },
   {
-    name: "Purchase",
-    href: "/purchase",
-    key: "purchase",
-    sections: [
-      { name: "Order on Amazon", href: "https://amzn.in/d/027tMJIL" },
-      { name: "Purchase Details", href: "/purchase#details" },
-    ],
-  },
-  {
     name: "Authors",
     href: "/authors",
     key: "authors",
