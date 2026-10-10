@@ -146,7 +146,7 @@ export default function AuthorsPage() {
           </div>
 
           {/* Writing the Book Section */}
-          <div className="book-story-container" data-reveal>
+          <div className="book-story-container" id="story" data-reveal>
             <div className="section-label light" style={{ marginBottom: "28px" }}>
               <span>2</span>
               <span>The Story</span>

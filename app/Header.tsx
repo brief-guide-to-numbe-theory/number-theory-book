@@ -2,14 +2,63 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
+
+interface NavPage {
+  name: string;
+  href: string;
+  key: string;
+  sections: { name: string; href: string }[];
+}
+
+const navPages: NavPage[] = [
+  {
+    name: "About the Book",
+    href: "/",
+    key: "about",
+    sections: [
+      { name: "About the Book", href: "/#general" },
+      { name: "Contents & Preview", href: "/#contents" },
+      { name: "Prerequisites", href: "/#prerequisites" },
+      { name: "Acknowledgements", href: "/#acknowledgements" },
+    ],
+  },
+  {
+    name: "Authors",
+    href: "/authors",
+    key: "authors",
+    sections: [
+      { name: "About the Authors", href: "/authors#authors" },
+      { name: "The Story Behind the Book", href: "/authors#story" },
+    ],
+  },
+  {
+    name: "Hints",
+    href: "/hints",
+    key: "hints",
+    sections: [
+      { name: "Hints for Practice Problems", href: "/hints#hints" },
+    ],
+  },
+];
 
 export default function Header() {
   const pathname = usePathname();
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [mounted, setMounted] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [expandedPages, setExpandedPages] = useState<Record<string, boolean>>({});
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  const togglePageSection = (key: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setExpandedPages((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -50,16 +99,31 @@ export default function Header() {
     };
   }, []);
 
-  // Close mobile menu whenever route changes
+  // Close menu whenever route changes
   useEffect(() => {
-    setMobileMenuOpen(false);
+    setMenuOpen(false);
   }, [pathname]);
 
-  // Close mobile menu on Escape key
+  // Click outside to close menu
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  // Close on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setMobileMenuOpen(false);
+        setMenuOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -80,59 +144,55 @@ export default function Header() {
   };
 
   return (
-    <>
-      <header className="site-header">
-        <Link className="brand" href="/" aria-label="Home" onClick={() => setMobileMenuOpen(false)}>
-          <span className="brand-mark">
-            <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
-          </span>
-          <span>ABGNT</span>
-        </Link>
+    <header className="site-header" ref={headerRef}>
+      <Link className="brand" href="/" aria-label="Home" onClick={() => setMenuOpen(false)}>
+        <span className="brand-mark">
+          <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
+        </span>
+        <span>ABGNT</span>
+      </Link>
 
-        <div className="header-right">
-          {mounted && (
-            <button
-              className="theme-toggle-btn"
-              onClick={toggleTheme}
-              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-            >
-              {theme === "dark" ? (
-                <svg className="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="5" />
-                  <line x1="12" y1="1" x2="12" y2="3" />
-                  <line x1="12" y1="21" x2="12" y2="23" />
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                  <line x1="1" y1="12" x2="3" y2="12" />
-                  <line x1="21" y1="12" x2="23" y2="12" />
-                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                </svg>
-              ) : (
-                <svg className="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
-              )}
-              <span className="theme-toggle-label">{theme === "dark" ? "Light" : "Dark"}</span>
-            </button>
-          )}
-
-          {/* Unified Menu Dropdown Toggle Button (Windows, Mac, Phone) */}
+      <div className="header-right">
+        {mounted && (
           <button
-            className={`menu-dropdown-btn ${mobileMenuOpen ? "open" : ""}`}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            className="theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
           >
-            <span className="menu-icon-box" aria-hidden="true">
-              <span className="menu-bar bar-1"></span>
-              <span className="menu-bar bar-2"></span>
-              <span className="menu-bar bar-3"></span>
-            </span>
-            <span className="menu-dropdown-label">{mobileMenuOpen ? "Close" : "Menu"}</span>
+            {theme === "dark" ? (
+              <svg className="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+            ) : (
+              <svg className="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            )}
+            <span className="theme-toggle-label">{theme === "dark" ? "Light" : "Dark"}</span>
+          </button>
+        )}
+
+        {/* Normal Dropdown Menu Container */}
+        <div className="menu-container">
+          <button
+            className={`standard-menu-btn ${menuOpen ? "open" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-expanded={menuOpen}
+            aria-haspopup="true"
+            aria-label="Navigation Menu"
+          >
+            <span>Menu</span>
             <svg
-              className="menu-chevron"
+              className={`menu-arrow ${menuOpen ? "rotated" : ""}`}
               viewBox="0 0 24 24"
               width="14"
               height="14"
@@ -146,69 +206,72 @@ export default function Header() {
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </button>
+
+          {/* Simple Dropdown Menu */}
+          {menuOpen && (
+            <div className="standard-dropdown" role="menu">
+              {navPages.map((page) => {
+                const isActive = pathname === page.href;
+                const isExpanded = !!expandedPages[page.key];
+
+                return (
+                  <div key={page.key} className="dropdown-group">
+                    <div className={`dropdown-row ${isActive ? "active-page" : ""}`}>
+                      <Link
+                        href={page.href}
+                        className="dropdown-page-link"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {page.name}
+                      </Link>
+
+                      <button
+                        type="button"
+                        className={`dropdown-more-btn ${isExpanded ? "active" : ""}`}
+                        onClick={(e) => togglePageSection(page.key, e)}
+                        aria-expanded={isExpanded}
+                        title={`Show sections for ${page.name}`}
+                      >
+                        <span>More</span>
+                        <svg
+                          className={`more-chevron ${isExpanded ? "expanded" : ""}`}
+                          viewBox="0 0 24 24"
+                          width="12"
+                          height="12"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* Section sub-links when "More" is clicked */}
+                    {isExpanded && (
+                      <div className="dropdown-sections">
+                        {page.sections.map((section) => (
+                          <Link
+                            key={section.href}
+                            href={section.href}
+                            className="dropdown-section-link"
+                            onClick={() => setMenuOpen(false)}
+                          >
+                            <span className="section-bullet">&bull;</span>
+                            <span>{section.name}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
-
-        {/* Dropdown Menu Panel (Windows, Mac, & Phone) */}
-        <div
-          className={`menu-dropdown-panel ${mobileMenuOpen ? "open" : ""}`}
-          aria-hidden={!mobileMenuOpen}
-        >
-          <div className="menu-dropdown-header">
-            <span className="menu-dropdown-micro">DIRECTORY</span>
-            <span className="menu-dropdown-tag">3 PAGES</span>
-          </div>
-
-          <nav className="menu-dropdown-links" aria-label="Main directory navigation">
-            <Link
-              href="/"
-              className={`menu-dropdown-item ${pathname === "/" ? "active" : ""}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="menu-dropdown-num">1</span>
-              <div className="menu-dropdown-text">
-                <span className="menu-dropdown-title">About the Book</span>
-                <span className="menu-dropdown-sub">Overview, contents, and preview</span>
-              </div>
-              <span className="menu-dropdown-arrow">&rarr;</span>
-            </Link>
-
-            <Link
-              href="/authors"
-              className={`menu-dropdown-item ${pathname === "/authors" ? "active" : ""}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="menu-dropdown-num">2</span>
-              <div className="menu-dropdown-text">
-                <span className="menu-dropdown-title">About the Authors</span>
-                <span className="menu-dropdown-sub">Meet Aritra Saha &amp; Riddhiman Seal</span>
-              </div>
-              <span className="menu-dropdown-arrow">&rarr;</span>
-            </Link>
-
-            <Link
-              href="/hints"
-              className={`menu-dropdown-item ${pathname === "/hints" ? "active" : ""}`}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className="menu-dropdown-num">3</span>
-              <div className="menu-dropdown-text">
-                <span className="menu-dropdown-title">Hints for Practice Problems</span>
-                <span className="menu-dropdown-sub">Numbered problem-solving prompts</span>
-              </div>
-              <span className="menu-dropdown-arrow">&rarr;</span>
-            </Link>
-          </nav>
-        </div>
-      </header>
-
-      {/* Backdrop overlay */}
-      {mobileMenuOpen && (
-        <div
-          className="mobile-nav-backdrop"
-          onClick={() => setMobileMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-    </>
+      </div>
+    </header>
   );
 }
