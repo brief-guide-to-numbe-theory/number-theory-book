@@ -25,6 +25,15 @@ const navPages: NavPage[] = [
     ],
   },
   {
+    name: "Purchase",
+    href: "/purchase",
+    key: "purchase",
+    sections: [
+      { name: "Order on Amazon", href: "https://amzn.in/d/027tMJIL" },
+      { name: "Purchase Details", href: "/purchase#details" },
+    ],
+  },
+  {
     name: "Authors",
     href: "/authors",
     key: "authors",
@@ -181,6 +190,19 @@ export default function Header() {
           </button>
         )}
 
+        {/* Top bar Order Book button */}
+        <a
+          href="https://amzn.in/d/027tMJIL"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="header-purchase-btn"
+          aria-label="Order on Amazon"
+          title="Order on Amazon"
+        >
+          <span>Order Book</span>
+          <span className="header-purchase-arrow">&nearr;</span>
+        </a>
+
         {/* Normal Dropdown Menu Container */}
         <div className="menu-container">
           <button
@@ -252,17 +274,36 @@ export default function Header() {
                     {/* Section sub-links when "More" is clicked */}
                     {isExpanded && (
                       <div className="dropdown-sections">
-                        {page.sections.map((section) => (
-                          <Link
-                            key={section.href}
-                            href={section.href}
-                            className="dropdown-section-link"
-                            onClick={() => setMenuOpen(false)}
-                          >
-                            <span className="section-bullet">&bull;</span>
-                            <span>{section.name}</span>
-                          </Link>
-                        ))}
+                        {page.sections.map((section) => {
+                          const isExternal = section.href.startsWith("http");
+                          if (isExternal) {
+                            return (
+                              <a
+                                key={section.href}
+                                href={section.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="dropdown-section-link"
+                                onClick={() => setMenuOpen(false)}
+                              >
+                                <span className="section-bullet">&bull;</span>
+                                <span>{section.name}</span>
+                                <span className="external-sub-arrow">&nearr;</span>
+                              </a>
+                            );
+                          }
+                          return (
+                            <Link
+                              key={section.href}
+                              href={section.href}
+                              className="dropdown-section-link"
+                              onClick={() => setMenuOpen(false)}
+                            >
+                              <span className="section-bullet">&bull;</span>
+                              <span>{section.name}</span>
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

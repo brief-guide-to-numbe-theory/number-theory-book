@@ -32,6 +32,15 @@ export default function Home() {
 
             <div className="hero-actions-container">
               <div className="hero-actions-row">
+                <a
+                  className="primary-button hero-buy-button"
+                  href="https://amzn.in/d/027tMJIL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Buy on Amazon"
+                >
+                  Buy on Amazon <span>&nearr;</span>
+                </a>
                 <a className="primary-button" href="#general">
                   About the Book <span>&darr;</span>
                 </a>
@@ -47,6 +56,9 @@ export default function Home() {
               </div>
               <div className="hero-actions-divider" />
               <div className="hero-actions-row">
+                <Link className="navy-button" href="/purchase">
+                  Purchase Details <span>&rarr;</span>
+                </Link>
                 <Link className="navy-button" href="/authors">
                   Meet the authors <span>&rarr;</span>
                 </Link>
@@ -59,12 +71,22 @@ export default function Home() {
 
           <div className="book-stage">
             <div className="book-shadow"></div>
-            <Image
-              className="book-cover"
-              src={bookCover}
-              alt="Cover of A brief guide to Number Theory by Aritra Saha and Riddhiman Seal"
-              priority
-            />
+            <a
+              href="https://amzn.in/d/027tMJIL"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="book-cover-link"
+              title="Order on Amazon"
+              aria-label="Order A Brief Guide to Number Theory on Amazon"
+            >
+              <Image
+                className="book-cover"
+                src={bookCover}
+                alt="Cover of A brief guide to Number Theory by Aritra Saha and Riddhiman Seal"
+                priority
+              />
+              <span className="book-cover-badge">Order on Amazon &nearr;</span>
+            </a>
           </div>
         </section>
 
