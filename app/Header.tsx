@@ -89,27 +89,6 @@ export default function Header() {
           <span>ABGNT</span>
         </Link>
 
-        <nav className="desktop-nav" aria-label="Main navigation">
-          <Link
-            href="/"
-            className={`nav-btn ${pathname === "/" ? "active" : ""}`}
-          >
-            About
-          </Link>
-          <Link
-            href="/authors"
-            className={`nav-btn ${pathname === "/authors" ? "active" : ""}`}
-          >
-            Authors
-          </Link>
-          <Link
-            href="/hints"
-            className={`nav-btn ${pathname === "/hints" ? "active" : ""}`}
-          >
-            Hints
-          </Link>
-        </nav>
-
         <div className="header-right">
           {mounted && (
             <button
@@ -139,9 +118,9 @@ export default function Header() {
             </button>
           )}
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Unified Menu Dropdown Toggle Button (Windows, Mac, Phone) */}
           <button
-            className={`menu-toggle-btn ${mobileMenuOpen ? "open" : ""}`}
+            className={`menu-dropdown-btn ${mobileMenuOpen ? "open" : ""}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -151,42 +130,72 @@ export default function Header() {
               <span className="menu-bar bar-2"></span>
               <span className="menu-bar bar-3"></span>
             </span>
-            <span className="menu-toggle-label">{mobileMenuOpen ? "Close" : "Menu"}</span>
+            <span className="menu-dropdown-label">{mobileMenuOpen ? "Close" : "Menu"}</span>
+            <svg
+              className="menu-chevron"
+              viewBox="0 0 24 24"
+              width="14"
+              height="14"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </button>
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Dropdown Menu Panel (Windows, Mac, & Phone) */}
         <div
-          className={`mobile-nav-drawer ${mobileMenuOpen ? "open" : ""}`}
+          className={`menu-dropdown-panel ${mobileMenuOpen ? "open" : ""}`}
           aria-hidden={!mobileMenuOpen}
         >
-          <nav className="mobile-nav-links" aria-label="Mobile navigation">
+          <div className="menu-dropdown-header">
+            <span className="menu-dropdown-micro">DIRECTORY</span>
+            <span className="menu-dropdown-tag">3 PAGES</span>
+          </div>
+
+          <nav className="menu-dropdown-links" aria-label="Main directory navigation">
             <Link
               href="/"
-              className={`mobile-nav-item ${pathname === "/" ? "active" : ""}`}
+              className={`menu-dropdown-item ${pathname === "/" ? "active" : ""}`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="mobile-nav-num">1</span>
-              <span className="mobile-nav-title">About the Book</span>
-              <span className="mobile-nav-arrow">&rarr;</span>
+              <span className="menu-dropdown-num">1</span>
+              <div className="menu-dropdown-text">
+                <span className="menu-dropdown-title">About the Book</span>
+                <span className="menu-dropdown-sub">Overview, contents, and preview</span>
+              </div>
+              <span className="menu-dropdown-arrow">&rarr;</span>
             </Link>
+
             <Link
               href="/authors"
-              className={`mobile-nav-item ${pathname === "/authors" ? "active" : ""}`}
+              className={`menu-dropdown-item ${pathname === "/authors" ? "active" : ""}`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="mobile-nav-num">2</span>
-              <span className="mobile-nav-title">About the Authors</span>
-              <span className="mobile-nav-arrow">&rarr;</span>
+              <span className="menu-dropdown-num">2</span>
+              <div className="menu-dropdown-text">
+                <span className="menu-dropdown-title">About the Authors</span>
+                <span className="menu-dropdown-sub">Meet Aritra Saha &amp; Riddhiman Seal</span>
+              </div>
+              <span className="menu-dropdown-arrow">&rarr;</span>
             </Link>
+
             <Link
               href="/hints"
-              className={`mobile-nav-item ${pathname === "/hints" ? "active" : ""}`}
+              className={`menu-dropdown-item ${pathname === "/hints" ? "active" : ""}`}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="mobile-nav-num">3</span>
-              <span className="mobile-nav-title">Hints for Practice Problems</span>
-              <span className="mobile-nav-arrow">&rarr;</span>
+              <span className="menu-dropdown-num">3</span>
+              <div className="menu-dropdown-text">
+                <span className="menu-dropdown-title">Hints for Practice Problems</span>
+                <span className="menu-dropdown-sub">Numbered problem-solving prompts</span>
+              </div>
+              <span className="menu-dropdown-arrow">&rarr;</span>
             </Link>
           </nav>
         </div>
