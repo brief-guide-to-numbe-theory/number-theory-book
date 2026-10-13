@@ -491,15 +491,16 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   font-weight: 900 !important;
   letter-spacing: 0.12em !important;
   border-radius: 14px !important;
-  background: var(--gold) !important;
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 8px 24px rgba(217, 43, 140, 0.38) !important;
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.38) !important;
   transition: all 0.25s ease !important;
 }
 
 .hero-buy-button:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 14px 32px rgba(217, 43, 140, 0.5) !important;
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%) !important;
+  box-shadow: 0 14px 32px rgba(234, 88, 12, 0.52) !important;
 }
 
 .hero-desktop-nav-group {
@@ -668,17 +669,6 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   transform: translateX(0);
 }
 
-/* Watermark Crest Background */
-.oxford-watermark {
-  position: absolute;
-  right: -60px;
-  bottom: 30px;
-  width: 360px;
-  height: 360px;
-  color: rgba(180, 210, 255, 0.04);
-  pointer-events: none;
-  z-index: 0;
-}
 
 /* Drawer Header Bar */
 .oxford-drawer-header {
@@ -950,9 +940,14 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 [data-theme="dark"] .hero-buy-button {
-  background: var(--gold);
-  color: #ffffff;
-  box-shadow: 0 6px 22px rgba(230, 57, 155, 0.45);
+  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 26px rgba(249, 115, 22, 0.45) !important;
+}
+
+[data-theme="dark"] .hero-buy-button:hover {
+  background: linear-gradient(135deg, #fdba74 0%, #fb923c 100%) !important;
+  box-shadow: 0 14px 34px rgba(249, 115, 22, 0.6) !important;
 }
 
 
@@ -1787,8 +1782,12 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
     border-radius: 14px !important;
     justify-content: center !important;
     align-items: center !important;
-    box-shadow: 0 8px 24px rgba(217, 43, 140, 0.42) !important;
+    box-shadow: 0 8px 24px rgba(234, 88, 12, 0.42) !important;
     text-align: center !important;
+  }
+
+  [data-theme="dark"] .hero-actions-container .hero-buy-button {
+    box-shadow: 0 8px 26px rgba(249, 115, 22, 0.48) !important;
   }
 
   .hero-actions-container .hero-buy-button span {

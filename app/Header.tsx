@@ -255,16 +255,6 @@ export default function Header() {
         aria-label="Side Navigation"
         aria-hidden={!menuOpen}
       >
-        {/* Background Watermark Crest */}
-        <div className="oxford-watermark" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="currentColor">
-            <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" strokeWidth="3" />
-            <circle cx="100" cy="100" r="76" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-            <path d="M60 140 L100 50 L140 140 Z" fill="none" stroke="currentColor" strokeWidth="2.5" />
-            <circle cx="100" cy="100" r="28" fill="none" stroke="currentColor" strokeWidth="2" />
-          </svg>
-        </div>
-
         {/* Drawer Header */}
         <div className="oxford-drawer-header">
           <Link
