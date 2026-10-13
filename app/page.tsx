@@ -31,7 +31,8 @@ export default function Home() {
             </p>
 
             <div className="hero-actions-container">
-              <div className="hero-actions-row">
+              {/* Standalone Order on Amazon CTA - in one line and bigger */}
+              <div className="hero-order-row">
                 <a
                   className="primary-button hero-buy-button"
                   href="https://amzn.in/d/027tMJIL"
@@ -41,27 +42,62 @@ export default function Home() {
                 >
                   Order on Amazon <span>&rarr;</span>
                 </a>
-                <a className="primary-button" href="#general">
-                  About the Book <span>&darr;</span>
-                </a>
-                <a className="primary-button" href="#contents">
-                  Contents &amp; Preview <span>&darr;</span>
-                </a>
-                <a className="primary-button" href="#prerequisites">
-                  Prerequisites <span>&darr;</span>
-                </a>
-                <a className="primary-button" href="#acknowledgements">
-                  Acknowledgements <span>&darr;</span>
-                </a>
               </div>
-              <div className="hero-actions-divider" />
-              <div className="hero-actions-row">
-                <Link className="navy-button" href="/authors">
-                  Meet the authors <span>&rarr;</span>
-                </Link>
-                <Link className="navy-button" href="/hints">
-                  Hints <span>&rarr;</span>
-                </Link>
+
+              {/* Windows / Desktop only: Chapters and other guide names */}
+              <div className="hero-desktop-nav-group">
+                {/* Guide Page / Section names ("other names") */}
+                <div className="hero-actions-row">
+                  <a className="primary-button" href="#general">
+                    About the Book <span>&darr;</span>
+                  </a>
+                  <a className="primary-button" href="#contents">
+                    Contents &amp; Preview <span>&darr;</span>
+                  </a>
+                  <a className="primary-button" href="#prerequisites">
+                    Prerequisites <span>&darr;</span>
+                  </a>
+                  <a className="primary-button" href="#acknowledgements">
+                    Acknowledgements <span>&darr;</span>
+                  </a>
+                  <Link className="navy-button" href="/authors">
+                    Meet the authors <span>&rarr;</span>
+                  </Link>
+                  <Link className="navy-button" href="/hints">
+                    Hints <span>&rarr;</span>
+                  </Link>
+                </div>
+
+                {/* Chapter names navigator */}
+                <div className="hero-chapters-block">
+                  <span className="hero-chapters-label">Chapters:</span>
+                  <div className="hero-chapters-list">
+                    <a href="#ch-1" className="hero-chapter-tag">
+                      <span className="ch-tag-num">1</span>
+                      <span>Modular Arithmetic</span>
+                    </a>
+                    <a href="#ch-2" className="hero-chapter-tag">
+                      <span className="ch-tag-num">2</span>
+                      <span>Divisibility</span>
+                    </a>
+                    <a href="#ch-3" className="hero-chapter-tag">
+                      <span className="ch-tag-num">3</span>
+                      <span>Advanced Modular Arithmetic</span>
+                    </a>
+                    <a href="#ch-4" className="hero-chapter-tag">
+                      <span className="ch-tag-num">4</span>
+                      <span>Prime Exponents &amp; Polynomials</span>
+                    </a>
+                    <a href="#ch-5" className="hero-chapter-tag">
+                      <span className="ch-tag-num">5</span>
+                      <span>Functional Equations</span>
+                    </a>
+                    <a href="#ch-6" className="hero-chapter-tag">
+                      <span className="ch-tag-num">6</span>
+                      <span>Miscellaneous Ideas</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -178,7 +214,7 @@ export default function Home() {
             </div>
 
             <div className="chapter-grid">
-              <div className="chapter-card">
+              <div className="chapter-card" id="ch-1">
                 <span className="chapter-badge">Chapter 1</span>
                 <h3>Modular Arithmetic</h3>
                 <ul className="section-list">
@@ -193,7 +229,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="chapter-card">
+              <div className="chapter-card" id="ch-2">
                 <span className="chapter-badge">Chapter 2</span>
                 <h3>Divisibility</h3>
                 <ul className="section-list">
@@ -216,7 +252,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="chapter-card">
+              <div className="chapter-card" id="ch-3">
                 <span className="chapter-badge">Chapter 3</span>
                 <h3>Advanced Modular Arithmetic</h3>
                 <ul className="section-list">
@@ -235,7 +271,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="chapter-card">
+              <div className="chapter-card" id="ch-4">
                 <span className="chapter-badge">Chapter 4</span>
                 <h3>Prime Exponents &amp; Polynomials</h3>
                 <ul className="section-list">
@@ -254,7 +290,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="chapter-card">
+              <div className="chapter-card" id="ch-5">
                 <span className="chapter-badge">Chapter 5</span>
                 <h3>Number Theoretic Functional Equations</h3>
                 <ul className="section-list">
@@ -269,7 +305,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              <div className="chapter-card">
+              <div className="chapter-card" id="ch-6">
                 <span className="chapter-badge">Chapter 6</span>
                 <h3>Miscellaneous Ideas</h3>
                 <ul className="section-list">

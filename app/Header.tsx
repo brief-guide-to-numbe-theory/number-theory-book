@@ -175,13 +175,6 @@ export default function Header() {
               </svg>
             )}
           </button>
-
-          <Link className="brand" href="/" aria-label="Home" onClick={() => setMenuOpen(false)}>
-            <span className="brand-mark">
-              <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
-            </span>
-            <span>ABGNT</span>
-          </Link>
         </div>
 
         {/* Center Section: Tabs in header for Windows / Desktop / Laptop */}
@@ -209,8 +202,15 @@ export default function Header() {
           </Link>
         </nav>
 
-        {/* Right Section: Theme Toggle */}
+        {/* Right Section: Brand Logo & ABGNT beside Dark/Light Mode Button */}
         <div className="header-right">
+          <Link className="brand" href="/" aria-label="Home" onClick={() => setMenuOpen(false)}>
+            <span className="brand-mark">
+              <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
+            </span>
+            <span>ABGNT</span>
+          </Link>
+
           {mounted && (
             <button
               className="theme-toggle-btn"
