@@ -202,15 +202,8 @@ export default function Header() {
           </Link>
         </nav>
 
-        {/* Right Section: Brand Logo & ABGNT beside Dark/Light Mode Button */}
+        {/* Right Section: Theme Toggle and Brand Logo (Logo in rightmost part) */}
         <div className="header-right">
-          <Link className="brand" href="/" aria-label="Home" onClick={() => setMenuOpen(false)}>
-            <span className="brand-mark">
-              <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
-            </span>
-            <span>ABGNT</span>
-          </Link>
-
           {mounted && (
             <button
               className="theme-toggle-btn"
@@ -238,6 +231,13 @@ export default function Header() {
               <span className="theme-toggle-label">{theme === "dark" ? "Light" : "Dark"}</span>
             </button>
           )}
+
+          <Link className="brand" href="/" aria-label="Home" onClick={() => setMenuOpen(false)}>
+            <span className="brand-mark">
+              <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
+            </span>
+            <span>ABGNT</span>
+          </Link>
         </div>
       </header>
 

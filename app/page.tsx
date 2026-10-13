@@ -44,9 +44,8 @@ export default function Home() {
                 </a>
               </div>
 
-              {/* Windows / Desktop only: Chapters and other guide names */}
+              {/* Windows / Desktop only: Guide section navigation */}
               <div className="hero-desktop-nav-group">
-                {/* Guide Page / Section names ("other names") */}
                 <div className="hero-actions-row">
                   <a className="primary-button" href="#general">
                     About the Book <span>&darr;</span>
@@ -66,37 +65,6 @@ export default function Home() {
                   <Link className="navy-button" href="/hints">
                     Hints <span>&rarr;</span>
                   </Link>
-                </div>
-
-                {/* Chapter names navigator */}
-                <div className="hero-chapters-block">
-                  <span className="hero-chapters-label">Chapters:</span>
-                  <div className="hero-chapters-list">
-                    <a href="#ch-1" className="hero-chapter-tag">
-                      <span className="ch-tag-num">1</span>
-                      <span>Modular Arithmetic</span>
-                    </a>
-                    <a href="#ch-2" className="hero-chapter-tag">
-                      <span className="ch-tag-num">2</span>
-                      <span>Divisibility</span>
-                    </a>
-                    <a href="#ch-3" className="hero-chapter-tag">
-                      <span className="ch-tag-num">3</span>
-                      <span>Advanced Modular Arithmetic</span>
-                    </a>
-                    <a href="#ch-4" className="hero-chapter-tag">
-                      <span className="ch-tag-num">4</span>
-                      <span>Prime Exponents &amp; Polynomials</span>
-                    </a>
-                    <a href="#ch-5" className="hero-chapter-tag">
-                      <span className="ch-tag-num">5</span>
-                      <span>Functional Equations</span>
-                    </a>
-                    <a href="#ch-6" className="hero-chapter-tag">
-                      <span className="ch-tag-num">6</span>
-                      <span>Miscellaneous Ideas</span>
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>

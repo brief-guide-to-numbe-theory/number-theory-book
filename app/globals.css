@@ -516,68 +516,6 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   gap: 14px;
 }
 
-.hero-chapters-block {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 4px;
-  padding-top: 14px;
-  border-top: 1px dashed rgba(26, 46, 90, 0.2);
-}
-
-.hero-chapters-label {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.75;
-}
-
-.hero-chapters-list {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.hero-chapter-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(26, 46, 90, 0.16);
-  border-radius: 999px;
-  text-decoration: none;
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--ink);
-  transition: all 0.2s ease;
-  backdrop-filter: blur(8px);
-}
-
-.hero-chapter-tag .ch-tag-num {
-  display: grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 900;
-}
-
-.hero-chapter-tag:hover {
-  background: #ffffff;
-  border-color: var(--gold);
-  color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(217, 43, 140, 0.2);
-}
-
 .chapter-card {
   scroll-margin-top: 100px;
 }
@@ -1015,28 +953,6 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   background: var(--gold);
   color: #ffffff;
   box-shadow: 0 6px 22px rgba(230, 57, 155, 0.45);
-}
-
-[data-theme="dark"] .hero-chapters-block {
-  border-top-color: rgba(180, 210, 255, 0.18);
-}
-
-[data-theme="dark"] .hero-chapters-label {
-  color: #e6f0fa;
-  opacity: 0.8;
-}
-
-[data-theme="dark"] .hero-chapter-tag {
-  background: rgba(18, 32, 60, 0.75);
-  border-color: rgba(180, 210, 255, 0.2);
-  color: #e6f0fa;
-}
-
-[data-theme="dark"] .hero-chapter-tag:hover {
-  background: #192a50;
-  border-color: var(--gold);
-  color: #ffffff;
-  box-shadow: 0 6px 18px rgba(230, 57, 155, 0.35);
 }
 
 
