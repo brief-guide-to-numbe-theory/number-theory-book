@@ -48,17 +48,7 @@ export default function Header() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [expandedPages, setExpandedPages] = useState<Record<string, boolean>>({});
   const headerRef = useRef<HTMLDivElement>(null);
-
-  const togglePageSection = (key: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setExpandedPages((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
 
   useEffect(() => {
     setMounted(true);
@@ -71,7 +61,6 @@ export default function Header() {
       document.documentElement.setAttribute("data-theme", "dark");
     }
 
-    // Synchronize theme changes across different tabs
     const handleStorage = (e: StorageEvent) => {
       if (e.key === "abgnt-theme" && (e.newValue === "light" || e.newValue === "dark")) {
         setTheme(e.newValue);
@@ -104,18 +93,15 @@ export default function Header() {
     setMenuOpen(false);
   }, [pathname]);
 
-  // Click outside to close menu
+  // Lock body scroll when menu is open
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
-        setMenuOpen(false);
-      }
-    };
     if (menuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "";
     };
   }, [menuOpen]);
 
@@ -144,166 +130,214 @@ export default function Header() {
   };
 
   return (
-    <header className="site-header" ref={headerRef}>
-      <Link className="brand" href="/" aria-label="Home" onClick={() => setMenuOpen(false)}>
-        <span className="brand-mark">
-          <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
-        </span>
-        <span>ABGNT</span>
-      </Link>
-
-      {/* Middle: Order Book Button */}
-      <div className="header-center">
-        <a
-          href="https://amzn.in/d/027tMJIL"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="header-purchase-btn"
-          aria-label="Order on Amazon"
-          title="Order on Amazon"
-        >
-          <span>Order Book</span>
-        </a>
-      </div>
-
-      <div className="header-right">
-        {mounted && (
-          <button
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-            title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-          >
-            {theme === "dark" ? (
-              <svg className="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="5" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </svg>
-            ) : (
-              <svg className="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            )}
-            <span className="theme-toggle-label">{theme === "dark" ? "Light" : "Dark"}</span>
-          </button>
-        )}
-
-        {/* Normal Dropdown Menu Container */}
-        <div className="menu-container">
+    <>
+      <header className="site-header" ref={headerRef}>
+        {/* Left Section: Menu Button on Left + Brand Logo */}
+        <div className="header-left">
           <button
             className={`standard-menu-btn ${menuOpen ? "open" : ""}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
-            aria-haspopup="true"
             aria-label="Navigation Menu"
+            title={menuOpen ? "Close menu" : "Open menu"}
           >
             <span>Menu</span>
-            <svg
-              className={`menu-arrow ${menuOpen ? "rotated" : ""}`}
-              viewBox="0 0 24 24"
-              width="14"
-              height="14"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+            {menuOpen ? (
+              <svg
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg
+                viewBox="0 0 24 24"
+                width="14"
+                height="14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
           </button>
 
-          {/* Simple Dropdown Menu */}
-          {menuOpen && (
-            <div className="standard-dropdown" role="menu">
-              {navPages.map((page) => {
-                const isActive = pathname === page.href;
-                const isExpanded = !!expandedPages[page.key];
+          <Link className="brand" href="/" aria-label="Home" onClick={() => setMenuOpen(false)}>
+            <span className="brand-mark">
+              <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
+            </span>
+            <span>ABGNT</span>
+          </Link>
+        </div>
 
-                return (
-                  <div key={page.key} className="dropdown-group">
-                    <div className={`dropdown-row ${isActive ? "active-page" : ""}`}>
-                      <Link
-                        href={page.href}
-                        className="dropdown-page-link"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {page.name}
-                      </Link>
+        {/* Center Section: Tabs in header for Windows / Desktop / Laptop */}
+        <nav className="header-nav-tabs" aria-label="Main Navigation">
+          <Link
+            href="/"
+            className={`header-nav-tab ${pathname === "/" ? "active" : ""}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            About the Book
+          </Link>
+          <Link
+            href="/authors"
+            className={`header-nav-tab ${pathname === "/authors" ? "active" : ""}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Authors
+          </Link>
+          <Link
+            href="/hints"
+            className={`header-nav-tab ${pathname === "/hints" ? "active" : ""}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Hints
+          </Link>
+        </nav>
 
-                      <button
-                        type="button"
-                        className={`dropdown-more-btn ${isExpanded ? "active" : ""}`}
-                        onClick={(e) => togglePageSection(page.key, e)}
-                        aria-expanded={isExpanded}
-                        title={`Show sections for ${page.name}`}
-                      >
-                        <span>More</span>
-                        <svg
-                          className={`more-chevron ${isExpanded ? "expanded" : ""}`}
-                          viewBox="0 0 24 24"
-                          width="12"
-                          height="12"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                      </button>
-                    </div>
-
-                    {/* Section sub-links when "More" is clicked */}
-                    {isExpanded && (
-                      <div className="dropdown-sections">
-                        {page.sections.map((section) => {
-                          const isExternal = section.href.startsWith("http");
-                          if (isExternal) {
-                            return (
-                              <a
-                                key={section.href}
-                                href={section.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="dropdown-section-link"
-                                onClick={() => setMenuOpen(false)}
-                              >
-                                <span className="section-bullet">&bull;</span>
-                                <span>{section.name}</span>
-                              </a>
-                            );
-                          }
-                          return (
-                            <Link
-                              key={section.href}
-                              href={section.href}
-                              className="dropdown-section-link"
-                              onClick={() => setMenuOpen(false)}
-                            >
-                              <span className="section-bullet">&bull;</span>
-                              <span>{section.name}</span>
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+        {/* Right Section: Theme Toggle */}
+        <div className="header-right">
+          {mounted && (
+            <button
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            >
+              {theme === "dark" ? (
+                <svg className="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg className="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+              <span className="theme-toggle-label">{theme === "dark" ? "Light" : "Dark"}</span>
+            </button>
           )}
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Oxford-Style Side Menu Drawer & Backdrop */}
+      {menuOpen && (
+        <div
+          className="oxford-menu-backdrop"
+          onClick={() => setMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      <aside
+        className={`oxford-menu-drawer ${menuOpen ? "open" : ""}`}
+        aria-label="Side Navigation"
+        aria-hidden={!menuOpen}
+      >
+        {/* Background Watermark Crest */}
+        <div className="oxford-watermark" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="currentColor">
+            <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" strokeWidth="3" />
+            <circle cx="100" cy="100" r="76" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
+            <path d="M60 140 L100 50 L140 140 Z" fill="none" stroke="currentColor" strokeWidth="2.5" />
+            <circle cx="100" cy="100" r="28" fill="none" stroke="currentColor" strokeWidth="2" />
+          </svg>
+        </div>
+
+        {/* Drawer Header */}
+        <div className="oxford-drawer-header">
+          <Link
+            className="brand oxford-drawer-brand"
+            href="/"
+            onClick={() => setMenuOpen(false)}
+          >
+            <span className="brand-mark">
+              <Image src="/logo.png" alt="ABGNT logo" width={18} height={24} style={{ objectFit: "contain" }} />
+            </span>
+            <span>ABGNT</span>
+          </Link>
+
+          <button
+            className="oxford-close-btn"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <span>Menu</span>
+            <span className="oxford-close-x">&times;</span>
+          </button>
+        </div>
+
+        {/* Menu Items List - Oxford Style */}
+        <nav className="oxford-menu-nav">
+          {navPages.map((page) => (
+            <div key={page.key} className="oxford-menu-group">
+              <div className="oxford-menu-row">
+                <Link
+                  href={page.href}
+                  className="oxford-menu-link"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <span className="oxford-link-text">{page.name}</span>
+                  <span className="oxford-arrow">&rarr;</span>
+                </Link>
+              </div>
+
+              {page.sections && page.sections.length > 0 && (
+                <div className="oxford-submenu">
+                  {page.sections.map((section) => (
+                    <Link
+                      key={section.href}
+                      href={section.href}
+                      className="oxford-submenu-link"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <span className="oxford-sub-bullet">&bull;</span>
+                      <span>{section.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {/* Amazon Direct Order Option in Menu */}
+          <div className="oxford-menu-group oxford-amazon-group">
+            <div className="oxford-menu-row">
+              <a
+                href="https://amzn.in/d/027tMJIL"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="oxford-menu-link oxford-amazon-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="oxford-link-text">Order on Amazon</span>
+                <span className="oxford-arrow">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </aside>
+    </>
   );
 }

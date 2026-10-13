@@ -32,6 +32,15 @@ export default function Home() {
 
             <div className="hero-actions-container">
               <div className="hero-actions-row">
+                <a
+                  className="primary-button hero-buy-button"
+                  href="https://amzn.in/d/027tMJIL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Order book on Amazon"
+                >
+                  Order book on Amazon <span>&rarr;</span>
+                </a>
                 <a className="primary-button" href="#general">
                   About the Book <span>&darr;</span>
                 </a>
