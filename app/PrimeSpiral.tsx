@@ -121,5 +121,5 @@ export default function PrimeSpiral() {
     };
   }, []);
 
-  return <canvas ref={ref} className="math-bg prime-spiral" aria-hidden="true" />;
+  return <canvas ref={ref} className="math-bg prime-spiral" aria-hidden="true" data-nosnippet="" />;
 }

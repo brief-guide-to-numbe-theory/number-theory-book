@@ -1,9 +1,25 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Header from "../Header";
 import Footer from "../Footer";
 import MathBackground from "../MathBackground";
 import ScrollReveal from "../ScrollReveal";
+
+export const metadata: Metadata = {
+  title: "About the Authors",
+  description:
+    "Meet Aritra Saha and Riddhiman Seal, authors of 'A Brief Guide to Number Theory'. Learn about their mathematical background, achievements, and Olympiad problem-solving journeys.",
+  alternates: {
+    canonical: "https://www.numbertheoryguide.in/authors",
+  },
+  openGraph: {
+    title: "About the Authors | A Brief Guide to Number Theory",
+    description:
+      "Meet Aritra Saha and Riddhiman Seal, authors of 'A Brief Guide to Number Theory'. Learn about their mathematical background, achievements, and Olympiad problem-solving journeys.",
+    url: "https://www.numbertheoryguide.in/authors",
+  },
+};
 
 export default function AuthorsPage() {
   return (

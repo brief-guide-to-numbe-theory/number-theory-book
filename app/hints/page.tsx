@@ -1,9 +1,25 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "../Header";
 import Footer from "../Footer";
 import HintLookup from "../HintLookup";
 import MathBackground from "../MathBackground";
 import ScrollReveal from "../ScrollReveal";
+
+export const metadata: Metadata = {
+  title: "Hints for Practice Problems",
+  description:
+    "Look up hints for 500+ numbered practice problems from 'A Brief Guide to Number Theory' by Aritra Saha and Riddhiman Seal.",
+  alternates: {
+    canonical: "https://www.numbertheoryguide.in/hints",
+  },
+  openGraph: {
+    title: "Hints for Practice Problems | A Brief Guide to Number Theory",
+    description:
+      "Look up hints for 500+ numbered practice problems from 'A Brief Guide to Number Theory' by Aritra Saha and Riddhiman Seal.",
+    url: "https://www.numbertheoryguide.in/hints",
+  },
+};
 
 export default function HintsPage() {
   return (

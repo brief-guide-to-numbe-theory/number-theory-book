@@ -115,6 +115,8 @@ export default function MathBackground({
     particles.forEach((p) => {
       const el = document.createElement("div");
       el.className = `math-latex-item ${variant === "dark" ? "text-white" : "text-navy"}`;
+      el.setAttribute("aria-hidden", "true");
+      el.setAttribute("data-nosnippet", "");
       el.innerHTML = p.html;
       el.style.position = "absolute";
       el.style.top = "0px";
@@ -186,6 +188,7 @@ export default function MathBackground({
       ref={containerRef}
       className="math-bg math-latex-container"
       aria-hidden="true"
+      data-nosnippet=""
     />
   );
 }
