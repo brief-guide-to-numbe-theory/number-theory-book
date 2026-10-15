@@ -9,14 +9,14 @@ import ScrollReveal from "../ScrollReveal";
 export const metadata: Metadata = {
   title: "About the Authors",
   description:
-    "Meet Aritra Saha and Riddhiman Seal, authors of 'A Brief Guide to Number Theory'. Learn about their mathematical background, achievements, and Olympiad problem-solving journeys.",
+    "Meet Aritra Saha and Riddhiman Seal, the authors of 'A Brief Guide to Number Theory' — a dedicated Olympiad Number Theory Book for RMO, INMO, and IMO aspirants.",
   alternates: {
     canonical: "https://www.numbertheoryguide.in/authors",
   },
   openGraph: {
-    title: "About the Authors | A Brief Guide to Number Theory",
+    title: "About the Authors | Olympiad Number Theory Book",
     description:
-      "Meet Aritra Saha and Riddhiman Seal, authors of 'A Brief Guide to Number Theory'. Learn about their mathematical background, achievements, and Olympiad problem-solving journeys.",
+      "Meet Aritra Saha and Riddhiman Seal, the authors of 'A Brief Guide to Number Theory' — a dedicated Olympiad Number Theory Book for RMO, INMO, and IMO aspirants.",
     url: "https://www.numbertheoryguide.in/authors",
   },
 };

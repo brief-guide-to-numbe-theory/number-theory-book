@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.numbertheoryguide.in"),
   title: {
-    default: "A Brief Guide to Number Theory | By Aritra Saha & Riddhiman Seal",
+    default: "A Brief Guide to Number Theory – Olympiad Number Theory Book | By Aritra Saha & Riddhiman Seal",
     template: "%s | A Brief Guide to Number Theory",
   },
   description:
-    "Official website for 'A Brief Guide to Number Theory' by Aritra Saha and Riddhiman Seal. Explore Olympiad number theory chapters, 20-page PDF preview, and 500+ practice problem hints for RMO, INMO, and IMO.",
+    "The definitive Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal. Official website for 'A Brief Guide to Number Theory' with 20-page PDF preview, chapter contents, and 500+ practice problem hints for RMO, INMO, and IMO.",
   applicationName: "A Brief Guide to Number Theory",
   authors: [
     { name: "Aritra Saha" },
@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   ],
   creator: "Aritra Saha & Riddhiman Seal",
   keywords: [
+    "Olympiad Number Theory Book",
+    "olympiad number theory book",
+    "best olympiad number theory book",
     "A Brief Guide to Number Theory",
     "brief guide to number theory",
     "brief guide number theory",
@@ -35,6 +38,9 @@ export const metadata: Metadata = {
     "Aritra Saha",
     "Riddhiman Seal",
     "Olympiad Number Theory",
+    "INMO number theory book",
+    "IMO number theory book",
+    "RMO number theory book",
     "INMO",
     "RMO",
     "IMO",
@@ -45,9 +51,9 @@ export const metadata: Metadata = {
     canonical: "https://www.numbertheoryguide.in/",
   },
   openGraph: {
-    title: "A Brief Guide to Number Theory | By Aritra Saha & Riddhiman Seal",
+    title: "A Brief Guide to Number Theory – Olympiad Number Theory Book",
     description:
-      "Official website for 'A Brief Guide to Number Theory' by Aritra Saha and Riddhiman Seal. Explore Olympiad number theory chapters, 20-page PDF preview, and 500+ practice problem hints for RMO, INMO, and IMO.",
+      "The definitive Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal. Official website for 'A Brief Guide to Number Theory' with 20-page PDF preview, chapter contents, and 500+ practice problem hints for RMO, INMO, and IMO.",
     url: "https://www.numbertheoryguide.in/",
     siteName: "A Brief Guide to Number Theory",
     images: [
@@ -55,7 +61,7 @@ export const metadata: Metadata = {
         url: "/book-cover.png",
         width: 1200,
         height: 630,
-        alt: "A Brief Guide to Number Theory - Book by Aritra Saha & Riddhiman Seal",
+        alt: "A Brief Guide to Number Theory - Olympiad Number Theory Book by Aritra Saha & Riddhiman Seal",
       },
     ],
     locale: "en_US",
@@ -63,9 +69,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "A Brief Guide to Number Theory | By Aritra Saha & Riddhiman Seal",
+    title: "A Brief Guide to Number Theory – Olympiad Number Theory Book",
     description:
-      "Official website for 'A Brief Guide to Number Theory' by Aritra Saha and Riddhiman Seal. Explore Olympiad number theory chapters, 20-page PDF preview, and 500+ practice problem hints for RMO, INMO, and IMO.",
+      "The definitive Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal. Official website for 'A Brief Guide to Number Theory' with 20-page PDF preview, chapter contents, and 500+ practice problem hints for RMO, INMO, and IMO.",
     images: ["/book-cover.png"],
   },
   robots: {
@@ -104,25 +110,37 @@ const jsonLdData = {
       "@type": "WebSite",
       "@id": "https://www.numbertheoryguide.in/#website",
       "url": "https://www.numbertheoryguide.in/",
-      "name": "A Brief Guide to Number Theory",
-      "alternateName": ["ABGNT", "Brief Guide to Number Theory"],
+      "name": "A Brief Guide to Number Theory - Olympiad Number Theory Book",
+      "alternateName": [
+        "ABGNT",
+        "Brief Guide to Number Theory",
+        "Olympiad Number Theory Book",
+        "Olympiad Number Theory Book by Aritra Saha & Riddhiman Seal"
+      ],
       "description":
-        "Official website for 'A Brief Guide to Number Theory' by Aritra Saha and Riddhiman Seal. Explore Olympiad number theory chapters, 20-page PDF preview, and 500+ practice problem hints for RMO, INMO, and IMO.",
+        "The definitive Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal. Official website for 'A Brief Guide to Number Theory' with 20-page preview, chapter contents, and 500+ practice problem hints.",
       "inLanguage": "en"
     },
     {
       "@type": "Book",
       "@id": "https://www.numbertheoryguide.in/#book",
       "name": "A Brief Guide to Number Theory",
-      "alternateName": "ABGNT",
+      "alternateName": [
+        "ABGNT",
+        "Olympiad Number Theory Book",
+        "A Brief Guide to Number Theory: Olympiad Number Theory Book"
+      ],
+      "headline": "A Brief Guide to Number Theory – Olympiad Number Theory Book",
       "author": [
         {
           "@type": "Person",
-          "name": "Aritra Saha"
+          "name": "Aritra Saha",
+          "jobTitle": "Author & Educator"
         },
         {
           "@type": "Person",
-          "name": "Riddhiman Seal"
+          "name": "Riddhiman Seal",
+          "jobTitle": "Author & Educator"
         }
       ],
       "url": "https://www.numbertheoryguide.in/",
@@ -142,8 +160,20 @@ const jsonLdData = {
       },
       "description":
         "An Olympiad number theory book covering modular arithmetic, divisibility, quadratic residues, p-adic valuation, number-theoretic functional equations, and combinatorial number theory for INMO and IMO.",
-      "genre": "Mathematics / Olympiad Preparation",
-      "about": "Number Theory"
+      "genre": [
+        "Mathematics",
+        "Olympiad Preparation",
+        "Olympiad Number Theory Book",
+        "Number Theory"
+      ],
+      "about": [
+        "Number Theory",
+        "Olympiad Number Theory",
+        "Mathematical Olympiad",
+        "IMO",
+        "INMO"
+      ],
+      "keywords": "Olympiad Number Theory Book, A Brief Guide to Number Theory, ABGNT, IMO, INMO, RMO, Olympiad Math"
     }
   ]
 };

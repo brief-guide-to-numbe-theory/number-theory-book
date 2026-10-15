@@ -77,13 +77,13 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               className="book-cover-link"
-              title="Order on Amazon"
-              aria-label="Order A Brief Guide to Number Theory on Amazon"
+              title="Order Olympiad Number Theory Book on Amazon"
+              aria-label="Order A Brief Guide to Number Theory - Olympiad Number Theory Book on Amazon"
             >
               <Image
                 className="book-cover"
                 src={bookCover}
-                alt="Cover of A brief guide to Number Theory by Aritra Saha and Riddhiman Seal"
+                alt="A Brief Guide to Number Theory - Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal"
                 priority
               />
             </a>
@@ -105,12 +105,12 @@ export default function Home() {
             <div className="about-book-body">
               {/* Para 1 */}
               <p>
-                <strong>A Brief Guide to Number Theory</strong> is a book that
-                focuses on elementary number theory, specifically topics that are
-                common in Olympiad mathematics. We start from the basics of
-                modular arithmetic and progress to advanced concepts like
-                quadratic reciprocity, Pell&apos;s equations, and density in number
-                theory.
+                <strong>A Brief Guide to Number Theory</strong> is an Olympiad
+                number theory book that focuses on elementary number theory,
+                specifically topics that are common in Olympiad mathematics. We
+                start from the basics of modular arithmetic and progress to
+                advanced concepts like quadratic reciprocity, Pell&apos;s
+                equations, and density in number theory.
               </p>
               {/* Para 3 */}
               <p>

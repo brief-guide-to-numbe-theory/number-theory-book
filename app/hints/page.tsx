@@ -9,14 +9,14 @@ import ScrollReveal from "../ScrollReveal";
 export const metadata: Metadata = {
   title: "Hints for Practice Problems",
   description:
-    "Look up hints for 500+ numbered practice problems from 'A Brief Guide to Number Theory' by Aritra Saha and Riddhiman Seal.",
+    "Look up hints for 500+ numbered practice problems from 'A Brief Guide to Number Theory', the Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal.",
   alternates: {
     canonical: "https://www.numbertheoryguide.in/hints",
   },
   openGraph: {
-    title: "Hints for Practice Problems | A Brief Guide to Number Theory",
+    title: "Hints for Practice Problems | Olympiad Number Theory Book",
     description:
-      "Look up hints for 500+ numbered practice problems from 'A Brief Guide to Number Theory' by Aritra Saha and Riddhiman Seal.",
+      "Look up hints for 500+ numbered practice problems from 'A Brief Guide to Number Theory', the Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal.",
     url: "https://www.numbertheoryguide.in/hints",
   },
 };
