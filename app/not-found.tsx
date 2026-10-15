@@ -10,80 +10,298 @@ export default function NotFound() {
       <Header />
       <main style={{ paddingTop: "86px" }}>
         <section
-          className="section"
+          className="section not-found-section"
           style={{
             minHeight: "calc(100vh - 86px)",
             display: "flex",
-            flexDirection: "column",
+            alignItems: "center",
             justifyContent: "center",
             position: "relative",
             overflow: "hidden",
-            paddingTop: "60px",
-            paddingBottom: "80px",
+            padding: "80px clamp(20px, 5vw, 60px)",
           }}
         >
           <MathBackground variant="light" />
 
-          <div className="section-label" style={{ marginBottom: "32px" }}>
-            <span>404</span>
-            <span>Solution Not Found</span>
-          </div>
-
-          <div className="section-heading" data-reveal style={{ alignItems: "flex-start" }}>
-            <div>
-              <p className="micro-label" style={{ color: "var(--gold)" }}>
-                THEOREM 404 &bull; CONTRADICTION
-              </p>
-
-              <h1 style={{ fontSize: "clamp(48px, 6.5vw, 84px)", lineHeight: "1" }}>
-                Page
-                <br />
-                <em>Undefined.</em>
-              </h1>
-            </div>
-
-            <div style={{ maxWidth: "480px" }}>
-              <p style={{ font: "18px/1.7 Georgia, serif", color: "var(--ink)", opacity: 0.88, marginBottom: "20px" }}>
-                Assume the requested URL exists in the domain of integer solutions. Then its evaluation yields a contradiction.
-              </p>
-              <p style={{ font: "italic 16px/1.6 Georgia, serif", color: "var(--gold)" }}>
-                &ldquo;Proof left as an exercise to the reader.&rdquo;
-              </p>
-            </div>
-          </div>
-
           <div
+            className="not-found-card"
             data-reveal
-            className="placeholder-sheet"
             style={{
-              marginTop: "48px",
-              marginBottom: "48px",
-              maxWidth: "640px",
-              minHeight: "auto",
-              padding: "36px 40px",
+              position: "relative",
+              zIndex: 1,
+              maxWidth: "760px",
+              width: "100%",
+              background: "rgba(255, 255, 255, 0.78)",
+              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
+              border: "1px solid rgba(26, 46, 90, 0.16)",
+              borderRadius: "16px",
+              padding: "clamp(32px, 5vw, 56px)",
+              boxShadow: "0 24px 60px rgba(26, 46, 90, 0.08), 0 1px 3px rgba(26, 46, 90, 0.06)",
             }}
           >
-            <span style={{ color: "var(--gold)", fontWeight: 900, letterSpacing: "0.18em" }}>
-              MODULAR ARITHMETIC &bull; PAGE &equiv; 404 (MOD 0)
-            </span>
-            <p style={{ font: "17px/1.65 Georgia, serif", color: "var(--ink)", margin: "16px 0 0" }}>
-              The page you are looking for may have been moved, renamed, or never existed in this edition. Use the links below to return to known mathematical terrain.
-            </p>
-            <strong style={{ position: "absolute", right: "28px", bottom: "16px", color: "var(--gold)", font: "italic 54px Georgia", opacity: 0.85 }}>
-              404
-            </strong>
-          </div>
+            {/* Academic Monograph Header Bar */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                borderBottom: "1px solid rgba(26, 46, 90, 0.12)",
+                paddingBottom: "18px",
+                marginBottom: "36px",
+                flexWrap: "wrap",
+                gap: "10px",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    background: "var(--gold)",
+                  }}
+                />
+                <span
+                  style={{
+                    fontSize: "11px",
+                    fontWeight: 800,
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "var(--ink)",
+                    opacity: 0.75,
+                  }}
+                >
+                  HTTP Status 404 &bull; Undefined Endpoint
+                </span>
+              </div>
+              <span
+                style={{
+                  fontFamily: "Georgia, serif",
+                  fontStyle: "italic",
+                  fontSize: "13px",
+                  color: "var(--ink)",
+                  opacity: 0.65,
+                }}
+              >
+                A Brief Guide to Number Theory
+              </span>
+            </div>
 
-          <div className="hero-actions-row" data-reveal style={{ gap: "16px" }}>
-            <Link className="primary-button" href="/">
-              Return Home <span>&rarr;</span>
-            </Link>
-            <Link className="navy-button" href="/hints">
-              Hints <span>&rarr;</span>
-            </Link>
-            <Link className="navy-button" href="/authors">
-              Meet the Authors <span>&rarr;</span>
-            </Link>
+            {/* Core Heading */}
+            <div style={{ marginBottom: "28px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  gap: "18px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontSize: "clamp(64px, 8vw, 96px)",
+                    lineHeight: 0.9,
+                    color: "var(--ink)",
+                    fontWeight: 400,
+                    letterSpacing: "-0.04em",
+                  }}
+                >
+                  404
+                </span>
+                <h1
+                  style={{
+                    margin: 0,
+                    fontFamily: "Georgia, 'Times New Roman', serif",
+                    fontSize: "clamp(26px, 3.2vw, 38px)",
+                    fontWeight: 400,
+                    color: "var(--ink)",
+                    letterSpacing: "-0.02em",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Page not found<span style={{ color: "var(--gold)" }}>.</span>
+                </h1>
+              </div>
+
+              <p
+                style={{
+                  margin: "20px 0 0",
+                  font: "17px/1.7 Georgia, serif",
+                  color: "var(--ink)",
+                  opacity: 0.88,
+                  maxWidth: "600px",
+                }}
+              >
+                The requested URL does not correspond to any active chapter, hint, or resource in this volume.
+                It may have been relocated, or the reference link may contain a typographical error.
+              </p>
+            </div>
+
+            {/* Mathematical Formal Statement Box */}
+            <div
+              style={{
+                margin: "28px 0 36px",
+                padding: "20px 24px",
+                background: "rgba(234, 243, 251, 0.75)",
+                borderLeft: "3px solid var(--gold)",
+                borderRadius: "0 8px 8px 0",
+                fontFamily: "Georgia, serif",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "11px",
+                  fontWeight: 800,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "var(--gold)",
+                  marginBottom: "8px",
+                }}
+              >
+                Formal Statement
+              </div>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "15px",
+                  lineHeight: 1.6,
+                  color: "var(--ink)",
+                  fontStyle: "italic",
+                }}
+              >
+                Let <span style={{ fontStyle: "normal", fontFamily: "'Courier New', monospace", fontWeight: 700 }}>R</span> be the set of valid routes in this edition. The requested URI <span style={{ fontStyle: "normal", fontFamily: "'Courier New', monospace", fontWeight: 600 }}>r &notin; R</span>.
+              </p>
+            </div>
+
+            {/* Directory Navigation Grid */}
+            <div style={{ marginTop: "32px" }}>
+              <p
+                style={{
+                  margin: "0 0 14px",
+                  fontSize: "11px",
+                  fontWeight: 800,
+                  letterSpacing: "0.14em",
+                  textTransform: "uppercase",
+                  color: "var(--ink)",
+                  opacity: 0.7,
+                }}
+              >
+                Return to Book Index
+              </p>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+                  gap: "12px",
+                }}
+              >
+                <Link
+                  href="/"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "14px 18px",
+                    background: "var(--ink)",
+                    color: "#fff",
+                    borderRadius: "10px",
+                    textDecoration: "none",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                    transition: "transform 0.2s ease, opacity 0.2s ease",
+                  }}
+                >
+                  <span>About the Book</span>
+                  <span style={{ color: "var(--gold)", fontSize: "16px" }}>&rarr;</span>
+                </Link>
+
+                <Link
+                  href="/#contents"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "14px 18px",
+                    background: "rgba(26, 46, 90, 0.05)",
+                    color: "var(--ink)",
+                    border: "1px solid rgba(26, 46, 90, 0.14)",
+                    borderRadius: "10px",
+                    textDecoration: "none",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                    transition: "all 0.2s ease",
+                  }}
+                >
+                  <span>Contents &amp; Preview</span>
+                  <span style={{ fontSize: "16px" }}>&rarr;</span>
+                </Link>
+
+                <Link
+                  href="/hints"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "14px 18px",
+                    background: "rgba(26, 46, 90, 0.05)",
+                    color: "var(--ink)",
+                    border: "1px solid rgba(26, 46, 90, 0.14)",
+                    borderRadius: "10px",
+                    textDecoration: "none",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                    transition: "all 0.2s ease",
+                  }}
+                >
+                  <span>Problem Hints (500+)</span>
+                  <span style={{ fontSize: "16px" }}>&rarr;</span>
+                </Link>
+
+                <Link
+                  href="/authors"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "14px 18px",
+                    background: "rgba(26, 46, 90, 0.05)",
+                    color: "var(--ink)",
+                    border: "1px solid rgba(26, 46, 90, 0.14)",
+                    borderRadius: "10px",
+                    textDecoration: "none",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                    transition: "all 0.2s ease",
+                  }}
+                >
+                  <span>Meet the Authors</span>
+                  <span style={{ fontSize: "16px" }}>&rarr;</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Halmos tombstone Q.E.D. mark */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginTop: "24px",
+                color: "var(--ink)",
+                opacity: 0.35,
+                fontSize: "13px",
+              }}
+              title="Halmos Q.E.D. symbol"
+            >
+              &#9632;
+            </div>
           </div>
         </section>
       </main>
