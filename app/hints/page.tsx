@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://www.numbertheoryguide.in/hints",
   },
   openGraph: {
-    title: "Hints for Practice Problems | Olympiad Number Theory Book",
+    title: "Hints for Practice Problems | A Brief Guide to Number Theory",
     description:
       "Look up hints for 500+ numbered practice problems from 'A Brief Guide to Number Theory', the Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal.",
     url: "https://www.numbertheoryguide.in/hints",

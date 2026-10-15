@@ -77,13 +77,13 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               className="book-cover-link"
-              title="Order Olympiad Number Theory Book on Amazon"
-              aria-label="Order A Brief Guide to Number Theory - Olympiad Number Theory Book on Amazon"
+              title="Order A Brief Guide to Number Theory on Amazon"
+              aria-label="Order A Brief Guide to Number Theory on Amazon"
             >
               <Image
                 className="book-cover"
                 src={bookCover}
-                alt="A Brief Guide to Number Theory - Olympiad Number Theory Book by Aritra Saha and Riddhiman Seal"
+                alt="A Brief Guide to Number Theory by Aritra Saha and Riddhiman Seal — Olympiad Number Theory Book"
                 priority
               />
             </a>

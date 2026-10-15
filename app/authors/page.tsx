@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://www.numbertheoryguide.in/authors",
   },
   openGraph: {
-    title: "About the Authors | Olympiad Number Theory Book",
+    title: "About the Authors | A Brief Guide to Number Theory",
     description:
       "Meet Aritra Saha and Riddhiman Seal, the authors of 'A Brief Guide to Number Theory' — a dedicated Olympiad Number Theory Book for RMO, INMO, and IMO aspirants.",
     url: "https://www.numbertheoryguide.in/authors",
