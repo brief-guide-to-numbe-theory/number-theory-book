@@ -139,17 +139,31 @@ const jsonLdData = {
         {
           "@type": "Person",
           "name": "Aritra Saha",
-          "jobTitle": "Author & Educator"
+          "jobTitle": "Author & Educator",
+          "sameAs": [
+            "https://artofproblemsolving.com/community/user/CrystalMind",
+            "https://www.youtube.com/@OMath"
+          ]
         },
         {
           "@type": "Person",
           "name": "Riddhiman Seal",
-          "jobTitle": "Author & Educator"
+          "jobTitle": "Author & Educator",
+          "sameAs": [
+            "https://artofproblemsolving.com/community/user/simplisticformulas",
+            "https://www.youtube.com/@rubiksbrothers6442"
+          ]
         }
       ],
       "url": "https://www.numbertheoryguide.in/",
       "image": "https://www.numbertheoryguide.in/book-cover.png",
       "sameAs": "https://amzn.in/d/027tMJIL",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://amzn.in/d/027tMJIL",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR"
+      },
       "workExample": {
         "@type": "Book",
         "bookFormat": "https://schema.org/Paperback",
@@ -178,6 +192,44 @@ const jsonLdData = {
         "INMO"
       ],
       "keywords": "A Brief Guide to Number Theory, brief guide to number theory, ABGNT, Olympiad Number Theory Book, IMO, INMO, RMO, Olympiad Math"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.numbertheoryguide.in/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is A Brief Guide to Number Theory?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Brief Guide to Number Theory (ABGNT) is an Olympiad Number Theory Book written by Aritra Saha and Riddhiman Seal specifically for students preparing for RMO, INMO, and the International Mathematical Olympiad (IMO)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who are the authors of A Brief Guide to Number Theory?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The book is written by Aritra Saha (INMO Awardee) and Riddhiman Seal (RMO Mumbai Topper), both experienced Olympiad competitors and mentors at the Online Math Club."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I buy or order A Brief Guide to Number Theory?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can order the official paperback edition of A Brief Guide to Number Theory on Amazon India via https://amzn.in/d/027tMJIL."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What topics does this Olympiad Number Theory Book cover?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The book covers modular arithmetic, divisibility, orders, primitive roots, quadratic residues, p-adic valuation, integer polynomials, cyclotomic polynomials, functional equations, and combinatorial number theory, complete with over 500 practice problem hints."
+          }
+        }
+      ]
     }
   ]
 };
