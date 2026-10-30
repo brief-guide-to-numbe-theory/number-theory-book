@@ -14,23 +14,47 @@ let memoryCache: ReviewItem[] | null = null;
 
 const DEFAULT_SEEDS: ReviewItem[] = [];
 
+function cleanEnvValue(str: string | undefined): string {
+  if (!str) return "";
+  let s = str.trim();
+  // If the user accidentally pasted "KEY=VALUE" into the value field in Vercel
+  if (s.includes("=")) {
+    const parts = s.split("=");
+    if (parts.length > 1) {
+      s = parts.slice(1).join("=").trim();
+    }
+  }
+  // Strip leading and trailing quotes (both double and single)
+  s = s.replace(/^["']+|["']+$/g, "").trim();
+  return s;
+}
+
 /**
  * Check whether Upstash Redis (or Vercel KV) environment variables are available.
  */
 function getUpstashCredentials(): { url: string; token: string } | null {
-  const url = (
+  const rawUrl =
     process.env.UPSTASH_REDIS_REST_URL ||
     process.env.KV_REST_API_URL ||
-    ""
-  )
-    .trim()
-    .replace(/\/+$/, "");
+    process.env.UPSTASH_REDIS_URL ||
+    process.env.UPSTASH_REST_API_URL ||
+    process.env.REDIS_REST_URL ||
+    "";
 
-  const token = (
+  const rawToken =
     process.env.UPSTASH_REDIS_REST_TOKEN ||
     process.env.KV_REST_API_TOKEN ||
-    ""
-  ).trim();
+    process.env.UPSTASH_REDIS_TOKEN ||
+    process.env.UPSTASH_REST_API_TOKEN ||
+    process.env.REDIS_REST_TOKEN ||
+    "";
+
+  let url = cleanEnvValue(rawUrl).replace(/\/+$/, "");
+  const token = cleanEnvValue(rawToken);
+
+  if (url && !url.startsWith("http://") && !url.startsWith("https://")) {
+    url = "https://" + url;
+  }
 
   if (url && token) {
     return { url, token };

@@ -5,6 +5,7 @@ import {
   verifyAdminPasscode,
   createReviewSubmission,
   calculateStats,
+  isUpstashConfigured,
 } from "../../../lib/reviews-store";
 import { ReviewSubmissionPayload } from "../../../lib/types";
 
@@ -31,6 +32,11 @@ export async function GET(request: Request) {
           isAdmin: true,
           items: all,
           stats,
+          debug: {
+            configured: isUpstashConfigured(),
+            hasUrl: Boolean(process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_URL),
+            hasToken: Boolean(process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_TOKEN),
+          },
         },
         { headers: NO_CACHE_HEADERS }
       );
