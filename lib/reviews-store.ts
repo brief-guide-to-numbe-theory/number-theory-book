@@ -66,6 +66,42 @@ export function isUpstashConfigured(): boolean {
   return getUpstashCredentials() !== null;
 }
 
+export async function testUpstashConnection(): Promise<any> {
+  const creds = getUpstashCredentials();
+  if (!creds) {
+    return { configured: false, reason: "Credentials missing or null" };
+  }
+
+  try {
+    const res = await fetch(creds.url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${creds.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(["PING"]),
+      cache: "no-store",
+    });
+
+    const bodyText = await res.text().catch(() => "");
+    return {
+      configured: true,
+      url: creds.url,
+      tokenLength: creds.token.length,
+      status: res.status,
+      statusText: res.statusText,
+      response: bodyText.slice(0, 300),
+    };
+  } catch (err: any) {
+    return {
+      configured: true,
+      url: creds.url,
+      tokenLength: creds.token.length,
+      error: err.message,
+    };
+  }
+}
+
 /**
  * Execute a command against Upstash Redis REST API.
  */

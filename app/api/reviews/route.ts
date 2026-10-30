@@ -6,6 +6,7 @@ import {
   createReviewSubmission,
   calculateStats,
   isUpstashConfigured,
+  testUpstashConnection,
 } from "../../../lib/reviews-store";
 import { ReviewSubmissionPayload } from "../../../lib/types";
 
@@ -26,6 +27,7 @@ export async function GET(request: Request) {
     if (adminPasscode && verifyAdminPasscode(adminPasscode)) {
       const all = await getAllReviews();
       const stats = calculateStats(all);
+      const connTest = await testUpstashConnection();
       return NextResponse.json(
         {
           success: true,
@@ -34,8 +36,7 @@ export async function GET(request: Request) {
           stats,
           debug: {
             configured: isUpstashConfigured(),
-            hasUrl: Boolean(process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_URL),
-            hasToken: Boolean(process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_TOKEN),
+            connection: connTest,
           },
         },
         { headers: NO_CACHE_HEADERS }
