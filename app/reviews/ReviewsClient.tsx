@@ -238,13 +238,12 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                 </span>
               ))}
             </div>
-            <span className="summary-total-label">
-              {data.stats.totalRatings > 0
-                ? `Based on ${data.stats.totalRatings} verified reader ${
-                    data.stats.totalRatings === 1 ? "rating" : "ratings"
-                  }`
-                : "Awaiting first reader review"}
-            </span>
+            {data.stats.totalRatings > 0 && (
+              <span className="summary-total-label">
+                Based on {data.stats.totalRatings} verified reader{" "}
+                {data.stats.totalRatings === 1 ? "rating" : "ratings"}
+              </span>
+            )}
           </div>
         </div>
 

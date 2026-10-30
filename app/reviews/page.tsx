@@ -48,9 +48,8 @@ export default function ReviewsPage() {
             </div>
 
             <p>
-              Impressions, ratings, and mathematical notes from students,
-              awardees, and educators. All submissions are reviewed by the
-              authors before publishing.
+              Write comment and leave a review and put appropriate ratings for the
+              book. Available only for the people with the book.
             </p>
           </div>
 
