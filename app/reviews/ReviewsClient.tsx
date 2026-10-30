@@ -72,6 +72,27 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
     return () => window.removeEventListener("abgnt-reader-unlocked", onUnlocked);
   }, []);
 
+  // Freshly re-validate approved items on mount to guarantee real-time updates
+  useEffect(() => {
+    fetch(`/api/reviews?t=${Date.now()}`, { cache: "no-store" })
+      .then((res) => res.json())
+      .then((d) => {
+        if (d && d.success && !d.isAdmin) {
+          setData({
+            reviews: d.reviews || [],
+            comments: d.comments || [],
+            stats: d.stats || {
+              averageRating: 0,
+              totalRatings: 0,
+              totalReviews: 0,
+              totalComments: 0,
+            },
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   // Form submission handler
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

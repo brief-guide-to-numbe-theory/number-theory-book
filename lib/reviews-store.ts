@@ -3,8 +3,9 @@ import path from "path";
 import { ReviewItem, ReviewSubmissionPayload, ReviewsStats } from "./types";
 
 const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || "abgnt2026";
+const REDIS_KEY = "abgnt_reviews";
 
-// Path definitions
+// Path definitions for local/disk fallback
 const PRIMARY_DATA_PATH = path.join(process.cwd(), "data", "reviews.json");
 const FALLBACK_TMP_PATH = path.join("/tmp", "reviews.json");
 
@@ -13,6 +14,121 @@ let memoryCache: ReviewItem[] | null = null;
 
 const DEFAULT_SEEDS: ReviewItem[] = [];
 
+/**
+ * Check whether Upstash Redis (or Vercel KV) environment variables are available.
+ */
+function getUpstashCredentials(): { url: string; token: string } | null {
+  const url = (
+    process.env.UPSTASH_REDIS_REST_URL ||
+    process.env.KV_REST_API_URL ||
+    ""
+  )
+    .trim()
+    .replace(/\/+$/, "");
+
+  const token = (
+    process.env.UPSTASH_REDIS_REST_TOKEN ||
+    process.env.KV_REST_API_TOKEN ||
+    ""
+  ).trim();
+
+  if (url && token) {
+    return { url, token };
+  }
+  return null;
+}
+
+export function isUpstashConfigured(): boolean {
+  return getUpstashCredentials() !== null;
+}
+
+/**
+ * Execute a command against Upstash Redis REST API.
+ */
+async function upstashCommand(command: (string | number)[]): Promise<any> {
+  const creds = getUpstashCredentials();
+  if (!creds) return null;
+
+  try {
+    const res = await fetch(creds.url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${creds.token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(command),
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text().catch(() => "");
+      console.warn(
+        `Upstash REST API returned HTTP ${res.status} ${res.statusText}:`,
+        errorText
+      );
+      return null;
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Upstash Redis fetch error:", err);
+    return null;
+  }
+}
+
+/**
+ * Read reviews from Upstash Redis.
+ * Returns ReviewItem[] if found, null if key doesn't exist or error.
+ */
+async function readFromUpstash(): Promise<ReviewItem[] | null> {
+  try {
+    const data = await upstashCommand(["GET", REDIS_KEY]);
+    if (!data || data.result === null || data.result === undefined) {
+      return null;
+    }
+
+    let parsed = data.result;
+    if (typeof parsed === "string") {
+      try {
+        parsed = JSON.parse(parsed);
+      } catch (e) {
+        console.warn("Failed to parse Upstash Redis string as JSON:", e);
+        return null;
+      }
+    }
+
+    if (Array.isArray(parsed)) {
+      return parsed as ReviewItem[];
+    }
+
+    return null;
+  } catch (err) {
+    console.error("Failed to read from Upstash:", err);
+    return null;
+  }
+}
+
+/**
+ * Write reviews to Upstash Redis.
+ */
+async function writeToUpstash(items: ReviewItem[]): Promise<boolean> {
+  try {
+    const data = await upstashCommand([
+      "SET",
+      REDIS_KEY,
+      JSON.stringify(items),
+    ]);
+    return Boolean(data && data.result === "OK");
+  } catch (err) {
+    console.error("Failed to write to Upstash:", err);
+    return false;
+  }
+}
+
+/**
+ * Read reviews from local disk (or /tmp).
+ */
 function readFromDisk(): ReviewItem[] {
   // Check primary data path
   try {
@@ -39,6 +155,9 @@ function readFromDisk(): ReviewItem[] {
   return DEFAULT_SEEDS;
 }
 
+/**
+ * Write reviews to local disk (or /tmp).
+ */
 function writeToDisk(items: ReviewItem[]): void {
   let written = false;
 
@@ -67,24 +186,66 @@ function writeToDisk(items: ReviewItem[]): void {
   memoryCache = items;
 }
 
-export function getAllReviews(): ReviewItem[] {
-  if (!memoryCache) {
-    memoryCache = readFromDisk();
+/**
+ * Write to both local storage and Upstash Redis (if configured).
+ */
+async function writeToStorage(items: ReviewItem[]): Promise<void> {
+  // Always update memory and disk
+  writeToDisk(items);
+
+  // If Upstash is configured, save to Upstash cloud
+  if (isUpstashConfigured()) {
+    await writeToUpstash(items);
   }
+}
+
+/**
+ * Retrieve all reviews (pending, approved, rejected).
+ * Reads from Upstash Redis if available, with graceful fallback to disk.
+ */
+export async function getAllReviews(): Promise<ReviewItem[]> {
+  if (isUpstashConfigured()) {
+    const upstashData = await readFromUpstash();
+    if (Array.isArray(upstashData)) {
+      memoryCache = upstashData;
+      return upstashData;
+    }
+
+    // If key didn't exist in Upstash yet, seed it with disk/default data
+    const diskData = readFromDisk();
+    await writeToUpstash(diskData);
+    memoryCache = diskData;
+    return diskData;
+  }
+
+  // Fallback when Upstash is not configured (e.g. offline or local development)
+  memoryCache = readFromDisk();
   return memoryCache;
 }
 
 export function calculateStats(reviews: ReviewItem[]): ReviewsStats {
   const approvedReviewsWithRating = reviews.filter(
-    (r) => r.status === "approved" && r.type === "review" && typeof r.rating === "number" && r.rating > 0
+    (r) =>
+      r.status === "approved" &&
+      r.type === "review" &&
+      typeof r.rating === "number" &&
+      r.rating > 0
   );
 
   const totalRatings = approvedReviewsWithRating.length;
-  const ratingSum = approvedReviewsWithRating.reduce((acc, curr) => acc + (curr.rating || 0), 0);
-  const averageRating = totalRatings > 0 ? Number((ratingSum / totalRatings).toFixed(1)) : 0;
+  const ratingSum = approvedReviewsWithRating.reduce(
+    (acc, curr) => acc + (curr.rating || 0),
+    0
+  );
+  const averageRating =
+    totalRatings > 0 ? Number((ratingSum / totalRatings).toFixed(1)) : 0;
 
-  const totalReviews = reviews.filter((r) => r.status === "approved" && r.type === "review").length;
-  const totalComments = reviews.filter((r) => r.status === "approved" && r.type === "comment").length;
+  const totalReviews = reviews.filter(
+    (r) => r.status === "approved" && r.type === "review"
+  ).length;
+  const totalComments = reviews.filter(
+    (r) => r.status === "approved" && r.type === "comment"
+  ).length;
 
   return {
     averageRating,
@@ -94,16 +255,18 @@ export function calculateStats(reviews: ReviewItem[]): ReviewsStats {
   };
 }
 
-export function getApprovedData(): {
+export async function getApprovedData(): Promise<{
   reviews: ReviewItem[];
   comments: ReviewItem[];
   stats: ReviewsStats;
-} {
-  const all = getAllReviews();
+}> {
+  const all = await getAllReviews();
   const approved = all.filter((item) => item.status === "approved");
 
   // Sort newest first
-  approved.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  approved.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
 
   const reviews = approved.filter((item) => item.type === "review");
   const comments = approved.filter((item) => item.type === "comment");
@@ -117,8 +280,10 @@ export function verifyAdminPasscode(inputPasscode: string): boolean {
   return inputPasscode.trim() === ADMIN_PASSCODE.trim();
 }
 
-export function createReviewSubmission(payload: ReviewSubmissionPayload): ReviewItem {
-  const all = getAllReviews();
+export async function createReviewSubmission(
+  payload: ReviewSubmissionPayload
+): Promise<ReviewItem> {
+  const all = await getAllReviews();
 
   const newItem: ReviewItem = {
     id: `rev-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
@@ -126,27 +291,30 @@ export function createReviewSubmission(payload: ReviewSubmissionPayload): Review
     name: payload.name.trim(),
     role: payload.role?.trim() || undefined,
     hasBought: Boolean(payload.hasBought),
-    rating: payload.type === "review" && payload.rating ? Math.max(1, Math.min(5, Number(payload.rating))) : undefined,
+    rating:
+      payload.type === "review" && payload.rating
+        ? Math.max(1, Math.min(5, Number(payload.rating)))
+        : undefined,
     content: payload.content.trim(),
     status: "pending", // ALWAYS pending approval!
     createdAt: new Date().toISOString(),
   };
 
   const updated = [newItem, ...all];
-  writeToDisk(updated);
+  await writeToStorage(updated);
   return newItem;
 }
 
-export function moderateReview(
+export async function moderateReview(
   id: string,
   action: "approve" | "reject" | "delete",
   passcode: string
-): { success: boolean; error?: string; item?: ReviewItem } {
+): Promise<{ success: boolean; error?: string; item?: ReviewItem }> {
   if (!verifyAdminPasscode(passcode)) {
     return { success: false, error: "Unauthorized: Invalid admin passcode" };
   }
 
-  const all = getAllReviews();
+  const all = await getAllReviews();
   const index = all.findIndex((r) => r.id === id);
 
   if (index === -1) {
@@ -155,7 +323,7 @@ export function moderateReview(
 
   if (action === "delete") {
     const updated = all.filter((r) => r.id !== id);
-    writeToDisk(updated);
+    await writeToStorage(updated);
     return { success: true };
   }
 
@@ -165,6 +333,6 @@ export function moderateReview(
     status: updatedStatus,
   };
 
-  writeToDisk(all);
+  await writeToStorage(all);
   return { success: true, item: all[index] };
 }

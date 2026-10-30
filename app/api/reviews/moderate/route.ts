@@ -29,7 +29,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = moderateReview(id, action, passcode);
+    const result = await moderateReview(id, action, passcode);
 
     if (!result.success) {
       return NextResponse.json(

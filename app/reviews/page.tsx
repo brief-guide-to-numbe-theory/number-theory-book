@@ -21,8 +21,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ReviewsPage() {
-  const initialData = getApprovedData();
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function ReviewsPage() {
+  const initialData = await getApprovedData();
 
   return (
     <>

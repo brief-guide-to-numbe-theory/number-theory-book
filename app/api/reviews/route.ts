@@ -9,6 +9,13 @@ import {
 import { ReviewSubmissionPayload } from "../../../lib/types";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+const NO_CACHE_HEADERS = {
+  "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+  Pragma: "no-cache",
+  Expires: "0",
+};
 
 export async function GET(request: Request) {
   try {
@@ -16,30 +23,36 @@ export async function GET(request: Request) {
 
     // If valid admin passcode supplied in header, return all reviews (pending, approved, rejected)
     if (adminPasscode && verifyAdminPasscode(adminPasscode)) {
-      const all = getAllReviews();
+      const all = await getAllReviews();
       const stats = calculateStats(all);
-      return NextResponse.json({
-        success: true,
-        isAdmin: true,
-        items: all,
-        stats,
-      });
+      return NextResponse.json(
+        {
+          success: true,
+          isAdmin: true,
+          items: all,
+          stats,
+        },
+        { headers: NO_CACHE_HEADERS }
+      );
     }
 
     // Otherwise, return only public approved reviews & comments
-    const data = getApprovedData();
-    return NextResponse.json({
-      success: true,
-      isAdmin: false,
-      reviews: data.reviews,
-      comments: data.comments,
-      stats: data.stats,
-    });
+    const data = await getApprovedData();
+    return NextResponse.json(
+      {
+        success: true,
+        isAdmin: false,
+        reviews: data.reviews,
+        comments: data.comments,
+        stats: data.stats,
+      },
+      { headers: NO_CACHE_HEADERS }
+    );
   } catch (error) {
     console.error("GET /api/reviews error:", error);
     return NextResponse.json(
       { success: false, error: "Failed to retrieve reviews" },
-      { status: 500 }
+      { status: 500, headers: NO_CACHE_HEADERS }
     );
   }
 }
@@ -105,7 +118,7 @@ export async function POST(request: Request) {
       content: content.trim(),
     };
 
-    const created = createReviewSubmission(payload);
+    const created = await createReviewSubmission(payload);
 
     return NextResponse.json({
       success: true,

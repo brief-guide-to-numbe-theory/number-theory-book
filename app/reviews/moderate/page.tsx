@@ -32,8 +32,9 @@ export default function ModeratePage() {
     setLoading(true);
     setAuthError("");
     try {
-      const res = await fetch("/api/reviews", {
+      const res = await fetch(`/api/reviews?t=${Date.now()}`, {
         headers: { "x-admin-passcode": key },
+        cache: "no-store",
       });
       const data = await res.json();
 
@@ -198,6 +199,15 @@ export default function ModeratePage() {
                 </div>
 
                 <div className="moderate-header-actions">
+                  <button
+                    type="button"
+                    className="primary-button"
+                    onClick={() => fetchReviews(passcode)}
+                    disabled={loading}
+                    title="Refresh submissions list"
+                  >
+                    {loading ? "Refreshing..." : "🔄 Refresh List"}
+                  </button>
                   <button
                     type="button"
                     className="navy-button"
