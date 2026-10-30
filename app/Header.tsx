@@ -41,6 +41,15 @@ const navPages: NavPage[] = [
       { name: "Hints for Practice Problems", href: "/hints#hints" },
     ],
   },
+  {
+    name: "Reviews & Discussion",
+    href: "/reviews",
+    key: "reviews",
+    sections: [
+      { name: "Reader Ratings & Reviews", href: "/reviews#reviews-list" },
+      { name: "General Comments", href: "/reviews#comments-list" },
+    ],
+  },
 ];
 
 export default function Header() {
@@ -48,10 +57,34 @@ export default function Header() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [readerUnlockedToast, setReaderUnlockedToast] = useState(false);
+  const [isReaderVerified, setIsReaderVerified] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
+
+    // Check QR code reader unlock (?code=F6z@ or ?code=F6z%40)
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      if (code && (code.trim() === "F6z@" || decodeURIComponent(code).trim() === "F6z@")) {
+        localStorage.setItem("abgnt-reader-code", "F6z@");
+        setIsReaderVerified(true);
+        setReaderUnlockedToast(true);
+        window.dispatchEvent(new Event("abgnt-reader-unlocked"));
+
+        // Clean up URL without reloading page
+        const url = new URL(window.location.href);
+        url.searchParams.delete("code");
+        window.history.replaceState({}, "", url.pathname + (url.search ? url.search : ""));
+
+        setTimeout(() => setReaderUnlockedToast(false), 6000);
+      } else if (localStorage.getItem("abgnt-reader-code") === "F6z@") {
+        setIsReaderVerified(true);
+      }
+    } catch {}
+
     const savedTheme = localStorage.getItem("abgnt-theme") as "light" | "dark" | null;
     if (savedTheme) {
       setTheme(savedTheme);
@@ -200,10 +233,26 @@ export default function Header() {
           >
             Hints
           </Link>
+          <Link
+            href="/reviews"
+            className={`header-nav-tab ${pathname === "/reviews" ? "active" : ""}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Reviews
+          </Link>
         </nav>
 
         {/* Right Section: Theme Toggle and Brand Logo (Logo in rightmost part) */}
         <div className="header-right">
+          {mounted && isReaderVerified && (
+            <span
+              className="header-reader-badge"
+              title="Verified Book Reader: Unlocked via book QR code"
+            >
+              &#10003; Reader Verified
+            </span>
+          )}
+
           {mounted && (
             <button
               className="theme-toggle-btn"
@@ -239,6 +288,15 @@ export default function Header() {
             <span>ABGNT</span>
           </Link>
         </div>
+
+        {readerUnlockedToast && (
+          <aside className="reader-unlock-toast" role="status" aria-live="polite">
+            <span className="toast-dot" />
+            <span>
+              <strong>&#10003; Verified Book Reader Access:</strong> Review &amp; Discussion features unlocked.
+            </span>
+          </aside>
+        )}
       </header>
 
       {/* Oxford-Style Side Menu Drawer & Backdrop */}

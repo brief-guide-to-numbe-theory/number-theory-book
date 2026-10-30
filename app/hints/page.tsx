@@ -57,6 +57,9 @@ export default function HintsPage() {
             <Link className="navy-button" href="/authors">
               Meet the authors <span>&rarr;</span>
             </Link>
+            <Link className="navy-button" href="/reviews">
+              Reviews <span>&rarr;</span>
+            </Link>
           </div>
 
           <div data-reveal className="d1">

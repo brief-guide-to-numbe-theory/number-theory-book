@@ -54,6 +54,9 @@ export default function AuthorsPage() {
             <Link className="navy-button" href="/hints">
               Hints <span>&rarr;</span>
             </Link>
+            <Link className="navy-button" href="/reviews">
+              Reviews <span>&rarr;</span>
+            </Link>
           </div>
 
           <div className="author-grid">

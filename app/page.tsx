@@ -65,6 +65,9 @@ export default function Home() {
                   <Link className="navy-button" href="/hints">
                     Hints <span>&rarr;</span>
                   </Link>
+                  <Link className="navy-button" href="/reviews">
+                    Reviews <span>&rarr;</span>
+                  </Link>
                 </div>
               </div>
             </div>
