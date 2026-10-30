@@ -6,7 +6,8 @@ export interface ReviewItem {
   id: string;
   type: ReviewType;
   name: string;
-  role?: string;
+  role?: string; // Status (e.g., Grade 11 Student, Math Educator)
+  mathBackground?: string; // Math Background (e.g., RMO Awardee, INMO Awardee)
   hasBought: boolean;
   rating?: number; // 1 to 5 (only relevant for reviews)
   content: string;
@@ -18,6 +19,7 @@ export interface ReviewSubmissionPayload {
   type: ReviewType;
   name: string;
   role?: string;
+  mathBackground?: string;
   hasBought: boolean;
   rating?: number;
   content: string;

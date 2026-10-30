@@ -33,6 +33,7 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
   const [hoverRating, setHoverRating] = useState<number>(0);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+  const [mathBackground, setMathBackground] = useState("");
   const [content, setContent] = useState("");
 
   const [submitting, setSubmitting] = useState(false);
@@ -118,6 +119,7 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
           type: formType,
           name: name.trim(),
           role: role.trim() || undefined,
+          mathBackground: mathBackground.trim() || undefined,
           hasBought,
           rating: formType === "review" ? rating : undefined,
           content: content.trim(),
@@ -133,6 +135,7 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
         setSubmitSuccess(true);
         setName("");
         setRole("");
+        setMathBackground("");
         setContent("");
       }
     } catch {
@@ -366,7 +369,13 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                           </span>
                         )}
                       </div>
-                      {rev.role && <p className="review-author-role">{rev.role}</p>}
+                      {(rev.role || rev.mathBackground) && (
+                        <p className="review-author-role">
+                          {rev.role}
+                          {rev.role && rev.mathBackground && " • "}
+                          {rev.mathBackground}
+                        </p>
+                      )}
                     </div>
 
                     <div className="review-card-meta">
@@ -450,7 +459,13 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                           </span>
                         )}
                       </div>
-                      {com.role && <p className="review-author-role">{com.role}</p>}
+                      {(com.role || com.mathBackground) && (
+                        <p className="review-author-role">
+                          {com.role}
+                          {com.role && com.mathBackground && " • "}
+                          {com.mathBackground}
+                        </p>
+                      )}
                     </div>
 
                     <time className="review-date">{formatDate(com.createdAt)}</time>
@@ -618,18 +633,34 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                   />
                 </div>
 
-                {/* Role / Affiliation */}
+                {/* Status */}
                 <div className="form-field-group">
                   <label htmlFor="revRole" className="form-label">
-                    Role / Affiliation <span className="opt">(Optional)</span>
+                    Status <span className="opt">(Optional)</span>
                   </label>
                   <input
                     id="revRole"
                     type="text"
                     maxLength={100}
-                    placeholder="e.g., INMO Awardee, Grade 11 Student, Math Educator"
+                    placeholder="e.g., Grade 11 Student, Math Educator"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
+                    className="modal-text-input"
+                  />
+                </div>
+
+                {/* Math Background */}
+                <div className="form-field-group">
+                  <label htmlFor="revMathBackground" className="form-label">
+                    Math Background <span className="opt">(Optional)</span>
+                  </label>
+                  <input
+                    id="revMathBackground"
+                    type="text"
+                    maxLength={100}
+                    placeholder="e.g., RMO Awardee, INMO Awardee"
+                    value={mathBackground}
+                    onChange={(e) => setMathBackground(e.target.value)}
                     className="modal-text-input"
                   />
                 </div>
@@ -647,7 +678,7 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                     maxLength={3000}
                     placeholder={
                       formType === "review"
-                        ? "Share your experience with the explanations, practice problems, or 500 hints..."
+                        ? "Share your experience with the explanations, solved examples and Practice Problems."
                         : "Ask a question about prerequisites, chapters, or share a thought..."
                     }
                     value={content}

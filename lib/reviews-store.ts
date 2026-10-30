@@ -350,6 +350,7 @@ export async function createReviewSubmission(
     type: payload.type === "comment" ? "comment" : "review",
     name: payload.name.trim(),
     role: payload.role?.trim() || undefined,
+    mathBackground: payload.mathBackground?.trim() || undefined,
     hasBought: Boolean(payload.hasBought),
     rating:
       payload.type === "review" && payload.rating

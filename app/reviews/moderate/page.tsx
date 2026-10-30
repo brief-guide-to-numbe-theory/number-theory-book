@@ -300,7 +300,13 @@ export default function ModeratePage() {
                               </span>
                             )}
                           </div>
-                          {item.role && <p className="review-author-role">{item.role}</p>}
+                          {(item.role || item.mathBackground) && (
+                            <p className="review-author-role">
+                              {item.role}
+                              {item.role && item.mathBackground && " • "}
+                              {item.mathBackground}
+                            </p>
+                          )}
                         </div>
 
                         <div className="moderate-meta-right">

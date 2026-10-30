@@ -67,7 +67,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { type, name, role, hasBought, rating, content, readerCode } = body;
+    const { type, name, role, mathBackground, hasBought, rating, content, readerCode } = body;
 
     // Verify Reader Access Code (F6z@)
     const READER_ACCESS_CODE = "F6z@";
@@ -117,6 +117,10 @@ export async function POST(request: Request) {
       type: type === "comment" ? "comment" : "review",
       name: name.trim(),
       role: role && typeof role === "string" ? role.trim() : undefined,
+      mathBackground:
+        mathBackground && typeof mathBackground === "string"
+          ? mathBackground.trim()
+          : undefined,
       hasBought: Boolean(hasBought),
       rating:
         type !== "comment" && rating
