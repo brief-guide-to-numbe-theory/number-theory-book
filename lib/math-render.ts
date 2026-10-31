@@ -29,6 +29,9 @@ export function renderMathInText(rawText: string): string {
           return katex.renderToString(math, {
             displayMode: true,
             throwOnError: false,
+            trust: false,
+            maxExpand: 1000,
+            maxSize: 20,
           });
         } catch {
           return `<code>${escapeHtml(part)}</code>`;
@@ -39,6 +42,9 @@ export function renderMathInText(rawText: string): string {
           return katex.renderToString(math, {
             displayMode: false,
             throwOnError: false,
+            trust: false,
+            maxExpand: 1000,
+            maxSize: 20,
           });
         } catch {
           return `<code>${escapeHtml(part)}</code>`;

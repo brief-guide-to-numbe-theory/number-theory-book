@@ -3,9 +3,6 @@ import path from "path";
 import crypto from "crypto";
 import { ReviewItem, ReviewSubmissionPayload, ReviewsStats } from "./types";
 
-const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || "";
-const FALLBACK_PASSCODE_HASH =
-  "8ebc00eb77031ea02f69b227a641f5d9a8aa06eec0b072d0a534bde9bfce89e5";
 const REDIS_KEY = "abgnt_reviews";
 
 // Path definitions for local/disk fallback
@@ -17,47 +14,23 @@ let memoryCache: ReviewItem[] | null = null;
 
 const DEFAULT_SEEDS: ReviewItem[] = [];
 
-function cleanEnvValue(str: string | undefined): string {
-  if (!str) return "";
-  let s = str.trim();
-  // If the user accidentally pasted "KEY=VALUE" into the value field in Vercel
-  if (s.includes("=")) {
-    const parts = s.split("=");
-    if (parts.length > 1) {
-      s = parts.slice(1).join("=").trim();
-    }
-  }
-  // Strip leading and trailing quotes (both double and single)
-  s = s.replace(/^["']+|["']+$/g, "").trim();
-  return s;
-}
-
 /**
  * Check whether Upstash Redis (or Vercel KV) environment variables are available.
  */
 function getUpstashCredentials(): { url: string; token: string } | null {
-  const rawUrl =
+  const url = (
     process.env.UPSTASH_REDIS_REST_URL ||
     process.env.KV_REST_API_URL ||
     process.env.UPSTASH_REDIS_URL ||
-    process.env.UPSTASH_REST_API_URL ||
-    process.env.REDIS_REST_URL ||
-    "";
+    ""
+  ).trim();
 
-  const rawToken =
+  const token = (
     process.env.UPSTASH_REDIS_REST_TOKEN ||
     process.env.KV_REST_API_TOKEN ||
     process.env.UPSTASH_REDIS_TOKEN ||
-    process.env.UPSTASH_REST_API_TOKEN ||
-    process.env.REDIS_REST_TOKEN ||
-    "";
-
-  let url = cleanEnvValue(rawUrl).replace(/\/+$/, "");
-  const token = cleanEnvValue(rawToken);
-
-  if (url && !url.startsWith("http://") && !url.startsWith("https://")) {
-    url = "https://" + url;
-  }
+    ""
+  ).trim();
 
   if (url && token) {
     return { url, token };
@@ -69,107 +42,59 @@ export function isUpstashConfigured(): boolean {
   return getUpstashCredentials() !== null;
 }
 
-export async function testUpstashConnection(): Promise<any> {
-  const creds = getUpstashCredentials();
-  if (!creds) {
-    return { configured: false, reason: "Credentials missing or null" };
-  }
-
-  try {
-    const res = await fetch(creds.url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${creds.token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(["PING"]),
-      cache: "no-store",
-    });
-
-    const bodyText = await res.text().catch(() => "");
-    return {
-      configured: true,
-      url: creds.url,
-      tokenLength: creds.token.length,
-      status: res.status,
-      statusText: res.statusText,
-      response: bodyText.slice(0, 300),
-    };
-  } catch (err: any) {
-    return {
-      configured: true,
-      url: creds.url,
-      tokenLength: creds.token.length,
-      error: err.message,
-    };
-  }
-}
-
 /**
  * Execute a command against Upstash Redis REST API.
  */
 async function upstashCommand(command: (string | number)[]): Promise<any> {
   const creds = getUpstashCredentials();
-  if (!creds) return null;
+  if (!creds) throw new Error("Upstash credentials not configured");
 
-  try {
-    const res = await fetch(creds.url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${creds.token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(command),
-      cache: "no-store",
-    });
+  const res = await fetch(creds.url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${creds.token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(command),
+    cache: "no-store",
+  });
 
-    if (!res.ok) {
-      const errorText = await res.text().catch(() => "");
-      console.warn(
-        `Upstash REST API returned HTTP ${res.status} ${res.statusText}:`,
-        errorText
-      );
-      return null;
-    }
-
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.error("Upstash Redis fetch error:", err);
-    return null;
+  if (!res.ok) {
+    const errorText = await res.text().catch(() => "");
+    throw new Error(
+      `Upstash REST API returned HTTP ${res.status} ${res.statusText}: ${errorText}`
+    );
   }
+
+  return res.json();
 }
 
 /**
  * Read reviews from Upstash Redis.
- * Returns ReviewItem[] if found, null if key doesn't exist or error.
+ * Returns { exists: true, data: ReviewItem[] } or { exists: false, data: null }.
+ * Throws if the network or Upstash command fails.
  */
-async function readFromUpstash(): Promise<ReviewItem[] | null> {
-  try {
-    const data = await upstashCommand(["GET", REDIS_KEY]);
-    if (!data || data.result === null || data.result === undefined) {
-      return null;
-    }
-
-    let parsed = data.result;
-    if (typeof parsed === "string") {
-      try {
-        parsed = JSON.parse(parsed);
-      } catch (e) {
-        console.warn("Failed to parse Upstash Redis string as JSON:", e);
-        return null;
-      }
-    }
-
-    if (Array.isArray(parsed)) {
-      return parsed as ReviewItem[];
-    }
-
-    return null;
-  } catch (err) {
-    console.error("Failed to read from Upstash:", err);
-    return null;
+async function readFromUpstash(): Promise<{ exists: boolean; data: ReviewItem[] | null }> {
+  const data = await upstashCommand(["GET", REDIS_KEY]);
+  if (!data || data.result === null || data.result === undefined) {
+    return { exists: false, data: null };
   }
+
+  let parsed = data.result;
+  if (typeof parsed === "string") {
+    try {
+      parsed = JSON.parse(parsed);
+    } catch (e) {
+      console.warn("Failed to parse Upstash Redis string as JSON:", e);
+      return { exists: false, data: null };
+    }
+  }
+
+  if (Array.isArray(parsed)) {
+    return { exists: true, data: parsed as ReviewItem[] };
+  }
+
+  return { exists: false, data: null };
 }
 
 /**
@@ -268,17 +193,30 @@ async function writeToStorage(items: ReviewItem[]): Promise<void> {
  */
 export async function getAllReviews(): Promise<ReviewItem[]> {
   if (isUpstashConfigured()) {
-    const upstashData = await readFromUpstash();
-    if (Array.isArray(upstashData)) {
-      memoryCache = upstashData;
-      return upstashData;
-    }
+    try {
+      const upstashRes = await readFromUpstash();
+      if (upstashRes.exists && Array.isArray(upstashRes.data)) {
+        memoryCache = upstashRes.data;
+        return upstashRes.data;
+      }
 
-    // If key didn't exist in Upstash yet, seed it with disk/default data
-    const diskData = readFromDisk();
-    await writeToUpstash(diskData);
-    memoryCache = diskData;
-    return diskData;
+      // ONLY seed if key genuinely doesn't exist in Upstash yet
+      if (!upstashRes.exists) {
+        const diskData = readFromDisk();
+        await writeToUpstash(diskData);
+        memoryCache = diskData;
+        return diskData;
+      }
+    } catch (err) {
+      console.error(
+        "Upstash error in getAllReviews (falling back to disk/cache without overwriting Upstash):",
+        err
+      );
+      if (memoryCache && Array.isArray(memoryCache)) {
+        return memoryCache;
+      }
+      return readFromDisk();
+    }
   }
 
   // Fallback when Upstash is not configured (e.g. offline or local development)
@@ -338,24 +276,12 @@ export async function getApprovedData(): Promise<{
   return { reviews, comments, stats };
 }
 
-function hashPasscode(code: string): string {
-  return crypto
-    .createHash("sha256")
-    .update("abgnt-editorial-salt:" + code.trim())
-    .digest("hex");
-}
-
-export function verifyAdminPasscode(inputPasscode: string): boolean {
-  if (!inputPasscode) return false;
-  const clean = inputPasscode.trim();
-
-  // 1. Check custom Vercel environment variable if provided
-  if (ADMIN_PASSCODE) {
-    if (clean === ADMIN_PASSCODE.trim()) return true;
-  }
-
-  // 2. Check cryptographic salted hash (EulerTotient@2026)
-  return hashPasscode(clean) === FALLBACK_PASSCODE_HASH;
+export function verifyAdminPasscode(input: string): boolean {
+  const expected = process.env.ADMIN_PASSCODE;
+  if (!expected || !input) return false;
+  const a = crypto.createHash("sha256").update(input.trim()).digest();
+  const b = crypto.createHash("sha256").update(expected.trim()).digest();
+  return a.length === b.length && crypto.timingSafeEqual(a, b);
 }
 
 export async function createReviewSubmission(
@@ -371,8 +297,10 @@ export async function createReviewSubmission(
     mathBackground: payload.mathBackground?.trim() || undefined,
     hasBought: Boolean(payload.hasBought),
     rating:
-      payload.type === "review" && payload.rating
-        ? Math.max(1, Math.min(5, Number(payload.rating)))
+      payload.type === "review" &&
+      typeof payload.rating === "number" &&
+      Number.isFinite(payload.rating)
+        ? Math.max(1, Math.min(5, Math.round(payload.rating)))
         : undefined,
     content: payload.content.trim(),
     status: "pending", // ALWAYS pending approval!

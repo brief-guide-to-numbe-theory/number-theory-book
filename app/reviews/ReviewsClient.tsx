@@ -17,7 +17,7 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
   const [data, setData] = useState(initialData);
   const [activeTab, setActiveTab] = useState<"all" | "reviews" | "comments">("all");
 
-  // Reader QR Code verification states (Code: F6z@)
+  // Reader QR Code verification states
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [readerCode, setReaderCode] = useState("");
   const [unlockModalOpen, setUnlockModalOpen] = useState(false);
@@ -43,30 +43,43 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
   useEffect(() => {
     // 1. Check localStorage
     const saved = localStorage.getItem("abgnt-reader-code");
-    if (saved && saved.trim() === "F6z@") {
+    if (saved) {
       setIsUnlocked(true);
-      setReaderCode("F6z@");
+      setReaderCode(saved);
     }
 
-    // 2. Check query parameter (?code=F6z@ or ?code=F6z%40)
+    // 2. Check query parameter (?code=...)
     try {
       const params = new URLSearchParams(window.location.search);
       const code = params.get("code");
-      if (code && (code.trim() === "F6z@" || decodeURIComponent(code).trim() === "F6z@")) {
-        localStorage.setItem("abgnt-reader-code", "F6z@");
-        setIsUnlocked(true);
-        setReaderCode("F6z@");
+      if (code) {
+        const clean = decodeURIComponent(code).trim();
+        fetch("/api/reviews/verify-code", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: clean }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data && data.valid) {
+              localStorage.setItem("abgnt-reader-code", clean);
+              setIsUnlocked(true);
+              setReaderCode(clean);
 
-        // Clean query parameter from URL bar
-        const url = new URL(window.location.href);
-        url.searchParams.delete("code");
-        window.history.replaceState({}, "", url.pathname + (url.search ? url.search : ""));
+              // Clean query parameter from URL bar
+              const url = new URL(window.location.href);
+              url.searchParams.delete("code");
+              window.history.replaceState({}, "", url.pathname + (url.search ? url.search : ""));
+            }
+          })
+          .catch(() => {});
       }
     } catch {}
 
     const onUnlocked = () => {
       setIsUnlocked(true);
-      setReaderCode("F6z@");
+      const s = localStorage.getItem("abgnt-reader-code") || "";
+      setReaderCode(s);
     };
     window.addEventListener("abgnt-reader-unlocked", onUnlocked);
     return () => window.removeEventListener("abgnt-reader-unlocked", onUnlocked);
@@ -154,7 +167,7 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
     if (elem) {
       elem.scrollIntoView({ behavior: "smooth", block: "start" });
       setTimeout(() => {
-        if (isUnlocked || localStorage.getItem("abgnt-reader-code") === "F6z@") {
+        if (isUnlocked || localStorage.getItem("abgnt-reader-code")) {
           const input = document.getElementById("revName") as HTMLInputElement | null;
           if (input) input.focus();
         } else {
@@ -181,20 +194,35 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
     }
   }, []);
 
-  function handleVerifyCode(e: React.FormEvent) {
+  async function handleVerifyCode(e: React.FormEvent) {
     e.preventDefault();
     const clean = codeInput.trim();
-    if (clean === "F6z@") {
-      localStorage.setItem("abgnt-reader-code", "F6z@");
-      setIsUnlocked(true);
-      setReaderCode("F6z@");
-      setUnlockModalOpen(false);
-      setTimeout(() => {
-        const input = document.getElementById("revName") as HTMLInputElement | null;
-        if (input) input.focus();
-      }, 300);
-    } else {
-      setCodeError("Incorrect code. Please check the back of your book or scan the QR code.");
+    if (!clean) return;
+
+    try {
+      const res = await fetch("/api/reviews/verify-code", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: clean }),
+      });
+      const data = await res.json();
+      if (data && data.valid) {
+        localStorage.setItem("abgnt-reader-code", clean);
+        setIsUnlocked(true);
+        setReaderCode(clean);
+        setUnlockModalOpen(false);
+        setCodeError("");
+        setTimeout(() => {
+          const input = document.getElementById("revName") as HTMLInputElement | null;
+          if (input) input.focus();
+        }, 300);
+      } else {
+        setCodeError(
+          data?.error || "Incorrect code. Please check the back of your book or scan the QR code."
+        );
+      }
+    } catch {
+      setCodeError("Network error. Please try again.");
     }
   }
 

@@ -1,10 +1,19 @@
 import { NextResponse } from "next/server";
 import { moderateReview } from "../../../../lib/reviews-store";
+import { checkAdminRateLimit } from "../../../../lib/ratelimit";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
   try {
+    const rateLimit = await checkAdminRateLimit(request);
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { success: false, error: "Too many admin attempts. Please wait 5 minutes." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const { passcode, id, action } = body;
 

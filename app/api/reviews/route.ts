@@ -5,10 +5,9 @@ import {
   verifyAdminPasscode,
   createReviewSubmission,
   calculateStats,
-  isUpstashConfigured,
-  testUpstashConnection,
 } from "../../../lib/reviews-store";
 import { ReviewSubmissionPayload } from "../../../lib/types";
+import { checkAdminRateLimit } from "../../../lib/ratelimit";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -23,24 +22,29 @@ export async function GET(request: Request) {
   try {
     const adminPasscode = request.headers.get("x-admin-passcode");
 
-    // If valid admin passcode supplied in header, return all reviews (pending, approved, rejected)
-    if (adminPasscode && verifyAdminPasscode(adminPasscode)) {
-      const all = await getAllReviews();
-      const stats = calculateStats(all);
-      const connTest = await testUpstashConnection();
-      return NextResponse.json(
-        {
-          success: true,
-          isAdmin: true,
-          items: all,
-          stats,
-          debug: {
-            configured: isUpstashConfigured(),
-            connection: connTest,
+    if (adminPasscode) {
+      const rateLimit = await checkAdminRateLimit(request);
+      if (!rateLimit.success) {
+        return NextResponse.json(
+          { success: false, error: "Too many admin attempts. Please wait 5 minutes." },
+          { status: 429, headers: NO_CACHE_HEADERS }
+        );
+      }
+
+      // If valid admin passcode supplied in header, return all reviews (pending, approved, rejected)
+      if (verifyAdminPasscode(adminPasscode)) {
+        const all = await getAllReviews();
+        const stats = calculateStats(all);
+        return NextResponse.json(
+          {
+            success: true,
+            isAdmin: true,
+            items: all,
+            stats,
           },
-        },
-        { headers: NO_CACHE_HEADERS }
-      );
+          { headers: NO_CACHE_HEADERS }
+        );
+      }
     }
 
     // Otherwise, return only public approved reviews & comments
@@ -69,8 +73,8 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { type, name, role, mathBackground, hasBought, rating, content, readerCode } = body;
 
-    // Verify Reader Access Code (F6z@)
-    const READER_ACCESS_CODE = "F6z@";
+    // Verify Reader Access Code
+    const READER_ACCESS_CODE = (process.env.READER_ACCESS_CODE || "F6z@").trim();
     const providedCode = (readerCode || request.headers.get("x-reader-code") || "").trim();
 
     if (providedCode !== READER_ACCESS_CODE) {
@@ -113,6 +117,26 @@ export async function POST(request: Request) {
       );
     }
 
+    if (role && typeof role === "string" && role.trim().length > 300) {
+      return NextResponse.json(
+        { success: false, error: "Status must be less than 300 characters" },
+        { status: 400 }
+      );
+    }
+
+    if (mathBackground && typeof mathBackground === "string" && mathBackground.trim().length > 300) {
+      return NextResponse.json(
+        { success: false, error: "Math background must be less than 300 characters" },
+        { status: 400 }
+      );
+    }
+
+    const numericRating = typeof rating === "number" ? rating : Number(rating);
+    const validRating =
+      type !== "comment" && Number.isFinite(numericRating)
+        ? Math.max(1, Math.min(5, Math.round(numericRating)))
+        : undefined;
+
     const payload: ReviewSubmissionPayload = {
       type: type === "comment" ? "comment" : "review",
       name: name.trim(),
@@ -122,10 +146,7 @@ export async function POST(request: Request) {
           ? mathBackground.trim()
           : undefined,
       hasBought: Boolean(hasBought),
-      rating:
-        type !== "comment" && rating
-          ? Math.max(1, Math.min(5, Number(rating)))
-          : undefined,
+      rating: validRating,
       content: content.trim(),
     };
 

@@ -65,23 +65,35 @@ export default function Header() {
   useEffect(() => {
     setMounted(true);
 
-    // Check QR code reader unlock (?code=F6z@ or ?code=F6z%40)
+    // Check QR code reader unlock
     try {
       const params = new URLSearchParams(window.location.search);
       const code = params.get("code");
-      if (code && (code.trim() === "F6z@" || decodeURIComponent(code).trim() === "F6z@")) {
-        localStorage.setItem("abgnt-reader-code", "F6z@");
-        setIsReaderVerified(true);
-        setReaderUnlockedToast(true);
-        window.dispatchEvent(new Event("abgnt-reader-unlocked"));
+      if (code) {
+        const clean = decodeURIComponent(code).trim();
+        fetch("/api/reviews/verify-code", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code: clean }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data && data.valid) {
+              localStorage.setItem("abgnt-reader-code", clean);
+              setIsReaderVerified(true);
+              setReaderUnlockedToast(true);
+              window.dispatchEvent(new Event("abgnt-reader-unlocked"));
 
-        // Clean up URL without reloading page
-        const url = new URL(window.location.href);
-        url.searchParams.delete("code");
-        window.history.replaceState({}, "", url.pathname + (url.search ? url.search : ""));
+              // Clean up URL without reloading page
+              const url = new URL(window.location.href);
+              url.searchParams.delete("code");
+              window.history.replaceState({}, "", url.pathname + (url.search ? url.search : ""));
 
-        setTimeout(() => setReaderUnlockedToast(false), 6000);
-      } else if (localStorage.getItem("abgnt-reader-code") === "F6z@") {
+              setTimeout(() => setReaderUnlockedToast(false), 6000);
+            }
+          })
+          .catch(() => {});
+      } else if (localStorage.getItem("abgnt-reader-code")) {
         setIsReaderVerified(true);
       }
     } catch {}
