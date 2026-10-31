@@ -568,7 +568,7 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                 <input
                   id="inlineCodeInput"
                   type="text"
-                  placeholder="e.g., F6z@"
+                  placeholder="Enter 4-character code..."
                   value={codeInput}
                   onChange={(e) => {
                     setCodeInput(e.target.value);
