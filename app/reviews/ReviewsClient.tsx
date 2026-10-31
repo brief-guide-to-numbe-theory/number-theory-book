@@ -15,7 +15,6 @@ interface ReviewsClientProps {
 
 export default function ReviewsClient({ initialData }: ReviewsClientProps) {
   const [data, setData] = useState(initialData);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"all" | "reviews" | "comments">("all");
 
   // Reader QR Code verification states (Code: F6z@)
@@ -145,17 +144,42 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
     }
   }
 
-  // Request modal: checks if reader is unlocked via QR or code
-  function requestOpenModal(type: "review" | "comment", boughtDefault: boolean = true) {
-    if (isUnlocked) {
-      handleOpenModal(type, boughtDefault);
-    } else {
-      setPendingActionType(type);
-      setCodeInput("");
-      setCodeError("");
-      setUnlockModalOpen(true);
+  // Scroll smoothly down to the review form
+  function scrollToReviewForm(type: "review" | "comment" = "review") {
+    setFormType(type);
+    if (type === "review") {
+      setHasBought(true);
+    }
+    const elem = document.getElementById("write-review");
+    if (elem) {
+      elem.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        if (isUnlocked || localStorage.getItem("abgnt-reader-code") === "F6z@") {
+          const input = document.getElementById("revName") as HTMLInputElement | null;
+          if (input) input.focus();
+        } else {
+          const codeInputElem = document.getElementById("inlineCodeInput") as HTMLInputElement | null;
+          if (codeInputElem) codeInputElem.focus();
+        }
+      }, 500);
     }
   }
+
+  // Handle URL hash on mount (e.g. /reviews#write-review or /reviews#write)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === "#write-review" || hash === "#write" || hash === "#review") {
+        setTimeout(() => {
+          scrollToReviewForm("review");
+        }, 600);
+      } else if (hash === "#comment" || hash === "#comments") {
+        setTimeout(() => {
+          scrollToReviewForm("comment");
+        }, 600);
+      }
+    }
+  }, []);
 
   function handleVerifyCode(e: React.FormEvent) {
     e.preventDefault();
@@ -165,18 +189,13 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
       setIsUnlocked(true);
       setReaderCode("F6z@");
       setUnlockModalOpen(false);
-      handleOpenModal(pendingActionType, pendingActionType === "review");
+      setTimeout(() => {
+        const input = document.getElementById("revName") as HTMLInputElement | null;
+        if (input) input.focus();
+      }, 300);
     } else {
       setCodeError("Incorrect code. Please check the back of your book or scan the QR code.");
     }
-  }
-
-  function handleOpenModal(type: "review" | "comment", boughtDefault: boolean = true) {
-    setFormType(type);
-    setHasBought(boughtDefault);
-    setSubmitSuccess(false);
-    setSubmitError("");
-    setIsModalOpen(true);
   }
 
   // Format date helper
@@ -213,18 +232,18 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
         <button
           type="button"
           className="primary-button"
-          onClick={() => requestOpenModal("review", true)}
-          title={isUnlocked ? "Write a Review" : "Reader Verification Required (Code from back cover)"}
+          onClick={() => scrollToReviewForm("review")}
+          title="Write a Review"
         >
-          Write a Review {isUnlocked ? <span>&rarr;</span> : <span className="btn-lock-tag">🔒 Code Required</span>}
+          Write a Review <span>&darr;</span>
         </button>
         <button
           type="button"
           className="navy-button"
-          onClick={() => requestOpenModal("comment", false)}
-          title={isUnlocked ? "Leave a Comment" : "Reader Verification Required (Code from back cover)"}
+          onClick={() => scrollToReviewForm("comment")}
+          title="Leave a Comment"
         >
-          Leave a Comment {isUnlocked ? <span>&rarr;</span> : <span className="btn-lock-tag">🔒 Code Required</span>}
+          Leave a Comment <span>&darr;</span>
         </button>
 
         {isUnlocked && (
@@ -292,9 +311,9 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
           <button
             type="button"
             className="primary-button reviews-cta-btn"
-            onClick={() => requestOpenModal("review", true)}
+            onClick={() => scrollToReviewForm("review")}
           >
-            Review this Book <span>&rarr;</span>
+            Review this Book <span>&darr;</span>
           </button>
         </div>
       </div>
@@ -335,9 +354,9 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
             <button
               type="button"
               className="reviews-inline-btn"
-              onClick={() => requestOpenModal("review", true)}
+              onClick={() => scrollToReviewForm("review")}
             >
-              + Submit a Review
+              + Write a Review
             </button>
           </div>
 
@@ -347,9 +366,9 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
               <button
                 type="button"
                 className="primary-button"
-                onClick={() => requestOpenModal("review", true)}
+                onClick={() => scrollToReviewForm("review")}
               >
-                Write the First Review <span>&rarr;</span>
+                Write the First Review <span>&darr;</span>
               </button>
             </div>
           ) : (
@@ -424,7 +443,7 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
             <button
               type="button"
               className="reviews-inline-btn"
-              onClick={() => requestOpenModal("comment", false)}
+              onClick={() => scrollToReviewForm("comment")}
             >
               + Post a Comment
             </button>
@@ -436,9 +455,9 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
               <button
                 type="button"
                 className="navy-button"
-                onClick={() => requestOpenModal("comment", false)}
+                onClick={() => scrollToReviewForm("comment")}
               >
-                Post a Comment <span>&rarr;</span>
+                Post a Comment <span>&darr;</span>
               </button>
             </div>
           ) : (
@@ -484,78 +503,92 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
         </section>
       )}
 
-      {/* SUBMISSION MODAL */}
-      {isModalOpen && (
-        <div
-          className="review-modal-backdrop"
-          onClick={() => !submitting && setIsModalOpen(false)}
-          aria-modal="true"
-          role="dialog"
-        >
-          <div
-            className="review-modal-window"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="review-modal-header">
-              <div>
-                <span className="review-modal-tag">Reader Feedback</span>
-                <h3 className="review-modal-title">
-                  {formType === "review" ? "Submit a Book Review" : "Post a Comment"}
-                </h3>
-              </div>
+      {/* SECTION 3: WRITE A REVIEW OR COMMENT (DESTINATION FOR WRITE A REVIEW) */}
+      <section className="reviews-sub-block" id="write-review" data-reveal style={{ scrollMarginTop: "100px" }}>
+        <div className="reviews-sub-header">
+          <div>
+            <span className="reviews-sub-tag">Section 3 &bull; Reader Submissions</span>
+            <h3 className="reviews-sub-title">
+              {formType === "review" ? "Write a Book Review" : "Post a Comment or Query"}
+            </h3>
+          </div>
+          <div className="pill-choice-row" style={{ maxWidth: "380px" }}>
+            <button
+              type="button"
+              className={`pill-choice-btn ${formType === "review" ? "selected" : ""}`}
+              onClick={() => setFormType("review")}
+            >
+              Book Review &amp; Rating
+            </button>
+            <button
+              type="button"
+              className={`pill-choice-btn ${formType === "comment" ? "selected" : ""}`}
+              onClick={() => setFormType("comment")}
+            >
+              General Comment / Query
+            </button>
+          </div>
+        </div>
+
+        <div className="write-review-card-wrapper">
+          {submitSuccess ? (
+            <div className="review-modal-success">
+              <span className="success-icon">&#10003;</span>
+              <h4>Thank You for Your Feedback!</h4>
+              <p>
+                Your submission has been securely delivered to authors Aritra Saha
+                and Riddhiman Seal. To maintain academic quality and prevent spam,
+                it will be published on this page once approved.
+              </p>
               <button
                 type="button"
-                className="review-modal-close"
-                onClick={() => !submitting && setIsModalOpen(false)}
-                aria-label="Close form"
+                className="navy-button"
+                style={{ marginTop: "24px" }}
+                onClick={() => {
+                  setSubmitSuccess(false);
+                  setName("");
+                  setRole("");
+                  setMathBackground("");
+                  setContent("");
+                }}
               >
-                &times;
+                Submit Another Feedback <span>&rarr;</span>
               </button>
             </div>
-
-            {submitSuccess ? (
-              <div className="review-modal-success">
-                <span className="success-icon">&#10003;</span>
-                <h4>Thank You for Your Feedback!</h4>
+          ) : !isUnlocked ? (
+            <div className="write-review-unlock-box">
+              <span className="unlock-box-icon">🔒</span>
+              <div className="unlock-box-header">
+                <h4>Reader Verification Required</h4>
                 <p>
-                  Your submission has been securely delivered to authors Aritra Saha
-                  and Riddhiman Seal. To maintain academic quality and prevent spam,
-                  it will be published on this page once approved.
+                  To ensure genuine feedback, submitting reviews and comments is available exclusively to readers with the book. Enter the 4-character code printed on the back cover (or scan the QR code):
                 </p>
-                <button
-                  type="button"
-                  className="primary-button"
-                  style={{ marginTop: "24px" }}
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Return to Reviews <span>&rarr;</span>
-                </button>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="review-modal-form">
-                {/* Type Switcher */}
-                <div className="form-field-group">
-                  <label className="form-label">Submission Category</label>
-                  <div className="pill-choice-row">
-                    <button
-                      type="button"
-                      className={`pill-choice-btn ${formType === "review" ? "selected" : ""}`}
-                      onClick={() => setFormType("review")}
-                    >
-                      Book Review &amp; Rating
-                    </button>
-                    <button
-                      type="button"
-                      className={`pill-choice-btn ${formType === "comment" ? "selected" : ""}`}
-                      onClick={() => setFormType("comment")}
-                    >
-                      General Comment / Query
-                    </button>
-                  </div>
-                </div>
-
-                {/* Question: Did you buy the book? */}
+              <form onSubmit={handleVerifyCode} className="unlock-inline-form">
+                <input
+                  id="inlineCodeInput"
+                  type="text"
+                  placeholder="e.g., F6z@"
+                  value={codeInput}
+                  onChange={(e) => {
+                    setCodeInput(e.target.value);
+                    setCodeError("");
+                  }}
+                  className="modal-text-input unlock-code-input"
+                  maxLength={10}
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                />
+                <button type="submit" className="primary-button">
+                  Unlock Form <span>&rarr;</span>
+                </button>
+              </form>
+              {codeError && <p className="code-error-msg">{codeError}</p>}
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="review-modal-form">
+              {/* Question: Did you buy the book? (Shown for reviews) */}
+              {formType === "review" && (
                 <div className="form-field-group purchase-question-box">
                   <label className="form-label">
                     Have you bought or read the book? <span className="req">*</span>
@@ -582,148 +615,152 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                       : "Open to prospective readers, students, and educators."}
                   </span>
                 </div>
+              )}
 
-                {/* Rating (1 to 5 Stars) - Shown for reviews */}
-                {formType === "review" && (
-                  <div className="form-field-group">
-                    <label className="form-label">
-                      Your Rating <span className="req">*</span>
-                    </label>
-                    <div className="interactive-stars-row">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <button
-                          key={star}
-                          type="button"
-                          className={`star-select-btn ${
-                            star <= (hoverRating || rating) ? "active" : ""
-                          }`}
-                          onMouseEnter={() => setHoverRating(star)}
-                          onMouseLeave={() => setHoverRating(0)}
-                          onClick={() => setRating(star)}
-                          aria-label={`Rate ${star} out of 5 stars`}
-                        >
-                          ★
-                        </button>
-                      ))}
-                      <span className="star-selected-text">
-                        {rating === 5 && "5 / 5 — Exceptional"}
-                        {rating === 4 && "4 / 5 — Very Good"}
-                        {rating === 3 && "3 / 5 — Good"}
-                        {rating === 2 && "2 / 5 — Fair"}
-                        {rating === 1 && "1 / 5 — Poor"}
-                      </span>
-                    </div>
+              {/* Rating (1 to 5 Stars) - Shown for reviews */}
+              {formType === "review" && (
+                <div className="form-field-group">
+                  <label className="form-label">
+                    Your Rating <span className="req">*</span>
+                  </label>
+                  <div className="interactive-stars-row">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        type="button"
+                        className={`star-select-btn ${
+                          star <= (hoverRating || rating) ? "active" : ""
+                        }`}
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(0)}
+                        onClick={() => setRating(star)}
+                        aria-label={`Rate ${star} out of 5 stars`}
+                      >
+                        &#9733;
+                      </button>
+                    ))}
+                    <span className="star-selected-text">
+                      {hoverRating || rating} / 5 &mdash;{" "}
+                      {(hoverRating || rating) === 5
+                        ? "Exceptional"
+                        : (hoverRating || rating) === 4
+                        ? "Very Good"
+                        : (hoverRating || rating) === 3
+                        ? "Good"
+                        : (hoverRating || rating) === 2
+                        ? "Fair"
+                        : "Needs Improvement"}
+                    </span>
                   </div>
-                )}
-
-                {/* Name */}
-                <div className="form-field-group">
-                  <label htmlFor="revName" className="form-label">
-                    Your Full Name <span className="req">*</span>
-                  </label>
-                  <input
-                    id="revName"
-                    type="text"
-                    required
-                    maxLength={100}
-                    placeholder="e.g., Rohan Sharma"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="modal-text-input"
-                  />
                 </div>
+              )}
 
-                {/* Status */}
-                <div className="form-field-group">
-                  <label htmlFor="revRole" className="form-label">
-                    Status <span className="opt">(Optional)</span>
-                  </label>
-                  <input
-                    id="revRole"
-                    type="text"
-                    maxLength={100}
-                    placeholder="e.g., Grade 11 Student, Math Educator"
-                    value={role}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="modal-text-input"
-                  />
-                </div>
+              {/* Full Name */}
+              <div className="form-field-group">
+                <label htmlFor="revName" className="form-label">
+                  Your Full Name <span className="req">*</span>
+                </label>
+                <input
+                  id="revName"
+                  type="text"
+                  required
+                  maxLength={100}
+                  placeholder="e.g., Rohan Sharma"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="modal-text-input"
+                />
+              </div>
 
-                {/* Math Background */}
-                <div className="form-field-group">
-                  <label htmlFor="revMathBackground" className="form-label">
-                    Math Background <span className="opt">(Optional)</span>
-                  </label>
-                  <input
-                    id="revMathBackground"
-                    type="text"
-                    maxLength={100}
-                    placeholder="e.g., RMO Awardee, INMO Awardee"
-                    value={mathBackground}
-                    onChange={(e) => setMathBackground(e.target.value)}
-                    className="modal-text-input"
-                  />
-                </div>
+              {/* Status */}
+              <div className="form-field-group">
+                <label htmlFor="revRole" className="form-label">
+                  Status <span className="opt">(Optional)</span>
+                </label>
+                <input
+                  id="revRole"
+                  type="text"
+                  maxLength={100}
+                  placeholder="e.g., Grade 11 Student, Math Educator"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value)}
+                  className="modal-text-input"
+                />
+              </div>
 
-                {/* Review or Comment Content */}
-                <div className="form-field-group">
-                  <label htmlFor="revContent" className="form-label">
-                    {formType === "review" ? "Your Review" : "Your Comment / Query"}{" "}
-                    <span className="req">*</span>
-                  </label>
-                  <textarea
-                    id="revContent"
-                    required
-                    rows={5}
-                    maxLength={3000}
-                    placeholder={
-                      formType === "review"
-                        ? "Share your experience with the explanations, solved examples and Practice Problems."
-                        : "Ask a question about prerequisites, chapters, or share a thought..."
-                    }
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                    className="modal-textarea"
-                  />
-                  <span className="form-help-text">
-                    LaTeX math formulas enclosed in <code>$x^2 \equiv 1 \pmod p$</code> are supported.
-                  </span>
-                </div>
+              {/* Math Background */}
+              <div className="form-field-group">
+                <label htmlFor="revMathBackground" className="form-label">
+                  Math Background <span className="opt">(Optional)</span>
+                </label>
+                <input
+                  id="revMathBackground"
+                  type="text"
+                  maxLength={100}
+                  placeholder="e.g., RMO Awardee, INMO Awardee"
+                  value={mathBackground}
+                  onChange={(e) => setMathBackground(e.target.value)}
+                  className="modal-text-input"
+                />
+              </div>
 
-                {/* Anti-spam notice */}
-                <div className="review-moderation-notice">
-                  <span className="notice-dot" />
-                  <span>
-                    Submissions are held for editorial approval by authors Aritra
-                    Saha &amp; Riddhiman Seal before appearing on the website.
-                  </span>
-                </div>
+              {/* Review or Comment Content */}
+              <div className="form-field-group">
+                <label htmlFor="revContent" className="form-label">
+                  {formType === "review" ? "Your Review" : "Your Comment / Query"}{" "}
+                  <span className="req">*</span>
+                </label>
+                <textarea
+                  id="revContent"
+                  required
+                  rows={5}
+                  maxLength={3000}
+                  placeholder={
+                    formType === "review"
+                      ? "Share your experience with the explanations, solved examples and Practice Problems."
+                      : "Ask a question about prerequisites, chapters, or share a thought..."
+                  }
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  className="modal-textarea"
+                />
+                <span className="form-help-text">
+                  LaTeX math formulas enclosed in <code>$x^2 \equiv 1 \pmod p$</code> are supported.
+                </span>
+              </div>
 
-                {submitError && <div className="form-error-banner">{submitError}</div>}
+              {/* Anti-spam notice */}
+              <div className="review-moderation-notice">
+                <span className="notice-dot" />
+                <span>
+                  Submissions are held for editorial approval by authors Aritra
+                  Saha &amp; Riddhiman Seal before appearing on the website.
+                </span>
+              </div>
 
-                {/* Submit Row */}
-                <div className="modal-submit-row">
-                  <button
-                    type="button"
-                    className="modal-cancel-btn"
-                    onClick={() => setIsModalOpen(false)}
-                    disabled={submitting}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="primary-button"
-                    disabled={submitting}
-                  >
-                    {submitting ? "Submitting..." : "Submit for Approval"} <span>&rarr;</span>
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
+              {/* Submit Error */}
+              {submitError && <div className="form-error-banner">{submitError}</div>}
+
+              {/* Actions */}
+              <div className="modal-submit-row">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="primary-button"
+                  style={{ minWidth: "220px" }}
+                >
+                  {submitting
+                    ? "Submitting..."
+                    : formType === "review"
+                    ? "Submit Review for Editorial Approval"
+                    : "Post Comment for Approval"}{" "}
+                  <span>&rarr;</span>
+                </button>
+              </div>
+            </form>
+          )}
         </div>
-      )}
+      </section>
 
       {/* Reader QR Code Verification Modal */}
       {unlockModalOpen && (

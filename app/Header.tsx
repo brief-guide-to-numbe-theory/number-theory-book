@@ -48,6 +48,7 @@ const navPages: NavPage[] = [
     sections: [
       { name: "Reader Ratings & Reviews", href: "/reviews#reviews-list" },
       { name: "General Comments", href: "/reviews#comments-list" },
+      { name: "Write a Review", href: "/reviews#write-review" },
     ],
   },
 ];

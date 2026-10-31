@@ -2921,6 +2921,84 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
 }
 
 /* =========================================================
+   --- Embedded On-Page Review Form ---
+   ========================================================= */
+
+.write-review-card-wrapper {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(24px, 4vw, 44px);
+  margin-top: 24px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .write-review-card-wrapper {
+  background: #0d1730;
+  border-color: rgba(180, 210, 255, 0.2);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+.write-review-unlock-box {
+  text-align: center;
+  padding: 36px 16px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.unlock-box-icon {
+  font-size: 36px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.unlock-box-header h4 {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+
+[data-theme="dark"] .unlock-box-header h4 {
+  color: #e6f0fa;
+}
+
+.unlock-box-header p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin: 0 auto 24px;
+  max-width: 440px;
+}
+
+.unlock-inline-form {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.unlock-code-input {
+  max-width: 160px;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  font-size: 16px;
+}
+
+.code-error-msg {
+  color: #e53e3e;
+  font-size: 13px;
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+/* =========================================================
    --- Editorial Moderation Dashboard Styles ---
    ========================================================= */
 
