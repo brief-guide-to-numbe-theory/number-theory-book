@@ -1,8 +1,11 @@
 import fs from "fs";
 import path from "path";
+import crypto from "crypto";
 import { ReviewItem, ReviewSubmissionPayload, ReviewsStats } from "./types";
 
-const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || "abgnt2026";
+const ADMIN_PASSCODE = process.env.ADMIN_PASSCODE || "";
+const FALLBACK_PASSCODE_HASH =
+  "8ebc00eb77031ea02f69b227a641f5d9a8aa06eec0b072d0a534bde9bfce89e5";
 const REDIS_KEY = "abgnt_reviews";
 
 // Path definitions for local/disk fallback
@@ -335,9 +338,24 @@ export async function getApprovedData(): Promise<{
   return { reviews, comments, stats };
 }
 
+function hashPasscode(code: string): string {
+  return crypto
+    .createHash("sha256")
+    .update("abgnt-editorial-salt:" + code.trim())
+    .digest("hex");
+}
+
 export function verifyAdminPasscode(inputPasscode: string): boolean {
   if (!inputPasscode) return false;
-  return inputPasscode.trim() === ADMIN_PASSCODE.trim();
+  const clean = inputPasscode.trim();
+
+  // 1. Check custom Vercel environment variable if provided
+  if (ADMIN_PASSCODE) {
+    if (clean === ADMIN_PASSCODE.trim()) return true;
+  }
+
+  // 2. Check cryptographic salted hash (EulerTotient@2026)
+  return hashPasscode(clean) === FALLBACK_PASSCODE_HASH;
 }
 
 export async function createReviewSubmission(
