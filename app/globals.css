@@ -3405,6 +3405,7 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   border: 1px solid rgba(217, 43, 140, 0.35);
   padding: 4px 10px;
   border-radius: 999px;
+  white-space: nowrap;
 }
 
 [data-theme="dark"] .header-reader-badge {

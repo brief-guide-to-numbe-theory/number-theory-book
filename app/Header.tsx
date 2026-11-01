@@ -187,7 +187,7 @@ export default function Header() {
   return (
     <>
       <header className="site-header" ref={headerRef}>
-        {/* Left Section: Menu Button on Left + Brand Logo */}
+        {/* Left Section: Menu Button on Left + Reader Verified Badge */}
         <div className="header-left">
           <button
             className={`standard-menu-btn ${menuOpen ? "open" : ""}`}
@@ -230,6 +230,15 @@ export default function Header() {
               </svg>
             )}
           </button>
+
+          {mounted && isReaderVerified && (
+            <span
+              className="header-reader-badge"
+              title="Verified Book Reader: Unlocked via book QR code"
+            >
+              &#10003; Reader Verified
+            </span>
+          )}
         </div>
 
         {/* Center Section: Tabs in header for Windows / Desktop / Laptop */}
@@ -273,15 +282,6 @@ export default function Header() {
 
         {/* Right Section: Theme Toggle and Brand Logo (Logo in rightmost part) */}
         <div className="header-right">
-          {mounted && isReaderVerified && (
-            <span
-              className="header-reader-badge"
-              title="Verified Book Reader: Unlocked via book QR code"
-            >
-              &#10003; Reader Verified
-            </span>
-          )}
-
           {mounted && (
             <button
               className="theme-toggle-btn"

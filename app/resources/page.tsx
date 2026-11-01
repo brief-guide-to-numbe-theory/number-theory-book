@@ -114,13 +114,6 @@ export default function ResourcesPage() {
                   Al-Jabr: Higher Algebraic Yield is an Olympiad-level algebra and combinatorial algebra book focusing on the modern style of algebraic problem-solving featured in mathematical competitions. As we have learned from our experience in Mathematical Olympiads, learning math is mostly by doing problems. Although we have explicitly stated many techniques before solving the problems and examples, there are still many ideas that underlies in each problem that were not covered in this book. Most of the chapters of this book contains: examples, problems, and exercises ordered roughly in increasing difficulty, ranging from sub-IMO problem 1/4 level up to IMO problem 3/6 level.
                 </p>
 
-                <div className="resource-pills-row">
-                  <span className="resource-pill">Modern Competition Algebra</span>
-                  <span className="resource-pill">Sub-IMO 1/4 to IMO 3/6</span>
-                  <span className="resource-pill">Worked Examples &amp; Exercises</span>
-                  <span className="resource-pill">Combinatorial Algebra</span>
-                </div>
-
                 <div className="resource-buy-actions">
                   <a
                     href="https://amzn.in/d/0iew0lRb"
@@ -185,13 +178,6 @@ export default function ResourcesPage() {
                 <p className="resource-text">
                   &ldquo;An Exploration of Olympiad Combinatorics&rdquo; is designed to help readers prepare for international mathematical olympiads like the International Mathematical Olympiad (IMO) and national olympiads like the Regional Mathematical olympiad (RMO) and the Indian National Mathematical Olympiad (INMO) in India. The book covers a wide range of combinatorial topics, progressing from fundamentals like counting principles and induction to advanced fields including algorithms, graph theory, and the probabilistic method. The book is written in a unique conversational style and breaks away from the traditional problem-solution format. This approach aims to engage the reader and encourage them to find solutions independently and develop problem-solving skills.
                 </p>
-
-                <div className="resource-pills-row">
-                  <span className="resource-pill">RMO &bull; INMO &bull; IMO Focus</span>
-                  <span className="resource-pill">Conversational Learning Style</span>
-                  <span className="resource-pill">Graph Theory &amp; Probabilistic Method</span>
-                  <span className="resource-pill">Counting &amp; Induction</span>
-                </div>
 
                 <div className="resource-buy-actions">
                   <a
