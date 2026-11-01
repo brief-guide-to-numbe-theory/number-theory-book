@@ -51,6 +51,15 @@ const navPages: NavPage[] = [
       { name: "Write a Review", href: "/reviews#write-review" },
     ],
   },
+  {
+    name: "Olympiad Resources",
+    href: "/resources",
+    key: "resources",
+    sections: [
+      { name: "Algebra (Al-Jabr)", href: "/resources#algebra" },
+      { name: "Combinatorics (Exploration)", href: "/resources#combinatorics" },
+    ],
+  },
 ];
 
 export default function Header() {
@@ -252,6 +261,13 @@ export default function Header() {
             onClick={() => setMenuOpen(false)}
           >
             Reviews
+          </Link>
+          <Link
+            href="/resources"
+            className={`header-nav-tab ${pathname === "/resources" ? "active" : ""}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Resources
           </Link>
         </nav>
 
