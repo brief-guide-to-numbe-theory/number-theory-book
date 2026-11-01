@@ -56,8 +56,8 @@ const navPages: NavPage[] = [
     href: "/resources",
     key: "resources",
     sections: [
-      { name: "Algebra (Al-Jabr)", href: "/resources#algebra" },
-      { name: "Combinatorics (Exploration)", href: "/resources#combinatorics" },
+      { name: "Algebra", href: "/resources#algebra" },
+      { name: "Combinatorics", href: "/resources#combinatorics" },
     ],
   },
 ];
