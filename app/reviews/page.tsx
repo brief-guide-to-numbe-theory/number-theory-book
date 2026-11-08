@@ -56,6 +56,24 @@ export default async function ReviewsPage() {
             </p>
           </div>
 
+          <div className="reader-verified-top-note" data-reveal>
+            <div className="reader-note-header">
+              <span className="reader-note-icon">&#9432;</span>
+              <span className="reader-note-tag">Verified Reader Access &amp; Discord Community</span>
+            </div>
+            <p className="reader-note-text">
+              For readers who have bought our book, please message us over{" "}
+              <strong>Discord</strong> (<code>aritra2008</code> or{" "}
+              <code>simplisticformulas</code>), <strong>Telegram</strong> (
+              <a href="https://t.me/Aritra2008Saha13" target="_blank" rel="noopener noreferrer" className="reader-note-link">@Aritra2008Saha13</a> or{" "}
+              <a href="https://t.me/Sudeshna_Seal" target="_blank" rel="noopener noreferrer" className="reader-note-link">@Sudeshna_Seal</a>), or Gmail at{" "}
+              <a href="mailto:abgnt.official@gmail.com" className="reader-note-link">
+                abgnt.official@gmail.com
+              </a>{" "}
+              to receive the code for Reader verified messages and get access to our Discord channel.
+            </p>
+          </div>
+
           <ReviewsClient initialData={initialData} />
         </section>
       </main>

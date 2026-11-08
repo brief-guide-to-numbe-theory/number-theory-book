@@ -592,6 +592,10 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                   To ensure genuine feedback, submitting reviews and comments is available exclusively to readers with the book. Enter the 4-character code printed on the back cover (or scan the QR code):
                 </p>
               </div>
+              <div className="unlock-box-subnote">
+                <strong>Note:</strong> For readers who have bought our book, please message us over <strong>Discord</strong> (<code>aritra2008</code> or <code>simplisticformulas</code>), <strong>Telegram</strong> (<a href="https://t.me/Aritra2008Saha13" target="_blank" rel="noopener noreferrer" className="reader-note-link">@Aritra2008Saha13</a> or <a href="https://t.me/Sudeshna_Seal" target="_blank" rel="noopener noreferrer" className="reader-note-link">@Sudeshna_Seal</a>), or Gmail at{" "}
+                <a href="mailto:abgnt.official@gmail.com" className="reader-note-link">abgnt.official@gmail.com</a> to receive the code for Reader verified messages and get access to our Discord channel.
+              </div>
               <form onSubmit={handleVerifyCode} className="unlock-inline-form">
                 <input
                   id="inlineCodeInput"
@@ -824,6 +828,10 @@ export default function ReviewsClient({ initialData }: ReviewsClientProps) {
                 <em> A Brief Guide to Number Theory</em>. Please enter the 4-character
                 Reader Code found on the back cover of your book (or scan the QR code with your phone).
               </p>
+              <div className="unlock-modal-contact-note">
+                <strong>Note:</strong> For readers who have bought our book, please message us over <strong>Discord</strong> (<code>aritra2008</code> or <code>simplisticformulas</code>), <strong>Telegram</strong> (<a href="https://t.me/Aritra2008Saha13" target="_blank" rel="noopener noreferrer" className="reader-note-link">@Aritra2008Saha13</a> or <a href="https://t.me/Sudeshna_Seal" target="_blank" rel="noopener noreferrer" className="reader-note-link">@Sudeshna_Seal</a>), or Gmail at{" "}
+                <a href="mailto:abgnt.official@gmail.com" className="reader-note-link">abgnt.official@gmail.com</a> to receive the code for Reader verified messages and get access to our Discord channel.
+              </div>
 
               <form onSubmit={handleVerifyCode} className="reader-unlock-form">
                 <div className="form-field-group">

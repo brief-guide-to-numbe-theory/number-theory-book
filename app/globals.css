@@ -3465,6 +3465,324 @@ footer{min-height:120px;display:grid;grid-template-columns:1fr auto 1fr;align-it
   text-align: center;
 }
 
+/* =========================================================
+   --- Reader Verified Top Note & Contact Guidance ---
+   ========================================================= */
+
+.reader-verified-top-note {
+  margin: 32px 0 40px;
+  padding: clamp(18px, 2.5vw, 24px) clamp(20px, 3vw, 28px);
+  background: rgba(217, 43, 140, 0.05);
+  border: 1px solid rgba(217, 43, 140, 0.28);
+  border-left: 5px solid var(--gold);
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(26, 46, 90, 0.04);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] .reader-verified-top-note {
+  background: rgba(13, 23, 48, 0.85);
+  border-color: rgba(217, 43, 140, 0.38);
+  border-left-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.reader-note-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.reader-note-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.reader-note-tag {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.reader-note-text {
+  margin: 0;
+  font: 15px/1.7 Georgia, serif;
+  color: var(--ink);
+  opacity: 0.95;
+}
+
+[data-theme="dark"] .reader-note-text {
+  color: #e6f0fa;
+}
+
+.reader-note-text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+[data-theme="dark"] .reader-note-text strong {
+  color: #fff;
+}
+
+.reader-note-text code {
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  background: rgba(26, 46, 90, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+[data-theme="dark"] .reader-note-text code {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0a0c8;
+}
+
+.reader-note-link {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.reader-note-link:hover {
+  opacity: 0.8;
+}
+
+.unlock-box-subnote {
+  margin: 16px auto 0;
+  padding: 12px 16px;
+  background: rgba(217, 43, 140, 0.06);
+  border: 1px solid rgba(217, 43, 140, 0.25);
+  border-radius: 8px;
+  font: 13px/1.6 Georgia, serif;
+  color: var(--ink);
+  text-align: left;
+  max-width: 520px;
+}
+
+[data-theme="dark"] .unlock-box-subnote {
+  background: rgba(217, 43, 140, 0.12);
+  border-color: rgba(217, 43, 140, 0.35);
+  color: #e6f0fa;
+}
+
+.unlock-box-subnote code,
+.unlock-modal-contact-note code {
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  background: rgba(26, 46, 90, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+[data-theme="dark"] .unlock-box-subnote code,
+[data-theme="dark"] .unlock-modal-contact-note code {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0a0c8;
+}
+
+.unlock-modal-contact-note {
+  margin: 0 0 16px;
+  padding: 11px 14px;
+  background: rgba(217, 43, 140, 0.06);
+  border: 1px solid rgba(217, 43, 140, 0.25);
+  border-radius: 8px;
+  font: 12.5px/1.55 Georgia, serif;
+  color: var(--ink);
+}
+
+[data-theme="dark"] .unlock-modal-contact-note {
+  background: rgba(217, 43, 140, 0.12);
+  border-color: rgba(217, 43, 140, 0.35);
+  color: #e6f0fa;
+}
+
+/* =========================================================
+   --- Top Announcement Banner Box ---
+   ========================================================= */
+
+.site-header-wrapper {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 25;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header-wrapper .site-header {
+  position: relative;
+  inset: auto;
+  width: 100%;
+}
+
+.site-top-banner-bar {
+  width: 100%;
+  padding: 10px clamp(16px, 4vw, 40px) 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 35;
+}
+
+.site-top-banner-box {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(217, 43, 140, 0.35);
+  border-left: 5px solid var(--gold);
+  border-radius: 12px;
+  padding: 12px 48px 12px 18px;
+  box-shadow: 0 6px 22px rgba(26, 46, 90, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+[data-theme="dark"] .site-top-banner-box {
+  background: rgba(13, 23, 48, 0.95);
+  border-color: rgba(217, 43, 140, 0.45);
+  border-left-color: var(--gold);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+}
+
+.site-top-banner-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.site-top-banner-text {
+  margin: 0;
+  font: 14px/1.65 Georgia, serif;
+  color: var(--ink);
+  opacity: 0.95;
+  flex: 1;
+}
+
+[data-theme="dark"] .site-top-banner-text {
+  color: #e6f0fa;
+}
+
+.site-top-banner-text strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+[data-theme="dark"] .site-top-banner-text strong {
+  color: #fff;
+}
+
+.site-top-banner-text code {
+  font-family: "Courier New", monospace;
+  font-weight: 700;
+  background: rgba(26, 46, 90, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+
+[data-theme="dark"] .site-top-banner-text code {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0a0c8;
+}
+
+.site-top-banner-link {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.site-top-banner-link:hover {
+  opacity: 0.8;
+}
+
+.site-top-banner-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(26, 46, 90, 0.18);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .site-top-banner-close-btn {
+  border-color: rgba(180, 210, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #e6f0fa;
+}
+
+.site-top-banner-close-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.has-top-banner main {
+  padding-top: calc(86px + var(--banner-height, 0px)) !important;
+}
+
+.has-top-banner .hero {
+  padding-top: calc(146px + var(--banner-height, 0px)) !important;
+}
+
+@media (max-width: 760px) {
+  .site-top-banner-box {
+    padding: 12px 38px 12px 14px;
+    align-items: flex-start;
+  }
+  .site-top-banner-text {
+    font-size: 13px;
+  }
+  .has-top-banner main {
+    padding-top: calc(70px + var(--banner-height, 0px)) !important;
+  }
+  .has-top-banner .hero {
+    padding-top: calc(124px + var(--banner-height, 0px)) !important;
+  }
+}
 
 /* ==========================================================================
    Olympiad Resources Page (/resources)

@@ -69,10 +69,22 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [readerUnlockedToast, setReaderUnlockedToast] = useState(false);
   const [isReaderVerified, setIsReaderVerified] = useState(false);
+  const [topBannerDismissed, setTopBannerDismissed] = useState(true);
   const headerRef = useRef<HTMLDivElement>(null);
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
+
+    // Check top banner dismissal in session
+    try {
+      const isDismissed = sessionStorage.getItem("abgnt-top-banner-dismissed");
+      if (!isDismissed) {
+        setTopBannerDismissed(false);
+      }
+    } catch {
+      setTopBannerDismissed(false);
+    }
 
     // Check QR code reader unlock
     try {
@@ -184,9 +196,65 @@ export default function Header() {
     } catch {}
   };
 
+  useEffect(() => {
+    if (mounted && !topBannerDismissed && pathname !== "/reviews") {
+      document.body.classList.add("has-top-banner");
+      const updateBannerHeight = () => {
+        if (bannerRef.current) {
+          const h = bannerRef.current.offsetHeight;
+          document.documentElement.style.setProperty("--banner-height", `${h}px`);
+        }
+      };
+      updateBannerHeight();
+      window.addEventListener("resize", updateBannerHeight);
+      return () => window.removeEventListener("resize", updateBannerHeight);
+    } else {
+      document.body.classList.remove("has-top-banner");
+      document.documentElement.style.setProperty("--banner-height", "0px");
+    }
+  }, [mounted, topBannerDismissed, pathname]);
+
+  const dismissTopBanner = () => {
+    setTopBannerDismissed(true);
+    document.body.classList.remove("has-top-banner");
+    document.documentElement.style.setProperty("--banner-height", "0px");
+    try {
+      sessionStorage.setItem("abgnt-top-banner-dismissed", "true");
+    } catch {}
+  };
+
   return (
     <>
-      <header className="site-header" ref={headerRef}>
+      <div className="site-header-wrapper">
+        {mounted && !topBannerDismissed && pathname !== "/reviews" && (
+          <aside className="site-top-banner-bar" ref={bannerRef} aria-label="Book Owner Announcement">
+            <div className="site-top-banner-box">
+              <span className="site-top-banner-icon">&#9432;</span>
+              <p className="site-top-banner-text">
+                For readers who have bought our book, please message us over{" "}
+                <strong>Discord</strong> (<code>aritra2008</code> or{" "}
+                <code>simplisticformulas</code>), <strong>Telegram</strong> (
+                <a href="https://t.me/Aritra2008Saha13" target="_blank" rel="noopener noreferrer" className="site-top-banner-link">@Aritra2008Saha13</a> or{" "}
+                <a href="https://t.me/Sudeshna_Seal" target="_blank" rel="noopener noreferrer" className="site-top-banner-link">@Sudeshna_Seal</a>), or Gmail at{" "}
+                <a href="mailto:abgnt.official@gmail.com" className="site-top-banner-link">
+                  abgnt.official@gmail.com
+                </a>{" "}
+                to receive the code for Reader verified messages and get access to our Discord channel.
+              </p>
+              <button
+                type="button"
+                className="site-top-banner-close-btn"
+                onClick={dismissTopBanner}
+                aria-label="Close note"
+                title="Close"
+              >
+                &times;
+              </button>
+            </div>
+          </aside>
+        )}
+
+        <header className="site-header" ref={headerRef}>
         {/* Left Section: Menu Button on Left + Reader Verified Badge */}
         <div className="header-left">
           <button
@@ -327,6 +395,7 @@ export default function Header() {
           </aside>
         )}
       </header>
+    </div>
 
       {/* Oxford-Style Side Menu Drawer & Backdrop */}
       {menuOpen && (
